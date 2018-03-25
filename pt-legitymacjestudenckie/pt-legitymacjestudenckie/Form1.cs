@@ -15,6 +15,12 @@ namespace pt_legitymacjestudenckie
         public Form1()
         {
             InitializeComponent();
+
+            CardReader cr = new CardReader();
+
+            cr.Initialize();
+            cr.Connect();
+            cr.Release();
         }
     }
 }
