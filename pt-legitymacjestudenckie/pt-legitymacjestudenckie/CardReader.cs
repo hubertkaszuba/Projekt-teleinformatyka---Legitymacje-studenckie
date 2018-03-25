@@ -9,14 +9,26 @@ namespace pt_legitymacjestudenckie
 {
     class CardReader
     {
-        // 
+        // Parametry obsługi sesji czytnika
         SCardContext context;
         SCardReader reader;
         IntPtr protocol;
         string readerName;
 
+        const int BUFFER_SIZE = 1024;
+
+        // Flagi pomocnicze
         bool initialized;
 
+        // Komendy:
+        // SELECT FILE DF.SELS - by AID (D6 16 00 00 30 01)
+        byte[] cmdSelectAID = new byte[] { 0x00, 0xA4, 0x04, 0x00, 0x07,
+                        0xD6, 0x16, 0x00, 0x00, 0x30, 0x01, 0x01, 0x00 };
+        // SELECT FILE - EF.ELS
+        byte[] cmdSelectELS = new byte[] { 0x00, 0xA4, 0x02, 0x00, 0x02,
+                        0x00, 0x02, 0x12 };
+        // READ LINE
+        byte[] cmdReadLine = new byte[] { 0x00, 0xB0, 0x00, 0x00, 0xB0 };
 
         public CardReader()
         {
@@ -102,6 +114,42 @@ namespace pt_legitymacjestudenckie
 
             context.Release();
             initialized = false;
+        }
+
+        public int ReadData()
+        {
+            try
+            {
+                // Bufor odbieranej wiadomości
+                byte[] recMessage = new byte[BUFFER_SIZE/2];
+                byte[] readedMessage = new byte[BUFFER_SIZE];
+
+                // Komenda SELECT - DF.SELS
+                SCardError err = reader.Transmit(protocol, cmdSelectAID, ref recMessage);
+                CheckError(err);
+
+                // Komenda SELECT - EF.ELS
+                err = reader.Transmit(protocol, cmdSelectELS, ref recMessage);
+                CheckError(err);
+
+                // Komenda READ LINE
+                err = reader.Transmit(protocol, cmdReadLine, ref readedMessage);
+                CheckError(err);
+
+                return readedMessage.Length;
+            }
+            catch (PCSCException ex)
+            {
+
+                return -1;
+            }
+        }
+
+        private void CheckError(SCardError err)
+        {
+            if (err != SCardError.Success)
+                throw new PCSCException(err,
+                    SCardHelper.StringifyError(err));
         }
 
     }

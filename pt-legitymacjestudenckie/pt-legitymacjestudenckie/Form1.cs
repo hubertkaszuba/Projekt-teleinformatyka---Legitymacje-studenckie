@@ -18,8 +18,11 @@ namespace pt_legitymacjestudenckie
 
             CardReader cr = new CardReader();
 
+            int i = 0;
+
             cr.Initialize();
-            cr.Connect();
+            if(cr.Connect())
+                i = cr.ReadData();
             cr.Release();
         }
     }
