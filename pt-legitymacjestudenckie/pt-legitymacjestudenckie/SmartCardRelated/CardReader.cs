@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 using pt_legitymacjestudenckie.SmartCardRelated;
 
 // smart cards libs
@@ -13,12 +14,14 @@ namespace pt_legitymacjestudenckie
     class CardReader
     {
         // Parametry obsługi sesji czytnika
+        const int BUFFER_SIZE = 1024;
         SCardContext context;
         SCardReader reader;
         IntPtr protocol;
         string readerName;
 
-        const int BUFFER_SIZE = 1024;
+        // Lista studentów
+        List<StudentInfo> lStudInfo;
 
         // Flagi pomocnicze
         bool initialized;
@@ -144,7 +147,8 @@ namespace pt_legitymacjestudenckie
                 err = reader.Transmit(protocol, cmdReadLine, ref readedMessage);
                 CheckError(err);
 
-                ParseStudent(readedMessage, DateTime.Now);
+                StudentInfo temp = ParseStudent(readedMessage, DateTime.Now);
+                lStudInfo.Add(temp);
 
                 return readedMessage.Length;
             }
@@ -161,9 +165,20 @@ namespace pt_legitymacjestudenckie
             string encodedMsg = Encoding.UTF8.GetString(message);
             MatchCollection param = Regex.Matches(encodedMsg, @"[A-Z][a-z]+|([1-9]+\d{5})");
 
+            if (param.Count >= 10)
+                newStudent = new StudentInfo(
+                    param[4].Value, // imie
+                    param[3].Value, // nazwisko
+                    param[6].Value, // index
+                    timestamp);
+            else
+                newStudent = new StudentInfo(
+                    param[4].Value, // imie
+                    param[3].Value, // nazwisko
+                    param[5].Value, // index
+                    timestamp);
 
-
-            return null;
+            return newStudent;
         }
 
         // Metoda pomocnicza do sprawdzania statusu połączenia
