@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Text;
+using System.Text.RegularExpressions;
+using pt_legitymacjestudenckie.SmartCardRelated;
 
 // smart cards libs
 using PCSC;
@@ -35,6 +38,7 @@ namespace pt_legitymacjestudenckie
             initialized = false;
         }
 
+        // Inicjuje sesję, powinno być wywoływane jako pierwsze
         public bool Initialize()
         {
             try
@@ -65,6 +69,8 @@ namespace pt_legitymacjestudenckie
             }
         }
 
+        // Łączy z kartą, wymagane by wysyłać komendy
+        // wsunięcie kolejnej karty wymaga ponownego połączenia
         public bool Connect()
         {
             try
@@ -107,6 +113,7 @@ namespace pt_legitymacjestudenckie
             }
         }
 
+        // Rozłącza z kartą
         public void Release()
         {
             if (!initialized)
@@ -116,6 +123,7 @@ namespace pt_legitymacjestudenckie
             initialized = false;
         }
 
+        // Zebranie podstawowych o studencie
         public int ReadData()
         {
             try
@@ -136,15 +144,29 @@ namespace pt_legitymacjestudenckie
                 err = reader.Transmit(protocol, cmdReadLine, ref readedMessage);
                 CheckError(err);
 
+                ParseStudent(readedMessage, DateTime.Now);
+
                 return readedMessage.Length;
             }
             catch (PCSCException ex)
             {
-
                 return -1;
             }
         }
 
+        // Parsowanie informacji z karty
+        private StudentInfo ParseStudent(byte[] message, DateTime timestamp)
+        {
+            StudentInfo newStudent;
+            string encodedMsg = Encoding.UTF8.GetString(message);
+            MatchCollection param = Regex.Matches(encodedMsg, @"[A-Z][a-z]+|([1-9]+\d{5})");
+
+
+
+            return null;
+        }
+
+        // Metoda pomocnicza do sprawdzania statusu połączenia
         private void CheckError(SCardError err)
         {
             if (err != SCardError.Success)
