@@ -21,7 +21,7 @@ namespace pt_legitymacjestudenckie
         string readerName;
 
         // Lista studentów
-        List<StudentInfo> lStudInfo;
+        public List<StudentInfo> lStudInfo;
 
         // Flagi pomocnicze
         bool initialized;
