@@ -39,6 +39,7 @@ namespace pt_legitymacjestudenckie
         public CardReader()
         {
             initialized = false;
+            lStudInfo = new List<StudentInfo>();
         }
 
         // Inicjuje sesję, powinno być wywoływane jako pierwsze
