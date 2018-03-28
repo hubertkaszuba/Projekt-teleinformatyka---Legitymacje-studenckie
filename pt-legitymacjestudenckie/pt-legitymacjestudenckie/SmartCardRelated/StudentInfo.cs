@@ -9,12 +9,12 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
     class StudentInfo
     {
         // Sparsowane z karty informacje o studencie
-        string firstName { get; }
-        string lastName { get; }
-        string index { get; }
+        public string firstName { get; }
+        public string lastName { get; }
+        public string index { get; }
 
         // Rejestrowanie odbicia karty
-        DateTime timestamp { get; set; }
+        public DateTime timestamp { get; set; }
 
         public StudentInfo(string fName, string lName, string idx, DateTime stamp)
         {

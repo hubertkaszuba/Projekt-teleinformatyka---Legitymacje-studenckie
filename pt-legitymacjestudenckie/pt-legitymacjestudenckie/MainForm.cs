@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using pt_legitymacjestudenckie.SmartCardRelated;
 namespace pt_legitymacjestudenckie
 {
     public partial class MainForm : Form
@@ -17,15 +17,6 @@ namespace pt_legitymacjestudenckie
         public MainForm()
         {
             InitializeComponent();
-
-            CardReader cr = new CardReader();
-
-            int i = 0;
-
-            cr.Initialize();
-            if(cr.Connect())
-                i = cr.ReadData();
-            cr.Release();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,7 +48,22 @@ namespace pt_legitymacjestudenckie
             stoper.Start();
 
             /*Rozpoczęcie czytania kart */
+            CardReader cr = new CardReader();
+            int i = 0;
+            cr.Initialize();
+            if (cr.Connect())
+                i = cr.ReadData();
+            cr.Release();
 
+            int j = 0;
+            foreach(StudentInfo si in cr.lStudInfo)
+            {
+                dgv_lista_studentow.Rows[j].Cells[0].Value = si.firstName;
+                dgv_lista_studentow.Rows[j].Cells[1].Value = si.lastName;
+                dgv_lista_studentow.Rows[j].Cells[2].Value = si.index;
+                dgv_lista_studentow.Rows[j].Cells[3].Value = si.timestamp.ToString();
+                j++;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

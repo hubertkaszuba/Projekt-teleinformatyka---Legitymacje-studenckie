@@ -19,10 +19,10 @@ namespace pt_legitymacjestudenckie
         SCardReader reader;
         IntPtr protocol;
         string readerName;
-
+        
         // Lista studentów
         public List<StudentInfo> lStudInfo;
-
+        
         // Flagi pomocnicze
         bool initialized;
 
@@ -165,7 +165,7 @@ namespace pt_legitymacjestudenckie
             StudentInfo newStudent;
             string encodedMsg = Encoding.UTF8.GetString(message);
             MatchCollection param = Regex.Matches(encodedMsg, @"[A-Z][a-z]+|([1-9]+\d{5})");
-
+         
             if (param.Count >= 10)
                 newStudent = new StudentInfo(
                     param[4].Value, // imie
