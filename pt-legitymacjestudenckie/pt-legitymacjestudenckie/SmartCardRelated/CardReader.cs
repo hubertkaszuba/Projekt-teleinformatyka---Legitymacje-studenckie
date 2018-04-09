@@ -11,6 +11,13 @@ using PCSC.Utils;
 
 namespace pt_legitymacjestudenckie
 {
+    enum State
+    {
+        UNACTIVE = 0,
+        INITIALIZED = 1,
+        READING = 2
+    }
+
     class CardReader
     {
         // Parametry obsługi sesji czytnika
@@ -19,12 +26,12 @@ namespace pt_legitymacjestudenckie
         SCardReader reader;
         IntPtr protocol;
         string readerName;
-        
+
         // Lista studentów
         public List<StudentInfo> lStudInfo;
-        
+
         // Flagi pomocnicze
-        bool initialized;
+        protected State state;
 
         // Komendy:
         // SELECT FILE DF.SELS - by AID (D6 16 00 00 30 01)
@@ -38,7 +45,7 @@ namespace pt_legitymacjestudenckie
 
         public CardReader()
         {
-            initialized = false;
+            state = State.UNACTIVE;
             lStudInfo = new List<StudentInfo>();
         }
 
@@ -64,7 +71,7 @@ namespace pt_legitymacjestudenckie
                 // Stwórz nowy obiekt czytnika dla tej sesji
                 reader = new SCardReader(context);
 
-                initialized = true;
+                state = State.INITIALIZED;
                 return true;
             }
             catch (PCSCException ex)
@@ -79,7 +86,7 @@ namespace pt_legitymacjestudenckie
         {
             try
             {
-                if (!initialized)
+                if (state <= 0)
                     throw new Exception("Urządzenie nie zainicjowane.");
 
                 // Połącz się z czytnikiem
@@ -120,11 +127,8 @@ namespace pt_legitymacjestudenckie
         // Rozłącza z kartą
         public void Release()
         {
-            if (!initialized)
-                throw new Exception("Urządzenie nie zainicjowane.");
-
             context.Release();
-            initialized = false;
+            state = State.UNACTIVE;
         }
 
         // Zebranie podstawowych o studencie
@@ -133,7 +137,7 @@ namespace pt_legitymacjestudenckie
             try
             {
                 // Bufor odbieranej wiadomości
-                byte[] recMessage = new byte[BUFFER_SIZE/2];
+                byte[] recMessage = new byte[BUFFER_SIZE / 2];
                 byte[] readedMessage = new byte[BUFFER_SIZE];
 
                 // Komenda SELECT - DF.SELS
@@ -151,6 +155,7 @@ namespace pt_legitymacjestudenckie
                 StudentInfo temp = ParseStudent(readedMessage, DateTime.Now);
                 lStudInfo.Add(temp);
 
+
                 return readedMessage.Length;
             }
             catch (PCSCException ex)
@@ -159,13 +164,18 @@ namespace pt_legitymacjestudenckie
             }
         }
 
+        public State GetState()
+        {
+            return state;
+        }
+
         // Parsowanie informacji z karty
         private StudentInfo ParseStudent(byte[] message, DateTime timestamp)
         {
             StudentInfo newStudent;
             string encodedMsg = Encoding.UTF8.GetString(message);
             MatchCollection param = Regex.Matches(encodedMsg, @"[A-Z][a-z]+|([1-9]+\d{5})");
-         
+
             if (param.Count >= 10)
                 newStudent = new StudentInfo(
                     param[4].Value, // imie
@@ -189,6 +199,5 @@ namespace pt_legitymacjestudenckie
                 throw new PCSCException(err,
                     SCardHelper.StringifyError(err));
         }
-
     }
 }

@@ -23,7 +23,11 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
             index = idx;
             timestamp = stamp;
         }
-        
+
+        public string printStudent()
+        {
+            return firstName + " " + lastName + " " + index + " " + timestamp.ToString();
+        }
 
     }
 }

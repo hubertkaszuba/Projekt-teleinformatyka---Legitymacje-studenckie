@@ -29,16 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("<godzina od do>");
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabObecnosc = new System.Windows.Forms.TabPage();
             this.dgv_lista_studentow = new System.Windows.Forms.DataGridView();
+            this.Imię = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Indeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sygnatura_czasowa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lv_nastepne_zajecia = new System.Windows.Forms.ListView();
             this.lv_aktualne_zajecia = new System.Windows.Forms.ListView();
             this.btn_usun_zaznaczone = new System.Windows.Forms.Button();
@@ -59,7 +63,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tb_budynek = new System.Windows.Forms.TextBox();
+            this.tb_numer_sali = new System.Windows.Forms.TextBox();
+            this.btn_dodaj_sale = new System.Windows.Forms.Button();
+            this.label_budynek = new System.Windows.Forms.Label();
+            this.label_numer_sali = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label_nazwa_przedmiotu = new System.Windows.Forms.Label();
+            this.tb_nazwa_przedmiotu = new System.Windows.Forms.TextBox();
+            this.btn_dodaj_przedmiot = new System.Windows.Forms.Button();
             this.dgv_zajęcia = new System.Windows.Forms.DataGridView();
             this.Nazwa_zajęć = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sala = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +79,8 @@
             this.DzienTygodnia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tydzień = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_dodawanieZajęć = new System.Windows.Forms.GroupBox();
+            this.cb_sala = new System.Windows.Forms.ComboBox();
+            this.cb_zajecia = new System.Windows.Forms.ComboBox();
             this.dateTime_pierwsze_zajecia = new System.Windows.Forms.DateTimePicker();
             this.btn_dodaj_zajęcia = new System.Windows.Forms.Button();
             this.label_zajecia = new System.Windows.Forms.Label();
@@ -77,20 +91,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
-            this.Imię = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Indeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sygnatura_czasowa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tb_numer_sali = new System.Windows.Forms.TextBox();
-            this.label_nazwa_przedmiotu = new System.Windows.Forms.Label();
-            this.cb_zajecia = new System.Windows.Forms.ComboBox();
-            this.cb_sala = new System.Windows.Forms.ComboBox();
-            this.btn_dodaj_przedmiot = new System.Windows.Forms.Button();
-            this.btn_dodaj_sale = new System.Windows.Forms.Button();
-            this.label_numer_sali = new System.Windows.Forms.Label();
-            this.label_budynek = new System.Windows.Forms.Label();
-            this.tb_budynek = new System.Windows.Forms.TextBox();
-            this.tb_nazwa_przedmiotu = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
@@ -166,16 +166,37 @@
             this.dgv_lista_studentow.Size = new System.Drawing.Size(430, 266);
             this.dgv_lista_studentow.TabIndex = 20;
             // 
+            // Imię
+            // 
+            this.Imię.HeaderText = "Imię";
+            this.Imię.Name = "Imię";
+            // 
+            // Nazwisko
+            // 
+            this.Nazwisko.HeaderText = "Nazwisko";
+            this.Nazwisko.Name = "Nazwisko";
+            // 
+            // Indeks
+            // 
+            this.Indeks.HeaderText = "Indeks";
+            this.Indeks.Name = "Indeks";
+            // 
+            // Sygnatura_czasowa
+            // 
+            this.Sygnatura_czasowa.HeaderText = "Czas";
+            this.Sygnatura_czasowa.Name = "Sygnatura_czasowa";
+            this.Sygnatura_czasowa.Width = 125;
+            // 
             // lv_nastepne_zajecia
             // 
             this.lv_nastepne_zajecia.Enabled = false;
-            listViewItem14.IndentCount = 1;
-            listViewItem15.IndentCount = 2;
-            listViewItem15.UseItemStyleForSubItems = false;
+            listViewItem2.IndentCount = 1;
+            listViewItem3.IndentCount = 2;
+            listViewItem3.UseItemStyleForSubItems = false;
             this.lv_nastepne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem13,
-            listViewItem14,
-            listViewItem15});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.lv_nastepne_zajecia.Location = new System.Drawing.Point(155, 25);
             this.lv_nastepne_zajecia.Name = "lv_nastepne_zajecia";
             this.lv_nastepne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -186,13 +207,13 @@
             // lv_aktualne_zajecia
             // 
             this.lv_aktualne_zajecia.Enabled = false;
-            listViewItem17.IndentCount = 1;
-            listViewItem18.IndentCount = 2;
-            listViewItem18.UseItemStyleForSubItems = false;
+            listViewItem5.IndentCount = 1;
+            listViewItem6.IndentCount = 2;
+            listViewItem6.UseItemStyleForSubItems = false;
             this.lv_aktualne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem16,
-            listViewItem17,
-            listViewItem18});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.lv_aktualne_zajecia.Location = new System.Drawing.Point(6, 25);
             this.lv_aktualne_zajecia.Name = "lv_aktualne_zajecia";
             this.lv_aktualne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -398,6 +419,47 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dodawanie Sali";
             // 
+            // tb_budynek
+            // 
+            this.tb_budynek.Location = new System.Drawing.Point(108, 38);
+            this.tb_budynek.Name = "tb_budynek";
+            this.tb_budynek.Size = new System.Drawing.Size(133, 20);
+            this.tb_budynek.TabIndex = 0;
+            // 
+            // tb_numer_sali
+            // 
+            this.tb_numer_sali.Location = new System.Drawing.Point(108, 15);
+            this.tb_numer_sali.Name = "tb_numer_sali";
+            this.tb_numer_sali.Size = new System.Drawing.Size(133, 20);
+            this.tb_numer_sali.TabIndex = 0;
+            // 
+            // btn_dodaj_sale
+            // 
+            this.btn_dodaj_sale.Location = new System.Drawing.Point(5, 75);
+            this.btn_dodaj_sale.Name = "btn_dodaj_sale";
+            this.btn_dodaj_sale.Size = new System.Drawing.Size(75, 23);
+            this.btn_dodaj_sale.TabIndex = 21;
+            this.btn_dodaj_sale.Text = "Dodaj";
+            this.btn_dodaj_sale.UseVisualStyleBackColor = true;
+            // 
+            // label_budynek
+            // 
+            this.label_budynek.AutoSize = true;
+            this.label_budynek.Location = new System.Drawing.Point(57, 41);
+            this.label_budynek.Name = "label_budynek";
+            this.label_budynek.Size = new System.Drawing.Size(49, 13);
+            this.label_budynek.TabIndex = 19;
+            this.label_budynek.Text = "Budynek";
+            // 
+            // label_numer_sali
+            // 
+            this.label_numer_sali.AutoSize = true;
+            this.label_numer_sali.Location = new System.Drawing.Point(50, 18);
+            this.label_numer_sali.Name = "label_numer_sali";
+            this.label_numer_sali.Size = new System.Drawing.Size(56, 13);
+            this.label_numer_sali.TabIndex = 19;
+            this.label_numer_sali.Text = "Numer sali";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label_nazwa_przedmiotu);
@@ -409,6 +471,31 @@
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dodawanie przedmiotu";
+            // 
+            // label_nazwa_przedmiotu
+            // 
+            this.label_nazwa_przedmiotu.AutoSize = true;
+            this.label_nazwa_przedmiotu.Location = new System.Drawing.Point(12, 23);
+            this.label_nazwa_przedmiotu.Name = "label_nazwa_przedmiotu";
+            this.label_nazwa_przedmiotu.Size = new System.Drawing.Size(94, 13);
+            this.label_nazwa_przedmiotu.TabIndex = 19;
+            this.label_nazwa_przedmiotu.Text = "Nazwa przedmiotu";
+            // 
+            // tb_nazwa_przedmiotu
+            // 
+            this.tb_nazwa_przedmiotu.Location = new System.Drawing.Point(108, 20);
+            this.tb_nazwa_przedmiotu.Name = "tb_nazwa_przedmiotu";
+            this.tb_nazwa_przedmiotu.Size = new System.Drawing.Size(133, 20);
+            this.tb_nazwa_przedmiotu.TabIndex = 0;
+            // 
+            // btn_dodaj_przedmiot
+            // 
+            this.btn_dodaj_przedmiot.Location = new System.Drawing.Point(5, 50);
+            this.btn_dodaj_przedmiot.Name = "btn_dodaj_przedmiot";
+            this.btn_dodaj_przedmiot.Size = new System.Drawing.Size(75, 23);
+            this.btn_dodaj_przedmiot.TabIndex = 21;
+            this.btn_dodaj_przedmiot.Text = "Dodaj";
+            this.btn_dodaj_przedmiot.UseVisualStyleBackColor = true;
             // 
             // dgv_zajęcia
             // 
@@ -475,6 +562,24 @@
             this.gb_dodawanieZajęć.TabIndex = 21;
             this.gb_dodawanieZajęć.TabStop = false;
             this.gb_dodawanieZajęć.Text = "Dodawanie zajęć";
+            // 
+            // cb_sala
+            // 
+            this.cb_sala.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_sala.FormattingEnabled = true;
+            this.cb_sala.Location = new System.Drawing.Point(117, 51);
+            this.cb_sala.Name = "cb_sala";
+            this.cb_sala.Size = new System.Drawing.Size(121, 21);
+            this.cb_sala.TabIndex = 24;
+            // 
+            // cb_zajecia
+            // 
+            this.cb_zajecia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_zajecia.FormattingEnabled = true;
+            this.cb_zajecia.Location = new System.Drawing.Point(117, 24);
+            this.cb_zajecia.Name = "cb_zajecia";
+            this.cb_zajecia.Size = new System.Drawing.Size(121, 21);
+            this.cb_zajecia.TabIndex = 23;
             // 
             // dateTime_pierwsze_zajecia
             // 
@@ -561,111 +666,6 @@
             // 
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
-            // 
-            // Imię
-            // 
-            this.Imię.HeaderText = "Imię";
-            this.Imię.Name = "Imię";
-            // 
-            // Nazwisko
-            // 
-            this.Nazwisko.HeaderText = "Nazwisko";
-            this.Nazwisko.Name = "Nazwisko";
-            // 
-            // Indeks
-            // 
-            this.Indeks.HeaderText = "Indeks";
-            this.Indeks.Name = "Indeks";
-            // 
-            // Sygnatura_czasowa
-            // 
-            this.Sygnatura_czasowa.HeaderText = "Czas";
-            this.Sygnatura_czasowa.Name = "Sygnatura_czasowa";
-            this.Sygnatura_czasowa.Width = 125;
-            // 
-            // tb_numer_sali
-            // 
-            this.tb_numer_sali.Location = new System.Drawing.Point(108, 15);
-            this.tb_numer_sali.Name = "tb_numer_sali";
-            this.tb_numer_sali.Size = new System.Drawing.Size(133, 20);
-            this.tb_numer_sali.TabIndex = 0;
-            // 
-            // label_nazwa_przedmiotu
-            // 
-            this.label_nazwa_przedmiotu.AutoSize = true;
-            this.label_nazwa_przedmiotu.Location = new System.Drawing.Point(12, 23);
-            this.label_nazwa_przedmiotu.Name = "label_nazwa_przedmiotu";
-            this.label_nazwa_przedmiotu.Size = new System.Drawing.Size(94, 13);
-            this.label_nazwa_przedmiotu.TabIndex = 19;
-            this.label_nazwa_przedmiotu.Text = "Nazwa przedmiotu";
-            // 
-            // cb_zajecia
-            // 
-            this.cb_zajecia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_zajecia.FormattingEnabled = true;
-            this.cb_zajecia.Location = new System.Drawing.Point(117, 24);
-            this.cb_zajecia.Name = "cb_zajecia";
-            this.cb_zajecia.Size = new System.Drawing.Size(121, 21);
-            this.cb_zajecia.TabIndex = 23;
-            // 
-            // cb_sala
-            // 
-            this.cb_sala.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_sala.FormattingEnabled = true;
-            this.cb_sala.Location = new System.Drawing.Point(117, 51);
-            this.cb_sala.Name = "cb_sala";
-            this.cb_sala.Size = new System.Drawing.Size(121, 21);
-            this.cb_sala.TabIndex = 24;
-            // 
-            // btn_dodaj_przedmiot
-            // 
-            this.btn_dodaj_przedmiot.Location = new System.Drawing.Point(5, 50);
-            this.btn_dodaj_przedmiot.Name = "btn_dodaj_przedmiot";
-            this.btn_dodaj_przedmiot.Size = new System.Drawing.Size(75, 23);
-            this.btn_dodaj_przedmiot.TabIndex = 21;
-            this.btn_dodaj_przedmiot.Text = "Dodaj";
-            this.btn_dodaj_przedmiot.UseVisualStyleBackColor = true;
-            // 
-            // btn_dodaj_sale
-            // 
-            this.btn_dodaj_sale.Location = new System.Drawing.Point(5, 75);
-            this.btn_dodaj_sale.Name = "btn_dodaj_sale";
-            this.btn_dodaj_sale.Size = new System.Drawing.Size(75, 23);
-            this.btn_dodaj_sale.TabIndex = 21;
-            this.btn_dodaj_sale.Text = "Dodaj";
-            this.btn_dodaj_sale.UseVisualStyleBackColor = true;
-            // 
-            // label_numer_sali
-            // 
-            this.label_numer_sali.AutoSize = true;
-            this.label_numer_sali.Location = new System.Drawing.Point(50, 18);
-            this.label_numer_sali.Name = "label_numer_sali";
-            this.label_numer_sali.Size = new System.Drawing.Size(56, 13);
-            this.label_numer_sali.TabIndex = 19;
-            this.label_numer_sali.Text = "Numer sali";
-            // 
-            // label_budynek
-            // 
-            this.label_budynek.AutoSize = true;
-            this.label_budynek.Location = new System.Drawing.Point(57, 41);
-            this.label_budynek.Name = "label_budynek";
-            this.label_budynek.Size = new System.Drawing.Size(49, 13);
-            this.label_budynek.TabIndex = 19;
-            this.label_budynek.Text = "Budynek";
-            // 
-            // tb_budynek
-            // 
-            this.tb_budynek.Location = new System.Drawing.Point(108, 38);
-            this.tb_budynek.Name = "tb_budynek";
-            this.tb_budynek.Size = new System.Drawing.Size(133, 20);
-            this.tb_budynek.TabIndex = 0;
-            // 
-            // tb_nazwa_przedmiotu
-            // 
-            this.tb_nazwa_przedmiotu.Location = new System.Drawing.Point(108, 20);
-            this.tb_nazwa_przedmiotu.Name = "tb_nazwa_przedmiotu";
-            this.tb_nazwa_przedmiotu.Size = new System.Drawing.Size(133, 20);
-            this.tb_nazwa_przedmiotu.TabIndex = 0;
             // 
             // MainForm
             // 
