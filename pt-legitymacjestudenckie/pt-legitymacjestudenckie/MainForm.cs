@@ -13,10 +13,14 @@ namespace pt_legitymacjestudenckie
     public partial class MainForm : Form
     {
         private bool timerIsActive = false;
+        private StudentRecorder studentRecorder;
 
         public MainForm()
         {
             InitializeComponent();
+
+            studentRecorder = new StudentRecorder();
+            studentRecorder.Initialize();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,15 +52,11 @@ namespace pt_legitymacjestudenckie
             stoper.Start();
 
             /*Rozpoczęcie czytania kart */
-            CardReader cr = new CardReader();
-            int i = 0;
-            cr.Initialize();
-            if (cr.Connect())
-                i = cr.ReadData();
-            cr.Release();
+            studentRecorder.OpenRecorder(minuty*60);
 
+            /*
             int j = 0;
-            foreach(StudentInfo si in cr.lStudInfo)
+            foreach(StudentInfo si in studentRecorder.lStudInfo)
             {
                 dgv_lista_studentow.Rows[j].Cells[0].Value = si.firstName;
                 dgv_lista_studentow.Rows[j].Cells[1].Value = si.lastName;
@@ -64,6 +64,7 @@ namespace pt_legitymacjestudenckie
                 dgv_lista_studentow.Rows[j].Cells[3].Value = si.timestamp.ToString();
                 j++;
             }
+            */
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -111,6 +112,11 @@ namespace pt_legitymacjestudenckie
                 else lb_minuty.Text = minuty.ToString();
                 if (sekundy < 10) lb_sekundy.Text = "0" + sekundy.ToString();
                 else lb_sekundy.Text = sekundy.ToString();
+
+                /* Odświeżanie listy zarejestrowanych studentów */
+                dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
+                dgv_lista_studentow.Refresh();
+                
             }
         }
 

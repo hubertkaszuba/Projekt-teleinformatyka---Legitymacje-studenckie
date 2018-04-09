@@ -29,20 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("<godzina od do>");
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabObecnosc = new System.Windows.Forms.TabPage();
             this.dgv_lista_studentow = new System.Windows.Forms.DataGridView();
-            this.Imię = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Indeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sygnatura_czasowa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lv_nastepne_zajecia = new System.Windows.Forms.ListView();
             this.lv_aktualne_zajecia = new System.Windows.Forms.ListView();
             this.btn_usun_zaznaczone = new System.Windows.Forms.Button();
@@ -155,48 +151,22 @@
             // dgv_lista_studentow
             // 
             this.dgv_lista_studentow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_lista_studentow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Imię,
-            this.Nazwisko,
-            this.Indeks,
-            this.Sygnatura_czasowa});
             this.dgv_lista_studentow.Location = new System.Drawing.Point(194, 130);
             this.dgv_lista_studentow.Name = "dgv_lista_studentow";
             this.dgv_lista_studentow.RowHeadersVisible = false;
             this.dgv_lista_studentow.Size = new System.Drawing.Size(430, 266);
             this.dgv_lista_studentow.TabIndex = 20;
             // 
-            // Imię
-            // 
-            this.Imię.HeaderText = "Imię";
-            this.Imię.Name = "Imię";
-            // 
-            // Nazwisko
-            // 
-            this.Nazwisko.HeaderText = "Nazwisko";
-            this.Nazwisko.Name = "Nazwisko";
-            // 
-            // Indeks
-            // 
-            this.Indeks.HeaderText = "Indeks";
-            this.Indeks.Name = "Indeks";
-            // 
-            // Sygnatura_czasowa
-            // 
-            this.Sygnatura_czasowa.HeaderText = "Czas";
-            this.Sygnatura_czasowa.Name = "Sygnatura_czasowa";
-            this.Sygnatura_czasowa.Width = 125;
-            // 
             // lv_nastepne_zajecia
             // 
             this.lv_nastepne_zajecia.Enabled = false;
-            listViewItem2.IndentCount = 1;
-            listViewItem3.IndentCount = 2;
-            listViewItem3.UseItemStyleForSubItems = false;
+            listViewItem8.IndentCount = 1;
+            listViewItem9.IndentCount = 2;
+            listViewItem9.UseItemStyleForSubItems = false;
             this.lv_nastepne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
             this.lv_nastepne_zajecia.Location = new System.Drawing.Point(155, 25);
             this.lv_nastepne_zajecia.Name = "lv_nastepne_zajecia";
             this.lv_nastepne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -207,13 +177,13 @@
             // lv_aktualne_zajecia
             // 
             this.lv_aktualne_zajecia.Enabled = false;
-            listViewItem5.IndentCount = 1;
-            listViewItem6.IndentCount = 2;
-            listViewItem6.UseItemStyleForSubItems = false;
+            listViewItem11.IndentCount = 1;
+            listViewItem12.IndentCount = 2;
+            listViewItem12.UseItemStyleForSubItems = false;
             this.lv_aktualne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
             this.lv_aktualne_zajecia.Location = new System.Drawing.Point(6, 25);
             this.lv_aktualne_zajecia.Name = "lv_aktualne_zajecia";
             this.lv_aktualne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -738,10 +708,6 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer stoper;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Imię;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nazwisko;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Indeks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sygnatura_czasowa;
         private System.Windows.Forms.TextBox tb_numer_sali;
         private System.Windows.Forms.Label label_nazwa_przedmiotu;
         private System.Windows.Forms.TextBox tb_budynek;
