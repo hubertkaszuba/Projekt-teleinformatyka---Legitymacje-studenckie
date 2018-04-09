@@ -21,6 +21,9 @@ namespace pt_legitymacjestudenckie
 
             studentRecorder = new StudentRecorder();
             studentRecorder.Initialize();
+
+            /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
+            dgv_lista_studentow.DefaultCellStyle.Format = "dd/MM/yyyy hh:mm:ss";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -114,9 +117,7 @@ namespace pt_legitymacjestudenckie
                 else lb_sekundy.Text = sekundy.ToString();
 
                 /* Odświeżanie listy zarejestrowanych studentów */
-                dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
-                dgv_lista_studentow.Refresh();
-                
+                refreshStudentList();
             }
         }
 
@@ -137,6 +138,17 @@ namespace pt_legitymacjestudenckie
         private void btn_zapisz_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /* ======================================================================== */
+        /* metody do odświeżania elementów GUI */
+        
+        private void refreshStudentList()
+        {
+            /* Odświeżanie listy zarejestrowanych studentów */
+            dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
+            dgv_lista_studentow.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv_lista_studentow.Refresh();
         }
     }
 }
