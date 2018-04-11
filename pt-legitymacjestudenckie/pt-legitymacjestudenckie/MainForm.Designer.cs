@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem40 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem("<godzina od do>");
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabObecnosc = new System.Windows.Forms.TabPage();
@@ -160,13 +160,13 @@
             // lv_nastepne_zajecia
             // 
             this.lv_nastepne_zajecia.Enabled = false;
-            listViewItem2.IndentCount = 1;
-            listViewItem3.IndentCount = 2;
-            listViewItem3.UseItemStyleForSubItems = false;
+            listViewItem38.IndentCount = 1;
+            listViewItem39.IndentCount = 2;
+            listViewItem39.UseItemStyleForSubItems = false;
             this.lv_nastepne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem37,
+            listViewItem38,
+            listViewItem39});
             this.lv_nastepne_zajecia.Location = new System.Drawing.Point(155, 25);
             this.lv_nastepne_zajecia.Name = "lv_nastepne_zajecia";
             this.lv_nastepne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -177,13 +177,13 @@
             // lv_aktualne_zajecia
             // 
             this.lv_aktualne_zajecia.Enabled = false;
-            listViewItem5.IndentCount = 1;
-            listViewItem6.IndentCount = 2;
-            listViewItem6.UseItemStyleForSubItems = false;
+            listViewItem41.IndentCount = 1;
+            listViewItem42.IndentCount = 2;
+            listViewItem42.UseItemStyleForSubItems = false;
             this.lv_aktualne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
+            listViewItem40,
+            listViewItem41,
+            listViewItem42});
             this.lv_aktualne_zajecia.Location = new System.Drawing.Point(6, 25);
             this.lv_aktualne_zajecia.Name = "lv_aktualne_zajecia";
             this.lv_aktualne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -411,6 +411,7 @@
             this.btn_dodaj_sale.TabIndex = 21;
             this.btn_dodaj_sale.Text = "Dodaj";
             this.btn_dodaj_sale.UseVisualStyleBackColor = true;
+            this.btn_dodaj_sale.Click += new System.EventHandler(this.btn_dodaj_sale_Click);
             // 
             // label_budynek
             // 
@@ -466,6 +467,7 @@
             this.btn_dodaj_przedmiot.TabIndex = 21;
             this.btn_dodaj_przedmiot.Text = "Dodaj";
             this.btn_dodaj_przedmiot.UseVisualStyleBackColor = true;
+            this.btn_dodaj_przedmiot.Click += new System.EventHandler(this.btn_dodaj_przedmiot_Click);
             // 
             // dgv_zajęcia
             // 
@@ -541,6 +543,7 @@
             this.cb_sala.Name = "cb_sala";
             this.cb_sala.Size = new System.Drawing.Size(121, 21);
             this.cb_sala.TabIndex = 24;
+            this.cb_sala.Click += new System.EventHandler(this.cb_sala_Click);
             // 
             // cb_zajecia
             // 
@@ -568,6 +571,7 @@
             this.btn_dodaj_zajęcia.TabIndex = 21;
             this.btn_dodaj_zajęcia.Text = "Dodaj";
             this.btn_dodaj_zajęcia.UseVisualStyleBackColor = true;
+            this.btn_dodaj_zajęcia.Click += new System.EventHandler(this.btn_dodaj_zajęcia_Click);
             // 
             // label_zajecia
             // 
@@ -644,7 +648,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "The Conjuring";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

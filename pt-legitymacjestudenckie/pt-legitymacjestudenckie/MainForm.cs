@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using pt_legitymacjestudenckie.SmartCardRelated;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using System.Globalization;
 namespace pt_legitymacjestudenckie
 {
 
@@ -28,19 +29,19 @@ namespace pt_legitymacjestudenckie
             studentRecorder.Initialize();
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
-            dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
+            dgv_lista_studentow.DefaultCellStyle.Format = "dd/MM/yyyy hh:mm:ss";
             
-            Wykladowca wy = new Wykladowca
+            /*Wykladowca wy = new Wykladowca
             {
-                Id_Wykladowcy = 1,
-                Imie = "Sidżej",
-                Nazwisko = "Profesor",
-                Login_uz = "ProfesorSidżej"
+                Imie = "Jakub",
+                Nazwisko = "Dutkiewicz",
+                Login_uz = "Dudi1",
+                Haslo = "LigoLego"
             };
             connection.Open();
             conjuring.Wykladowca.Add(wy);
             conjuring.SaveChanges();
-            connection.Close();
+            connection.Close();*/
 
         }
 
@@ -74,18 +75,6 @@ namespace pt_legitymacjestudenckie
 
             /*Rozpoczęcie czytania kart */
             studentRecorder.OpenRecorder(minuty*60);
-
-            /*
-            int j = 0;
-            foreach(StudentInfo si in studentRecorder.lStudInfo)
-            {
-                dgv_lista_studentow.Rows[j].Cells[0].Value = si.firstName;
-                dgv_lista_studentow.Rows[j].Cells[1].Value = si.lastName;
-                dgv_lista_studentow.Rows[j].Cells[2].Value = si.index;
-                dgv_lista_studentow.Rows[j].Cells[3].Value = si.timestamp.ToString();
-                j++;
-            }
-            */
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -167,6 +156,37 @@ namespace pt_legitymacjestudenckie
             dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
             dgv_lista_studentow.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgv_lista_studentow.Refresh();
+        }
+
+        private void btn_dodaj_zajęcia_Click(object sender, EventArgs e)
+        {
+            dgv_zajęcia.Rows[0].Cells[0].Value = cb_zajecia.Text;
+            dgv_zajęcia.Rows[0].Cells[1].Value = cb_sala.Text;
+
+            DateTime data = Convert.ToDateTime(dateTime_pierwsze_zajecia.Text);
+            string minuty = Convert.ToString(data.Minute);
+            string godziny = Convert.ToString(data.Hour);
+            if (minuty.Length < 2) minuty = "0" + minuty;
+            if (godziny.Length < 2) godziny = "0" + godziny;
+            dgv_zajęcia.Rows[0].Cells[2].Value = godziny + ":" + minuty;
+
+            dgv_zajęcia.Rows[0].Cells[3].Value = data.ToString("dddd", new CultureInfo("pl-PL"));
+            dgv_zajęcia.Rows[0].Cells[4].Value = cb_czestosc.Text;
+        }
+
+        private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_dodaj_sale_Click(object sender, EventArgs e)
+        {
+            SalaManagement sm = new SalaManagement();
+            sm.InsertSala(tb_numer_sali.Text, tb_numer_sali.Text);
+        }
+
+        private void cb_sala_Click(object sender, EventArgs e)
+        {
         }
     }
 }

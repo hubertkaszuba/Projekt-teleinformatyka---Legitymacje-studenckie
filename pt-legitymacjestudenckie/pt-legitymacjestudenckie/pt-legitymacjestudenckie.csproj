@@ -68,6 +68,7 @@
     <Compile Include="Sala.cs">
       <DependentUpon>TheConjuringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SalaManagement.cs" />
     <Compile Include="SmartCardRelated\CardReader.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
