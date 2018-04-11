@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using pt_legitymacjestudenckie.SmartCardRelated;
+using System.Data.SqlClient;
+using System.Data.Sql;
 namespace pt_legitymacjestudenckie
 {
+
     public partial class MainForm : Form
     {
         private bool timerIsActive = false;
         private StudentRecorder studentRecorder;
-
+        SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        
+        TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +28,20 @@ namespace pt_legitymacjestudenckie
             studentRecorder.Initialize();
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
-            dgv_lista_studentow.DefaultCellStyle.Format = "dd/MM/yyyy hh:mm:ss";
+            dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
+            
+            Wykladowca wy = new Wykladowca
+            {
+                Id_Wykladowcy = 1,
+                Imie = "Sidżej",
+                Nazwisko = "Profesor",
+                Login_uz = "ProfesorSidżej"
+            };
+            connection.Open();
+            conjuring.Wykladowca.Add(wy);
+            conjuring.SaveChanges();
+            connection.Close();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TheConjuring_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Obecnosc">
+          <Key>
+            <PropertyRef Name="Id_Obecnosci" />
+          </Key>
+          <Property Name="Id_Obecnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Indeks" Type="int" Nullable="false" />
+          <Property Name="Id_Zajec" Type="int" Nullable="false" />
+          <Property Name="Data" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Przedmiot">
+          <Key>
+            <PropertyRef Name="Id_Przedmiotu" />
+          </Key>
+          <Property Name="Id_Przedmiotu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="Id_Sali" />
+          </Key>
+          <Property Name="Id_Sali" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Budynek" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numer" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Indeks" />
+          </Key>
+          <Property Name="Indeks" Type="int" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wykladowca">
+          <Key>
+            <PropertyRef Name="Id_Wykladowcy" />
+          </Key>
+          <Property Name="Id_Wykladowcy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login_uz" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Haslo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Zajecia">
+          <Key>
+            <PropertyRef Name="Id_Zajec" />
+          </Key>
+          <Property Name="Id_Zajec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Przedmiotu" Type="int" Nullable="false" />
+          <Property Name="Id_Sali" Type="int" Nullable="false" />
+          <Property Name="Czas" Type="datetime" />
+          <Property Name="Tydzien" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Obecnosc__Id_Zaj__571DF1D5">
+          <End Role="Zajecia" Type="Self.Zajecia" Multiplicity="1" />
+          <End Role="Obecnosc" Type="Self.Obecnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zajecia">
+              <PropertyRef Name="Id_Zajec" />
+            </Principal>
+            <Dependent Role="Obecnosc">
+              <PropertyRef Name="Id_Zajec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Obecnosc__Indeks__5629CD9C">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Obecnosc" Type="Self.Obecnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Indeks" />
+            </Principal>
+            <Dependent Role="Obecnosc">
+              <PropertyRef Name="Indeks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zajecia__Id_Prze__52593CB8">
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="1" />
+          <End Role="Zajecia" Type="Self.Zajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przedmiot">
+              <PropertyRef Name="Id_Przedmiotu" />
+            </Principal>
+            <Dependent Role="Zajecia">
+              <PropertyRef Name="Id_Przedmiotu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zajecia__Id_Sali__534D60F1">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Zajecia" Type="Self.Zajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="Id_Sali" />
+            </Principal>
+            <Dependent Role="Zajecia">
+              <PropertyRef Name="Id_Sali" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheConjuring_dbModelStoreContainer">
+          <EntitySet Name="Obecnosc" EntityType="Self.Obecnosc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Przedmiot" EntityType="Self.Przedmiot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wykladowca" EntityType="Self.Wykladowca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zajecia" EntityType="Self.Zajecia" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Obecnosc__Id_Zaj__571DF1D5" Association="Self.FK__Obecnosc__Id_Zaj__571DF1D5">
+            <End Role="Zajecia" EntitySet="Zajecia" />
+            <End Role="Obecnosc" EntitySet="Obecnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Obecnosc__Indeks__5629CD9C" Association="Self.FK__Obecnosc__Indeks__5629CD9C">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Obecnosc" EntitySet="Obecnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zajecia__Id_Prze__52593CB8" Association="Self.FK__Zajecia__Id_Prze__52593CB8">
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+            <End Role="Zajecia" EntitySet="Zajecia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zajecia__Id_Sali__534D60F1" Association="Self.FK__Zajecia__Id_Sali__534D60F1">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Zajecia" EntitySet="Zajecia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TheConjuring_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Obecnosc">
+          <Key>
+            <PropertyRef Name="Id_Obecnosci" />
+          </Key>
+          <Property Name="Id_Obecnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Indeks" Type="Int32" Nullable="false" />
+          <Property Name="Id_Zajec" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Zajecia" Relationship="Self.FK__Obecnosc__Id_Zaj__571DF1D5" FromRole="Obecnosc" ToRole="Zajecia" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Obecnosc__Indeks__5629CD9C" FromRole="Obecnosc" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Przedmiot">
+          <Key>
+            <PropertyRef Name="Id_Przedmiotu" />
+          </Key>
+          <Property Name="Id_Przedmiotu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Zajecia" Relationship="Self.FK__Zajecia__Id_Prze__52593CB8" FromRole="Przedmiot" ToRole="Zajecia" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="Id_Sali" />
+          </Key>
+          <Property Name="Id_Sali" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Budynek" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Zajecia" Relationship="Self.FK__Zajecia__Id_Sali__534D60F1" FromRole="Sala" ToRole="Zajecia" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Indeks" />
+          </Key>
+          <Property Name="Indeks" Type="Int32" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Obecnosc" Relationship="Self.FK__Obecnosc__Indeks__5629CD9C" FromRole="Student" ToRole="Obecnosc" />
+        </EntityType>
+        <EntityType Name="Wykladowca">
+          <Key>
+            <PropertyRef Name="Id_Wykladowcy" />
+          </Key>
+          <Property Name="Id_Wykladowcy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login_uz" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Haslo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Zajecia">
+          <Key>
+            <PropertyRef Name="Id_Zajec" />
+          </Key>
+          <Property Name="Id_Zajec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Przedmiotu" Type="Int32" Nullable="false" />
+          <Property Name="Id_Sali" Type="Int32" Nullable="false" />
+          <Property Name="Czas" Type="DateTime" Precision="3" />
+          <Property Name="Tydzien" Type="Boolean" />
+          <NavigationProperty Name="Obecnosc" Relationship="Self.FK__Obecnosc__Id_Zaj__571DF1D5" FromRole="Zajecia" ToRole="Obecnosc" />
+          <NavigationProperty Name="Przedmiot" Relationship="Self.FK__Zajecia__Id_Prze__52593CB8" FromRole="Zajecia" ToRole="Przedmiot" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__Zajecia__Id_Sali__534D60F1" FromRole="Zajecia" ToRole="Sala" />
+        </EntityType>
+        <Association Name="FK__Obecnosc__Id_Zaj__571DF1D5">
+          <End Role="Zajecia" Type="Self.Zajecia" Multiplicity="1" />
+          <End Role="Obecnosc" Type="Self.Obecnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zajecia">
+              <PropertyRef Name="Id_Zajec" />
+            </Principal>
+            <Dependent Role="Obecnosc">
+              <PropertyRef Name="Id_Zajec" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Obecnosc__Indeks__5629CD9C">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Obecnosc" Type="Self.Obecnosc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Indeks" />
+            </Principal>
+            <Dependent Role="Obecnosc">
+              <PropertyRef Name="Indeks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zajecia__Id_Prze__52593CB8">
+          <End Role="Przedmiot" Type="Self.Przedmiot" Multiplicity="1" />
+          <End Role="Zajecia" Type="Self.Zajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przedmiot">
+              <PropertyRef Name="Id_Przedmiotu" />
+            </Principal>
+            <Dependent Role="Zajecia">
+              <PropertyRef Name="Id_Przedmiotu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zajecia__Id_Sali__534D60F1">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Zajecia" Type="Self.Zajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="Id_Sali" />
+            </Principal>
+            <Dependent Role="Zajecia">
+              <PropertyRef Name="Id_Sali" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheConjuring_dbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Obecnosc" EntityType="Self.Obecnosc" />
+          <EntitySet Name="Przedmiot" EntityType="Self.Przedmiot" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Wykladowca" EntityType="Self.Wykladowca" />
+          <EntitySet Name="Zajecia" EntityType="Self.Zajecia" />
+          <AssociationSet Name="FK__Obecnosc__Id_Zaj__571DF1D5" Association="Self.FK__Obecnosc__Id_Zaj__571DF1D5">
+            <End Role="Zajecia" EntitySet="Zajecia" />
+            <End Role="Obecnosc" EntitySet="Obecnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Obecnosc__Indeks__5629CD9C" Association="Self.FK__Obecnosc__Indeks__5629CD9C">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Obecnosc" EntitySet="Obecnosc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zajecia__Id_Prze__52593CB8" Association="Self.FK__Zajecia__Id_Prze__52593CB8">
+            <End Role="Przedmiot" EntitySet="Przedmiot" />
+            <End Role="Zajecia" EntitySet="Zajecia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zajecia__Id_Sali__534D60F1" Association="Self.FK__Zajecia__Id_Sali__534D60F1">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Zajecia" EntitySet="Zajecia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TheConjuring_dbModelStoreContainer" CdmEntityContainer="TheConjuring_dbEntities1">
+          <EntitySetMapping Name="Obecnosc">
+            <EntityTypeMapping TypeName="TheConjuring_dbModel.Obecnosc">
+              <MappingFragment StoreEntitySet="Obecnosc">
+                <ScalarProperty Name="Id_Obecnosci" ColumnName="Id_Obecnosci" />
+                <ScalarProperty Name="Indeks" ColumnName="Indeks" />
+                <ScalarProperty Name="Id_Zajec" ColumnName="Id_Zajec" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przedmiot">
+            <EntityTypeMapping TypeName="TheConjuring_dbModel.Przedmiot">
+              <MappingFragment StoreEntitySet="Przedmiot">
+                <ScalarProperty Name="Id_Przedmiotu" ColumnName="Id_Przedmiotu" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sala">
+            <EntityTypeMapping TypeName="TheConjuring_dbModel.Sala">
+              <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="Id_Sali" ColumnName="Id_Sali" />
+                <ScalarProperty Name="Budynek" ColumnName="Budynek" />
+                <ScalarProperty Name="Numer" ColumnName="Numer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="TheConjuring_dbModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Indeks" ColumnName="Indeks" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wykladowca">
+            <EntityTypeMapping TypeName="TheConjuring_dbModel.Wykladowca">
+              <MappingFragment StoreEntitySet="Wykladowca">
+                <ScalarProperty Name="Id_Wykladowcy" ColumnName="Id_Wykladowcy" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Login_uz" ColumnName="Login_uz" />
+                <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zajecia">
+            <EntityTypeMapping TypeName="TheConjuring_dbModel.Zajecia">
+              <MappingFragment StoreEntitySet="Zajecia">
+                <ScalarProperty Name="Id_Zajec" ColumnName="Id_Zajec" />
+                <ScalarProperty Name="Id_Przedmiotu" ColumnName="Id_Przedmiotu" />
+                <ScalarProperty Name="Id_Sali" ColumnName="Id_Sali" />
+                <ScalarProperty Name="Czas" ColumnName="Czas" />
+                <ScalarProperty Name="Tydzien" ColumnName="Tydzien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
