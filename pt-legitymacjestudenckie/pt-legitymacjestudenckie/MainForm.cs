@@ -20,27 +20,37 @@ namespace pt_legitymacjestudenckie
         SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         
         TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
-        public MainForm()
+        public MainForm(string login)
         {
             InitializeComponent();
 
             studentRecorder = new StudentRecorder();
             studentRecorder.Initialize();
 
+            /*Pobranie imienia i nazwiska zalogowanego*/
+            string pom = "Select Imie, Nazwisko from Wykladowca Where Login_uz='" + login + "'" ;
+            SqlDataAdapter sda = new SqlDataAdapter(pom, connection);
+            DataTable table = new DataTable();
+            sda.Fill(table);
+            string imie = table.Rows[0][0].ToString();
+            string nazwisko = table.Rows[0][1].ToString();
+
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
-            
-            Wykladowca wy = new Wykladowca
+            lb_imie_nazwisko_zalogowanego.Text = "Zalogowany jako: " + imie + " " + nazwisko;
+           
+            /* Wykladowca wy = new Wykladowca
             {
-                Id_Wykladowcy = 1,
-                Imie = "Sidżej",
-                Nazwisko = "Profesor",
-                Login_uz = "ProfesorSidżej"
+                Imie = "Jan",
+                Nazwisko = "Testowy",
+                Haslo = "zimaLato",
+                Login_uz = "test12"
+
             };
             connection.Open();
             conjuring.Wykladowca.Add(wy);
             conjuring.SaveChanges();
-            connection.Close();
+            connection.Close();*/
 
         }
 
@@ -167,6 +177,12 @@ namespace pt_legitymacjestudenckie
             dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
             dgv_lista_studentow.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgv_lista_studentow.Refresh();
+        }
+
+        /*Zamknięcie procesu, podczas zamykania formy*/
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Environment.Exit(1);
         }
     }
 }
