@@ -33,7 +33,7 @@
             this.HasłotextBox = new System.Windows.Forms.TextBox();
             this.Hasłolabel = new System.Windows.Forms.Label();
             this.Zalogujbutton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Rejestracjabutton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Loginlabel
@@ -79,21 +79,22 @@
             this.Zalogujbutton.UseVisualStyleBackColor = true;
             this.Zalogujbutton.Click += new System.EventHandler(this.Zalogujbutton_Click);
             // 
-            // button2
+            // Rejestracjabutton
             // 
-            this.button2.Location = new System.Drawing.Point(160, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Rejestracja";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Rejestracjabutton.Location = new System.Drawing.Point(160, 114);
+            this.Rejestracjabutton.Name = "Rejestracjabutton";
+            this.Rejestracjabutton.Size = new System.Drawing.Size(94, 23);
+            this.Rejestracjabutton.TabIndex = 5;
+            this.Rejestracjabutton.Text = "Rejestracja";
+            this.Rejestracjabutton.UseVisualStyleBackColor = true;
+            this.Rejestracjabutton.Click += new System.EventHandler(this.Rejestracjabutton_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 158);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Rejestracjabutton);
             this.Controls.Add(this.Zalogujbutton);
             this.Controls.Add(this.Hasłolabel);
             this.Controls.Add(this.HasłotextBox);
@@ -114,6 +115,6 @@
         private System.Windows.Forms.TextBox HasłotextBox;
         private System.Windows.Forms.Label Hasłolabel;
         private System.Windows.Forms.Button Zalogujbutton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Rejestracjabutton;
     }
 }

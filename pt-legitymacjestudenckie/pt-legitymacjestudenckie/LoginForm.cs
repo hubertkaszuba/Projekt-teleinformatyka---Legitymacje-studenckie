@@ -47,5 +47,13 @@ namespace pt_legitymacjestudenckie
                 
             }
         }
+
+        private void Rejestracjabutton_Click(object sender, EventArgs e)
+        {
+            Registration reje = new Registration();
+            reje.Owner = this;
+            this.Hide();
+            reje.Show();
+        }
     }
 }
