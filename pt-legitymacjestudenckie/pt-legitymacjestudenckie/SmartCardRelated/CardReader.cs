@@ -132,7 +132,7 @@ namespace pt_legitymacjestudenckie
         }
 
         // Zebranie podstawowych o studencie
-        public int ReadData()
+        public StudentInfo ReadData()
         {
             try
             {
@@ -153,14 +153,12 @@ namespace pt_legitymacjestudenckie
                 CheckError(err);
 
                 StudentInfo temp = ParseStudent(readedMessage, DateTime.Now);
-                lStudInfo.Add(temp);
 
-
-                return readedMessage.Length;
+                return temp;
             }
             catch (PCSCException ex)
             {
-                return -1;
+                return null;
             }
         }
 

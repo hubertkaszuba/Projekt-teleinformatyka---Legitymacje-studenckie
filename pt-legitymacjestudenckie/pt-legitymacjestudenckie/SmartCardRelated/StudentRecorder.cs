@@ -10,7 +10,7 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
 {
     class StudentRecorder : CardReader
     {
-        int listLenght;
+        private int listLenght;
 
         public StudentRecorder() : base()
         {
@@ -36,11 +36,25 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
             start.Start();
             while (start.Elapsed.TotalSeconds < waitTime)
             {
+                StudentInfo temp;
+
                 if (Connect())
-                    ReadData();
+                {
+                    temp = ReadData();
+                    CheckUnique(temp);
+                }
             }
             start.Stop();
             this.state = State.INITIALIZED;
+        }
+
+        private void CheckUnique(StudentInfo temp)
+        {
+            string lastAddedIndex = temp.index;
+            IEnumerable<StudentInfo> studentInfos = lStudInfo.Where(stud => stud.index.Contains(lastAddedIndex));
+
+            if (studentInfos.Count() == 0)
+                lStudInfo.Add(temp);
         }
     }
 }
