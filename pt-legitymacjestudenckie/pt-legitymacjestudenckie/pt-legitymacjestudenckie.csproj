@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseController.cs" />
     <Compile Include="Obecnosc.cs">
       <DependentUpon>TheConjuringModel.tt</DependentUpon>
     </Compile>
