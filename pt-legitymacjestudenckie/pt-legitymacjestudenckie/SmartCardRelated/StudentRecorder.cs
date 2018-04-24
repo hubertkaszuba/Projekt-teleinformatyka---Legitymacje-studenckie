@@ -56,5 +56,18 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
             if (studentInfos.Count() == 0)
                 lStudInfo.Add(temp);
         }
+
+        public StudentInfo GetStudentByIndex(string index)
+        {
+            return lStudInfo.Where(stud => stud.index == index).FirstOrDefault();
+        }
+
+        public void UpdateStudent(StudentInfo stud)
+        {
+            StudentInfo oldStudent = lStudInfo.Where(s => s.index == stud.index).Single();
+            int index = lStudInfo.IndexOf(oldStudent);
+            if (index != -1)
+                lStudInfo[index] = stud;
+        }
     }
 }

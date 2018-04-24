@@ -208,7 +208,33 @@ namespace pt_legitymacjestudenckie
 
         }
 
-     
-       
+        private void dgv_lista_studentow_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StudentNameLabel.Text = "Imię i nazwisko: " +
+                dgv_lista_studentow.CurrentRow.Cells[0].Value.ToString() + " " +
+                dgv_lista_studentow.CurrentRow.Cells[1].Value.ToString();
+            IndexLabel.Text = dgv_lista_studentow.CurrentRow.Cells[2].Value.ToString();
+            LateCheckBox.Checked = (bool)dgv_lista_studentow.CurrentRow.Cells[3].Value;
+
+            NoteRichTextBox.Clear();
+            NoteRichTextBox.Text = dgv_lista_studentow.CurrentRow.Cells[4].Value.ToString();
+        }
+
+        private void ApplyStudentInformation_Button_Click(object sender, EventArgs e)
+        {
+            bool late = LateCheckBox.Checked;
+            string note = NoteRichTextBox.Text;
+            string index = IndexLabel.Text;
+
+            StudentInfo stud = studentRecorder.GetStudentByIndex(index);
+            if (stud == null)
+                MessageBox.Show("Studenta nie ma na liście.", "Uwaga!", MessageBoxButtons.OK);
+            else
+            {
+                stud.late = late;
+                stud.note = note;
+                studentRecorder.UpdateStudent(stud);
+            }
+        }
     }
 }

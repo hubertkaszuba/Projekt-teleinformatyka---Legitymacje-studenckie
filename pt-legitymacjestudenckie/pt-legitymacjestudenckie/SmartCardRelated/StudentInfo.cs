@@ -16,6 +16,11 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
         [System.ComponentModel.DisplayName("Index")]
         public string index { get; }
 
+        [System.ComponentModel.DisplayName("Spóźniony?")]
+        public bool late { get; set; }
+        [System.ComponentModel.DisplayName("Notatka")]
+        public string note { get; set; }
+
         // Rejestrowanie odbicia karty
         [System.ComponentModel.DisplayName("Znacznik")]
         public DateTime timestamp { get; set; }
@@ -26,12 +31,19 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
             lastName = lName;
             index = idx;
             timestamp = stamp;
+
+            late = false;
+            note = "Pusta";
         }
 
         public string printStudent()
         {
             return firstName + " " + lastName + " " + index + " " + timestamp.ToString();
         }
+
+        public void SetLate(bool flag) { late = flag; }
+        public void SetNote(string mess) { note = mess; }
+
 
     }
 }
