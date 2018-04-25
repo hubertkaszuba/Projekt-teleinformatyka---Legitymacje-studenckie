@@ -17,7 +17,7 @@ namespace pt_legitymacjestudenckie
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Zajecia()
         {
-            this.Obecnosc = new HashSet<Obecnosc>();
+            this.Zajecia_pojedyncze = new HashSet<Zajecia_pojedyncze>();
         }
     
         public int Id_Zajec { get; set; }
@@ -25,10 +25,12 @@ namespace pt_legitymacjestudenckie
         public int Id_Sali { get; set; }
         public Nullable<System.DateTime> Czas { get; set; }
         public Nullable<bool> Tydzien { get; set; }
+        public int Id_Wykladowcy { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Obecnosc> Obecnosc { get; set; }
         public virtual Przedmiot Przedmiot { get; set; }
         public virtual Sala Sala { get; set; }
+        public virtual Wykladowca Wykladowca { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zajecia_pojedyncze> Zajecia_pojedyncze { get; set; }
     }
 }

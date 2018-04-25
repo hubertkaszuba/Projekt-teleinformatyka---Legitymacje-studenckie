@@ -4,17 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e371ae4ac868457fba558312203979cf" Name="Diagram1">
-        <EntityTypeShape EntityType="TheConjuring_dbModel.Obecnosc" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheConjuring_dbModel.Przedmiot" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheConjuring_dbModel.Sala" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheConjuring_dbModel.Student" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheConjuring_dbModel.Wykladowca" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="4505ec21ab9048b29c85259e54d73872" Name="Diagram1">
+        <EntityTypeShape EntityType="TheConjuring_dbModel.Obecnosc" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.Przedmiot" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.Sala" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.Student" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.Wykladowca" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TheConjuring_dbModel.Zajecia" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="TheConjuring_dbModel.FK__Obecnosc__Id_Zaj__571DF1D5" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.Zajecia_pojedyncze" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheConjuring_dbModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="TheConjuring_dbModel.FK__Obecnosc__Id_Zaj__6754599E" ManuallyRouted="false" />
         <AssociationConnector Association="TheConjuring_dbModel.FK__Obecnosc__Indeks__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="TheConjuring_dbModel.FK__Zajecia__Id_Prze__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="TheConjuring_dbModel.FK__Zajecia__Id_Sali__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="TheConjuring_dbModel.FK__Zajecia__Id_Wykl__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="TheConjuring_dbModel.FK__Zajecia_p__Id_Za__656C112C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

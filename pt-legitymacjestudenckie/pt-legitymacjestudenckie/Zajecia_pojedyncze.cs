@@ -12,21 +12,20 @@ namespace pt_legitymacjestudenckie
     using System;
     using System.Collections.Generic;
     
-    public partial class Wykladowca
+    public partial class Zajecia_pojedyncze
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Wykladowca()
+        public Zajecia_pojedyncze()
         {
-            this.Zajecia = new HashSet<Zajecia>();
+            this.Obecnosc = new HashSet<Obecnosc>();
         }
     
-        public int Id_Wykladowcy { get; set; }
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public string Login_uz { get; set; }
-        public string Haslo { get; set; }
+        public int Id_Zajec_pojedynczych { get; set; }
+        public int Id_Zajec { get; set; }
+        public System.DateTime Data_zajec { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Zajecia> Zajecia { get; set; }
+        public virtual ICollection<Obecnosc> Obecnosc { get; set; }
+        public virtual Zajecia Zajecia { get; set; }
     }
 }
