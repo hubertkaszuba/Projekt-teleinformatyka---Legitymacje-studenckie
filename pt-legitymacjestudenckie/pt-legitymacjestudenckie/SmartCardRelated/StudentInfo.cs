@@ -16,6 +16,7 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
         [System.ComponentModel.DisplayName("Index")]
         public string index { get; }
 
+        // Informacje dodatkowe dla prowadzącego
         [System.ComponentModel.DisplayName("Spóźniony?")]
         public bool late { get; set; }
         [System.ComponentModel.DisplayName("Notatka")]

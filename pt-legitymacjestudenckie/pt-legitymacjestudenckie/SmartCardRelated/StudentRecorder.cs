@@ -11,6 +11,7 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
     class StudentRecorder : CardReader
     {
         private int listLenght;
+        private CancellationTokenSource ctk;
 
         public StudentRecorder() : base()
         {
@@ -19,8 +20,11 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
 
         public void OpenRecorder(int waittime)
         {
+            ctk = new CancellationTokenSource();
+
+            CancellationToken token = ctk.Token;
             state = State.READING;
-            ThreadPool.QueueUserWorkItem(Listening, new object[] { waittime });
+            ThreadPool.QueueUserWorkItem(Listening, new object[] { waittime, token });
         }
 
         public int GetListLength()
@@ -28,13 +32,20 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
             return listLenght;
         }
 
+        public void StopRecorder()
+        {
+            if (state == State.READING)
+                ctk.Cancel();
+        }
+
         private void Listening(object state)
         {
             int waitTime = (int)((object[])state)[0];
+            CancellationToken token = (CancellationToken)((object[])state)[1];
             Stopwatch start = new Stopwatch();
 
             start.Start();
-            while (start.Elapsed.TotalSeconds < waitTime)
+            while (start.Elapsed.TotalSeconds < waitTime && !token.IsCancellationRequested)
             {
                 StudentInfo temp;
 

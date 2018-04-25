@@ -19,7 +19,10 @@ namespace pt_legitymacjestudenckie
         private bool timerIsActive = false;
         private StudentRecorder studentRecorder;
         SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-        
+
+        /* Aby zaznaczać cały wiersz w tabeli obecności */
+        private int CurrentIndex;
+
         TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
         public MainForm(string login)
         {
@@ -27,6 +30,8 @@ namespace pt_legitymacjestudenckie
 
             studentRecorder = new StudentRecorder();
             studentRecorder.Initialize();
+
+            CurrentIndex = -1;
 
             /*Pobranie imienia i nazwiska zalogowanego*/
             string pom = "Select Imie, Nazwisko from Wykladowca Where Login_uz='" + login + "'" ;
@@ -41,7 +46,6 @@ namespace pt_legitymacjestudenckie
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
             lb_imie_nazwisko_zalogowanego.Text = "Zalogowany jako: " + imie + " " + nazwisko;
 
-            
             /*Wykladowca wy = new Wykladowca
             {
                 Imie = "Jakub",
@@ -93,6 +97,7 @@ namespace pt_legitymacjestudenckie
         {
             setCurrentTime();
         }
+
         private void setCurrentTime()
         {
             int hh = DateTime.Now.Hour;
@@ -135,7 +140,6 @@ namespace pt_legitymacjestudenckie
                 if (sekundy < 10) lb_sekundy.Text = "0" + sekundy.ToString();
                 else lb_sekundy.Text = sekundy.ToString();
 
-                /* Odświeżanie listy zarejestrowanych studentów */
                 refreshStudentList();
             }
         }
@@ -152,6 +156,8 @@ namespace pt_legitymacjestudenckie
             numericUpDown.Visible = true;
             stoper.Stop();
             timerIsActive = false;
+
+            studentRecorder.StopRecorder();
         }
 
         private void btn_zapisz_Click(object sender, EventArgs e)
@@ -166,8 +172,12 @@ namespace pt_legitymacjestudenckie
         {
             /* Odświeżanie listy zarejestrowanych studentów */
             dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
-            dgv_lista_studentow.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            if (CurrentIndex != -1)
+                dgv_lista_studentow.Rows[CurrentIndex].Selected = true;
+
             dgv_lista_studentow.Refresh();
+
         }
 
 
@@ -210,6 +220,9 @@ namespace pt_legitymacjestudenckie
 
         private void dgv_lista_studentow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            CurrentIndex = dgv_lista_studentow.CurrentRow.Index;
+            dgv_lista_studentow.Rows[CurrentIndex].Selected = true;
+
             StudentNameLabel.Text = "Imię i nazwisko: " +
                 dgv_lista_studentow.CurrentRow.Cells[0].Value.ToString() + " " +
                 dgv_lista_studentow.CurrentRow.Cells[1].Value.ToString();
@@ -235,6 +248,8 @@ namespace pt_legitymacjestudenckie
                 stud.note = note;
                 studentRecorder.UpdateStudent(stud);
             }
+
+            CurrentIndex = -1;
         }
     }
 }
