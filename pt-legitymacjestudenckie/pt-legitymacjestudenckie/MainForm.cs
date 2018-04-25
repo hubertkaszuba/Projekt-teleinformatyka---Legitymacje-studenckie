@@ -16,21 +16,22 @@ namespace pt_legitymacjestudenckie
 
     public partial class MainForm : Form
     {
+        /// <summary>Informuje, czy stoper odpowiadający za liczenie pozostałego czasu do sprawdzania obecności jest aktywny.</summary>
         private bool timerIsActive = false;
-        private StudentRecorder studentRecorder;
-        SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
+        private StudentRecorder studentRecorder;
+        //Inicjalizacja połączenia
+        SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+		TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
+		
         /* Aby zaznaczać cały wiersz w tabeli obecności */
         private int CurrentIndex;
 
-        TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
-        public MainForm(string login)
-        {
+        public MainForm(string login){
             InitializeComponent();
-
+            /*Stworzenie nowego obiektu StudentRecorder*/
             studentRecorder = new StudentRecorder();
             studentRecorder.Initialize();
-
             CurrentIndex = -1;
 
             /*Pobranie imienia i nazwiska zalogowanego*/
@@ -40,28 +41,14 @@ namespace pt_legitymacjestudenckie
             sda.Fill(table);
             string imie = table.Rows[0][0].ToString();
             string nazwisko = table.Rows[0][1].ToString();
-
-            /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
-
-            dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
             lb_imie_nazwisko_zalogowanego.Text = "Zalogowany jako: " + imie + " " + nazwisko;
 
-            /*Wykladowca wy = new Wykladowca
-            {
-                Imie = "Jakub",
-                Nazwisko = "Dutkiewicz",
-                Login_uz = "Dudi1",
-                Haslo = "LigoLego"
-
-            };
-            connection.Open();
-            conjuring.Wykladowca.Add(wy);
-            conjuring.SaveChanges();
-            connection.Close();*/
-
+            /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
+            dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+		
+        /// <summary>Ustawienie wartości domyślnych</summary>
+        private void MainForm_Load(object sender, EventArgs e)
         {
             setCurrentTime();
             btn_zakoncz.Enabled = false;
@@ -71,10 +58,13 @@ namespace pt_legitymacjestudenckie
             btn_rozpocznij.Enabled = true;
             timer1.Start();
         }
+		
+    //<ZAKŁADKA: Sprawdzanie obecności>
 
+        /// <summary> Rozpoczyna odliczanie stopera, uruchamia czytnik. </summary>
         private void btn_rozpocznij_Click(object sender, EventArgs e)
         {
-            /*Uruchomienie stopera, wyświetlenie licznika, ukrycie co niepotrzebne*/
+            /*Uruchomienie stopera, wyświetlenie licznika, ukrycie wyboru minut*/
             timerIsActive = true;
             btn_rozpocznij.Enabled = false;
             btn_zakoncz.Enabled = true;
@@ -93,11 +83,14 @@ namespace pt_legitymacjestudenckie
             studentRecorder.OpenRecorder(minuty*60);
         }
 
+        /// <summary> Timer o okresie 1s, potrzebny do wyświetlania aktualnego czasu.</summary>
         private void timer1_Tick(object sender, EventArgs e)
         {
             setCurrentTime();
         }
 
+        /// <summary>Pobranie aktualnego czasu systemowego, przeparsowanie 
+        /// do odpowiedniego formatu oraz wyświetlenie w zakładce "Sprawdzanie obecności".</summary>
         private void setCurrentTime()
         {
             int hh = DateTime.Now.Hour;
@@ -113,7 +106,6 @@ namespace pt_legitymacjestudenckie
             if (mm < 10) { time += "0" + mm; } else { time += mm; }
             time += ":";
             if (ss < 10) { time += "0" + ss; } else { time += ss; }
-
             if (dd < 10) { date += "0" + dd; } else { date += dd; }
             date += ".";
             if (mon < 10) { date += "0" + mon; } else { date += mon; }
@@ -123,6 +115,7 @@ namespace pt_legitymacjestudenckie
             kalendarz.Text = date;
         }
 
+        ///<summary>Odświeżanie czasu pozostałego do sprawdzania obecności oraz listy obecnych studentów.</summary>
         private void stoper_Tick(object sender, EventArgs e)
         {
             if (timerIsActive == true)
@@ -143,16 +136,15 @@ namespace pt_legitymacjestudenckie
                 refreshStudentList();
             }
         }
-
-        private void btn_zakoncz_Click(object sender, EventArgs e)
-        {
+		
+        /// <summary>Zatrzymanie stopera, ukrycie odliczanego czasu.</summary>
+        private void btn_zakoncz_Click(object sender, EventArgs e) {
             lb_minuty.Visible = false;
             lb_sekundy.Visible = false;
             lb_dwukropek.Visible = false;
             lb_stoper_min.Visible = true;
             btn_rozpocznij.Enabled = true;
             btn_zakoncz.Enabled = false;
-
             numericUpDown.Visible = true;
             stoper.Stop();
             timerIsActive = false;
@@ -160,17 +152,15 @@ namespace pt_legitymacjestudenckie
             studentRecorder.StopRecorder();
         }
 
+        /// <summary> Zapisanie listy studentów w bazie danych.</summary>
         private void btn_zapisz_Click(object sender, EventArgs e)
         {
 
         }
 
-        /* ======================================================================== */
-        /* metody do odświeżania elementów GUI */
-        
+        ///<summary>Odświeżanie listy zarejestrowanych studentów.</summary>
         private void refreshStudentList()
         {
-            /* Odświeżanie listy zarejestrowanych studentów */
             dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
 
             if (CurrentIndex != -1)
@@ -180,44 +170,7 @@ namespace pt_legitymacjestudenckie
 
         }
 
-
-        /*Zamknięcie procesu, podczas zamykania formy*/
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            System.Environment.Exit(1);}
-
-        private void btn_dodaj_zajęcia_Click(object sender, EventArgs e)
-        {
-            dgv_zajęcia.Rows[0].Cells[0].Value = cb_zajecia.Text;
-            dgv_zajęcia.Rows[0].Cells[1].Value = cb_sala.Text;
-
-            DateTime data = Convert.ToDateTime(dateTime_pierwsze_zajecia.Text);
-            string minuty = Convert.ToString(data.Minute);
-            string godziny = Convert.ToString(data.Hour);
-            if (minuty.Length < 2) minuty = "0" + minuty;
-            if (godziny.Length < 2) godziny = "0" + godziny;
-            dgv_zajęcia.Rows[0].Cells[2].Value = godziny + ":" + minuty;
-
-            dgv_zajęcia.Rows[0].Cells[3].Value = data.ToString("dddd", new CultureInfo("pl-PL"));
-            dgv_zajęcia.Rows[0].Cells[4].Value = cb_czestosc.Text;
-        }
-
-        private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_dodaj_sale_Click(object sender, EventArgs e)
-        {
-            SalaManagement sm = new SalaManagement();
-            sm.InsertSala(tb_numer_sali.Text, tb_numer_sali.Text);
-        }
-
-        private void cb_sala_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>W ComboBox "Wybrany student" wyświetla informacje o wybranym studencie w liście studentów.</summary>
         private void dgv_lista_studentow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CurrentIndex = dgv_lista_studentow.CurrentRow.Index;
@@ -233,6 +186,7 @@ namespace pt_legitymacjestudenckie
             NoteRichTextBox.Text = dgv_lista_studentow.CurrentRow.Cells[4].Value.ToString();
         }
 
+        /// <summary>Zapisanie edytowanych informacji o studencie.</summary>
         private void ApplyStudentInformation_Button_Click(object sender, EventArgs e)
         {
             bool late = LateCheckBox.Checked;
@@ -250,6 +204,52 @@ namespace pt_legitymacjestudenckie
             }
 
             CurrentIndex = -1;
+        }
+
+        ///<summary>Zamknięcie procesu, podczas zamykania formy.</summary>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Environment.Exit(1);
+        }
+		
+    //</ZAKŁADKA: Sprawdzanie obecności>
+
+    //<ZAKŁADKA: Edytor zajęć>
+
+        /// <summary>Dodawanie nowego obiektu zajęć do bazy danych</summary>
+        private void btn_dodaj_zajęcia_Click(object sender, EventArgs e)
+        {
+            dgv_zajęcia.Rows[0].Cells[0].Value = cb_zajecia.Text;
+            dgv_zajęcia.Rows[0].Cells[1].Value = cb_sala.Text;
+
+            DateTime data = Convert.ToDateTime(dateTime_pierwsze_zajecia.Text);
+            string minuty = Convert.ToString(data.Minute);
+            string godziny = Convert.ToString(data.Hour);
+            if (minuty.Length < 2) minuty = "0" + minuty;
+            if (godziny.Length < 2) godziny = "0" + godziny;
+            dgv_zajęcia.Rows[0].Cells[2].Value = godziny + ":" + minuty;
+
+            dgv_zajęcia.Rows[0].Cells[3].Value = data.ToString("dddd", new CultureInfo("pl-PL"));
+            dgv_zajęcia.Rows[0].Cells[4].Value = cb_czestosc.Text;
+        }
+
+        /// <summary>Dodawanie nowego obiektu przedmiotu do bazy danych</summary>
+        private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>Dodawanie nowego obiektu sali do bazy danych</summary>
+        private void btn_dodaj_sale_Click(object sender, EventArgs e)
+        {
+            SalaManagement sm = new SalaManagement();
+            sm.InsertSala(tb_numer_sali.Text, tb_numer_sali.Text);
+        }
+
+        /// <summary>Wyświetlenie wszystkich obiektów Sala w ComboBoxie cb_sala.</summary>
+        private void cb_sala_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

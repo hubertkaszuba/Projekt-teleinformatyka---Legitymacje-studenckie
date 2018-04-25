@@ -27,7 +27,8 @@ namespace pt_legitymacjestudenckie
             TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
             string login = LogintextBox.Text.Trim();
             string haslo = HasłotextBox.Text.Trim();
-           
+            login = "krzwio";
+            haslo = "zimalato";
             //szyfrowanie hasła
             haslo = SHA2.GenerateSHA256String(haslo);
 

@@ -145,6 +145,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1138,7 +1139,7 @@
             this.Name = "MainForm";
             this.Text = "The Conjuring";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabObecnosc.ResumeLayout(false);
