@@ -20,28 +20,31 @@ namespace pt_legitymacjestudenckie
         private bool timerIsActive = false;
 
         private StudentRecorder studentRecorder;
+
         //Inicjalizacja połączenia
         SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 		TheConjuring_dbEntities1 conjuring = new TheConjuring_dbEntities1();
+        DatabaseController databaseController;
+
+        // informacje o wykladowcy i zajeciach
+        Wykladowca wykladowca;
 		
         /* Aby zaznaczać cały wiersz w tabeli obecności */
         private int CurrentIndex;
 
         public MainForm(string login){
             InitializeComponent();
+            databaseController = new DatabaseController();
+
+
             /*Stworzenie nowego obiektu StudentRecorder*/
             studentRecorder = new StudentRecorder();
             studentRecorder.Initialize();
             CurrentIndex = -1;
 
             /*Pobranie imienia i nazwiska zalogowanego*/
-            string pom = "Select Imie, Nazwisko from Wykladowca Where Login_uz='" + login + "'" ;
-            SqlDataAdapter sda = new SqlDataAdapter(pom, connection);
-            DataTable table = new DataTable();
-            sda.Fill(table);
-            string imie = table.Rows[0][0].ToString();
-            string nazwisko = table.Rows[0][1].ToString();
-            lb_imie_nazwisko_zalogowanego.Text = "Zalogowany jako: " + imie + " " + nazwisko;
+            wykladowca = conjuring.Wykladowca.Where(w => w.Login_uz == login).SingleOrDefault();
+            lb_imie_nazwisko_zalogowanego.Text = "Zalogowany jako: " + wykladowca.Imie + " " + wykladowca.Nazwisko;
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
@@ -157,7 +160,18 @@ namespace pt_legitymacjestudenckie
         {
             if (studentRecorder.GetListLength() > 0)
             {
+                Zajecia_pojedyncze _zajecia = databaseController.GetZajecia_Pojedyncze(conjuring, connection, wykladowca);
+                if (_zajecia == null)
+                    MessageBox.Show("Lista studentów jest pusta.", "Uwaga", MessageBoxButtons.OK);
+                else
+                {
+                    foreach (StudentInfo stud in studentRecorder.lStudInfo)
+                        databaseController.InsertObecnosc(conjuring, connection, stud, _zajecia);
 
+                    studentRecorder.lStudInfo.Clear();
+                    refreshStudentList();
+                }
+                
             }
             else
             {

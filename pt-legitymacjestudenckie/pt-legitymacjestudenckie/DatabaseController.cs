@@ -108,7 +108,7 @@ namespace pt_legitymacjestudenckie
                 zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
             }
             
-            var obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
+            Zajecia_pojedyncze obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
 
             return obecneZajecia;
         }
