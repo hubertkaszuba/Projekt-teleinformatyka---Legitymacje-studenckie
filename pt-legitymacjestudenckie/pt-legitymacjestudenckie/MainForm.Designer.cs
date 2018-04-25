@@ -44,6 +44,17 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabObecnosc = new System.Windows.Forms.TabPage();
+            this.lb_sekundy = new System.Windows.Forms.Label();
+            this.lb_dwukropek = new System.Windows.Forms.Label();
+            this.lb_minuty = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.StudentNameLabel = new System.Windows.Forms.Label();
+            this.IndexLabel = new System.Windows.Forms.Label();
+            this.LateCheckBox = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.NoteRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.ApplyStudentInformation_Button = new System.Windows.Forms.Button();
             this.dgv_lista_studentow = new System.Windows.Forms.DataGridView();
             this.lv_nastepne_zajecia = new System.Windows.Forms.ListView();
             this.lv_aktualne_zajecia = new System.Windows.Forms.ListView();
@@ -90,27 +101,16 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.StudentNameLabel = new System.Windows.Forms.Label();
-            this.IndexLabel = new System.Windows.Forms.Label();
-            this.LateCheckBox = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.NoteRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.ApplyStudentInformation_Button = new System.Windows.Forms.Button();
-            this.lb_minuty = new System.Windows.Forms.Label();
-            this.lb_dwukropek = new System.Windows.Forms.Label();
-            this.lb_sekundy = new System.Windows.Forms.Label();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lateDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_studentow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -118,8 +118,6 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_zajęcia)).BeginInit();
             this.gb_dodawanieZajęć.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,6 +171,131 @@
             this.tabObecnosc.TabIndex = 0;
             this.tabObecnosc.Text = "Sprawdzanie obecności";
             // 
+            // lb_sekundy
+            // 
+            this.lb_sekundy.AutoSize = true;
+            this.lb_sekundy.Location = new System.Drawing.Point(121, 169);
+            this.lb_sekundy.Name = "lb_sekundy";
+            this.lb_sekundy.Size = new System.Drawing.Size(17, 13);
+            this.lb_sekundy.TabIndex = 24;
+            this.lb_sekundy.Text = "ss";
+            // 
+            // lb_dwukropek
+            // 
+            this.lb_dwukropek.AutoSize = true;
+            this.lb_dwukropek.Location = new System.Drawing.Point(111, 169);
+            this.lb_dwukropek.Name = "lb_dwukropek";
+            this.lb_dwukropek.Size = new System.Drawing.Size(10, 13);
+            this.lb_dwukropek.TabIndex = 23;
+            this.lb_dwukropek.Text = ":";
+            // 
+            // lb_minuty
+            // 
+            this.lb_minuty.AutoSize = true;
+            this.lb_minuty.Location = new System.Drawing.Point(93, 169);
+            this.lb_minuty.Name = "lb_minuty";
+            this.lb_minuty.Size = new System.Drawing.Size(23, 13);
+            this.lb_minuty.TabIndex = 22;
+            this.lb_minuty.Text = "min";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox3.Location = new System.Drawing.Point(725, 169);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(246, 233);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Wybrany student:";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.StudentNameLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.IndexLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.LateCheckBox, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.NoteRichTextBox, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.ApplyStudentInformation_Button, 0, 5);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 21);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(233, 206);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // StudentNameLabel
+            // 
+            this.StudentNameLabel.AutoSize = true;
+            this.StudentNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StudentNameLabel.Location = new System.Drawing.Point(3, 0);
+            this.StudentNameLabel.Name = "StudentNameLabel";
+            this.StudentNameLabel.Size = new System.Drawing.Size(227, 24);
+            this.StudentNameLabel.TabIndex = 0;
+            this.StudentNameLabel.Text = "Student";
+            this.StudentNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // IndexLabel
+            // 
+            this.IndexLabel.AutoSize = true;
+            this.IndexLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.IndexLabel.Location = new System.Drawing.Point(3, 24);
+            this.IndexLabel.Name = "IndexLabel";
+            this.IndexLabel.Size = new System.Drawing.Size(227, 24);
+            this.IndexLabel.TabIndex = 1;
+            this.IndexLabel.Text = "Index";
+            this.IndexLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LateCheckBox
+            // 
+            this.LateCheckBox.AutoSize = true;
+            this.LateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LateCheckBox.Location = new System.Drawing.Point(6, 51);
+            this.LateCheckBox.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
+            this.LateCheckBox.Name = "LateCheckBox";
+            this.LateCheckBox.Size = new System.Drawing.Size(224, 18);
+            this.LateCheckBox.TabIndex = 2;
+            this.LateCheckBox.Text = "Spóźniony?";
+            this.LateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Location = new System.Drawing.Point(3, 72);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(227, 24);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Notatka:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // NoteRichTextBox
+            // 
+            this.NoteRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NoteRichTextBox.Location = new System.Drawing.Point(3, 99);
+            this.NoteRichTextBox.Name = "NoteRichTextBox";
+            this.NoteRichTextBox.Size = new System.Drawing.Size(227, 76);
+            this.NoteRichTextBox.TabIndex = 4;
+            this.NoteRichTextBox.Text = "";
+            // 
+            // ApplyStudentInformation_Button
+            // 
+            this.ApplyStudentInformation_Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ApplyStudentInformation_Button.Location = new System.Drawing.Point(3, 181);
+            this.ApplyStudentInformation_Button.Name = "ApplyStudentInformation_Button";
+            this.ApplyStudentInformation_Button.Size = new System.Drawing.Size(227, 22);
+            this.ApplyStudentInformation_Button.TabIndex = 5;
+            this.ApplyStudentInformation_Button.Text = "Potwierdzenie";
+            this.ApplyStudentInformation_Button.UseVisualStyleBackColor = true;
+            this.ApplyStudentInformation_Button.Click += new System.EventHandler(this.ApplyStudentInformation_Button_Click);
+            // 
             // dgv_lista_studentow
             // 
             this.dgv_lista_studentow.AllowUserToAddRows = false;
@@ -183,8 +306,6 @@
             this.firstNameDataGridViewTextBoxColumn,
             this.lastNameDataGridViewTextBoxColumn,
             this.indexDataGridViewTextBoxColumn,
-            this.lateDataGridViewCheckBoxColumn,
-            this.noteDataGridViewTextBoxColumn,
             this.timestampDataGridViewTextBoxColumn});
             this.dgv_lista_studentow.DataSource = this.studentInfoBindingSource;
             this.dgv_lista_studentow.Location = new System.Drawing.Point(168, 151);
@@ -663,131 +784,6 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox3.Location = new System.Drawing.Point(725, 169);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(246, 233);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Wybrany student:";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.StudentNameLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.IndexLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.LateCheckBox, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.NoteRichTextBox, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.ApplyStudentInformation_Button, 0, 5);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 21);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(233, 206);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // StudentNameLabel
-            // 
-            this.StudentNameLabel.AutoSize = true;
-            this.StudentNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StudentNameLabel.Location = new System.Drawing.Point(3, 0);
-            this.StudentNameLabel.Name = "StudentNameLabel";
-            this.StudentNameLabel.Size = new System.Drawing.Size(227, 24);
-            this.StudentNameLabel.TabIndex = 0;
-            this.StudentNameLabel.Text = "Student";
-            this.StudentNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // IndexLabel
-            // 
-            this.IndexLabel.AutoSize = true;
-            this.IndexLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IndexLabel.Location = new System.Drawing.Point(3, 24);
-            this.IndexLabel.Name = "IndexLabel";
-            this.IndexLabel.Size = new System.Drawing.Size(227, 24);
-            this.IndexLabel.TabIndex = 1;
-            this.IndexLabel.Text = "Index";
-            this.IndexLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LateCheckBox
-            // 
-            this.LateCheckBox.AutoSize = true;
-            this.LateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LateCheckBox.Location = new System.Drawing.Point(6, 51);
-            this.LateCheckBox.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
-            this.LateCheckBox.Name = "LateCheckBox";
-            this.LateCheckBox.Size = new System.Drawing.Size(224, 18);
-            this.LateCheckBox.TabIndex = 2;
-            this.LateCheckBox.Text = "Spóźniony?";
-            this.LateCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 72);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(227, 24);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Notatka:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // NoteRichTextBox
-            // 
-            this.NoteRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NoteRichTextBox.Location = new System.Drawing.Point(3, 99);
-            this.NoteRichTextBox.Name = "NoteRichTextBox";
-            this.NoteRichTextBox.Size = new System.Drawing.Size(227, 76);
-            this.NoteRichTextBox.TabIndex = 4;
-            this.NoteRichTextBox.Text = "";
-            // 
-            // ApplyStudentInformation_Button
-            // 
-            this.ApplyStudentInformation_Button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ApplyStudentInformation_Button.Location = new System.Drawing.Point(3, 181);
-            this.ApplyStudentInformation_Button.Name = "ApplyStudentInformation_Button";
-            this.ApplyStudentInformation_Button.Size = new System.Drawing.Size(227, 22);
-            this.ApplyStudentInformation_Button.TabIndex = 5;
-            this.ApplyStudentInformation_Button.Text = "Potwierdzenie";
-            this.ApplyStudentInformation_Button.UseVisualStyleBackColor = true;
-            this.ApplyStudentInformation_Button.Click += new System.EventHandler(this.ApplyStudentInformation_Button_Click);
-            // 
-            // lb_minuty
-            // 
-            this.lb_minuty.AutoSize = true;
-            this.lb_minuty.Location = new System.Drawing.Point(93, 169);
-            this.lb_minuty.Name = "lb_minuty";
-            this.lb_minuty.Size = new System.Drawing.Size(23, 13);
-            this.lb_minuty.TabIndex = 22;
-            this.lb_minuty.Text = "min";
-            // 
-            // lb_dwukropek
-            // 
-            this.lb_dwukropek.AutoSize = true;
-            this.lb_dwukropek.Location = new System.Drawing.Point(111, 169);
-            this.lb_dwukropek.Name = "lb_dwukropek";
-            this.lb_dwukropek.Size = new System.Drawing.Size(10, 13);
-            this.lb_dwukropek.TabIndex = 23;
-            this.lb_dwukropek.Text = ":";
-            // 
-            // lb_sekundy
-            // 
-            this.lb_sekundy.AutoSize = true;
-            this.lb_sekundy.Location = new System.Drawing.Point(121, 169);
-            this.lb_sekundy.Name = "lb_sekundy";
-            this.lb_sekundy.Size = new System.Drawing.Size(17, 13);
-            this.lb_sekundy.TabIndex = 24;
-            this.lb_sekundy.Text = "ss";
-            // 
             // firstNameDataGridViewTextBoxColumn
             // 
             this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
@@ -809,21 +805,6 @@
             this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
             this.indexDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // lateDataGridViewCheckBoxColumn
-            // 
-            this.lateDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.lateDataGridViewCheckBoxColumn.DataPropertyName = "late";
-            this.lateDataGridViewCheckBoxColumn.HeaderText = "Spóźniony?";
-            this.lateDataGridViewCheckBoxColumn.MinimumWidth = 100;
-            this.lateDataGridViewCheckBoxColumn.Name = "lateDataGridViewCheckBoxColumn";
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Notatka";
-            this.noteDataGridViewTextBoxColumn.MinimumWidth = 100;
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            // 
             // timestampDataGridViewTextBoxColumn
             // 
             this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
@@ -843,11 +824,14 @@
             this.Name = "MainForm";
             this.Text = "The Conjuring";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabObecnosc.ResumeLayout(false);
             this.tabObecnosc.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_studentow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -858,9 +842,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_zajęcia)).EndInit();
             this.gb_dodawanieZajęć.ResumeLayout(false);
             this.gb_dodawanieZajęć.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
