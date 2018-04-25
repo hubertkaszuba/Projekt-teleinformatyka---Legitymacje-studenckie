@@ -29,19 +29,7 @@ namespace pt_legitymacjestudenckie
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
-            
-            Wykladowca wy = new Wykladowca
-            {
-                Id_Wykladowcy = 1,
-                Imie = "Sidżej",
-                Nazwisko = "Profesor",
-                Login_uz = "ProfesorSidżej"
-            };
-            connection.Open();
-            conjuring.Wykladowca.Add(wy);
-            conjuring.SaveChanges();
-            connection.Close();
-
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
