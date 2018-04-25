@@ -155,7 +155,14 @@ namespace pt_legitymacjestudenckie
         /// <summary> Zapisanie listy studentów w bazie danych.</summary>
         private void btn_zapisz_Click(object sender, EventArgs e)
         {
+            if (studentRecorder.GetListLength() > 0)
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Lista studentów jest pusta.", "Uwaga", MessageBoxButtons.OK);
+            }
         }
 
         ///<summary>Odświeżanie listy zarejestrowanych studentów.</summary>
@@ -249,6 +256,20 @@ namespace pt_legitymacjestudenckie
         /// <summary>Wyświetlenie wszystkich obiektów Sala w ComboBoxie cb_sala.</summary>
         private void cb_sala_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btn_usun_zaznaczone_Click(object sender, EventArgs e)
+        {
+            string index = IndexLabel.Text;
+
+            StudentInfo stud = studentRecorder.GetStudentByIndex(index);
+            if (stud == null)
+                MessageBox.Show("Studenta nie ma na liście.", "Uwaga!", MessageBoxButtons.OK);
+            else
+                studentRecorder.RemoveStudent(stud);
+
+            CurrentIndex = -1;
 
         }
     }
