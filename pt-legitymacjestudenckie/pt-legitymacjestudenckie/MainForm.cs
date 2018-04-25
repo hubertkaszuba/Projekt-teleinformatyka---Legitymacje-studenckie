@@ -226,6 +226,19 @@ namespace pt_legitymacjestudenckie
 
             CurrentIndex = -1;
         }
+        private void btn_usun_zaznaczone_Click(object sender, EventArgs e)
+        {
+            string index = IndexLabel.Text;
+
+            StudentInfo stud = studentRecorder.GetStudentByIndex(index);
+            if (stud == null)
+                MessageBox.Show("Studenta nie ma na liście.", "Uwaga!", MessageBoxButtons.OK);
+            else
+                studentRecorder.RemoveStudent(stud);
+
+            CurrentIndex = -1;
+            refreshStudentList();
+        }
 
         ///<summary>Zamknięcie procesu, podczas zamykania formy.</summary>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -269,21 +282,9 @@ namespace pt_legitymacjestudenckie
         /// <summary>Wyświetlenie wszystkich obiektów Sala w ComboBoxie cb_sala.</summary>
         private void cb_sala_Click(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void btn_usun_zaznaczone_Click(object sender, EventArgs e)
-        {
-            string index = IndexLabel.Text;
 
-            StudentInfo stud = studentRecorder.GetStudentByIndex(index);
-            if (stud == null)
-                MessageBox.Show("Studenta nie ma na liście.", "Uwaga!", MessageBoxButtons.OK);
-            else
-                studentRecorder.RemoveStudent(stud);
-
-            CurrentIndex = -1;
-            refreshStudentList();
-        }
     }
 }
