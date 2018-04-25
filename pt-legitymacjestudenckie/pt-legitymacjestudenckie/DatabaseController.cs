@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.Sql;
+using System.Windows.Forms;
 using pt_legitymacjestudenckie.SmartCardRelated;
 namespace pt_legitymacjestudenckie
 {
@@ -142,5 +143,77 @@ namespace pt_legitymacjestudenckie
             connection.Close();
         }
 
+        //Dodawanie nowej sali
+        public void InsertSala(TheConjuring_dbEntities1 conjuring, SqlConnection connection, String numer, String budynek)
+        {
+            connection.Open();
+            var query = conjuring.Sala.Where(o => (o.Numer == numer && o.Budynek == budynek)).FirstOrDefault();
+            if (query != null)
+            {
+                MessageBox.Show("Taka sala już istnieje w bazie");
+                connection.Close();
+                return;
+            }
+
+            Sala sala = new Sala()
+            {
+                Budynek = budynek,
+                Numer = numer
+            };
+            conjuring.Sala.Add(sala);
+            conjuring.SaveChanges();
+            connection.Close();
+            MessageBox.Show("Dodano poprawnie sale numer - " + numer + " w budynku - " + budynek);
+        }
+        //zwracanie listy sal
+        public List<Sala> ListSala(TheConjuring_dbEntities1 conjuring)
+        {
+            List<Sala> qTyp = new List<Sala>();
+            qTyp = (from s in conjuring.Sala orderby s.Id_Sali select s).Distinct().ToList();
+            return qTyp;
+        }
+
+        //Dodawanie nowego przedmiotu
+        public void InsertPrzedmiot(TheConjuring_dbEntities1 conjuring, SqlConnection connection, String nazwa)
+        {
+            connection.Open();
+            var query = conjuring.Przedmiot.Where(o => (o.Nazwa == nazwa)).FirstOrDefault();
+            if (query != null)
+            {
+                MessageBox.Show("Taki przedmiot już istnieje w bazie");
+                connection.Close();
+                return;
+            }
+
+            Przedmiot przedmiot = new Przedmiot
+            {
+                Nazwa = nazwa
+            };
+            conjuring.Przedmiot.Add(przedmiot);
+            conjuring.SaveChanges();
+            connection.Close();
+            MessageBox.Show("Dodano poprawnie przedmiot - " + nazwa);
+        }
+
+        //zwracanie listy wszystkich przedmiotów
+        public List<Przedmiot> ListPrzedmiot(TheConjuring_dbEntities1 conjuring)
+        {
+            List<Przedmiot> qTyp = new List<Przedmiot>();
+            qTyp = (from p in conjuring.Przedmiot orderby p.Id_Przedmiotu select p).Distinct().ToList();
+            return qTyp;
+        }
+
+        //zwracanie listy przedmiotów zalogowanego
+        public List<Przedmiot> ListPrzedmiot_Zalogowanego(TheConjuring_dbEntities1 conjuring, Wykladowca wykladowca)
+        {
+            List<Przedmiot> qTyp = new List<Przedmiot>();
+            qTyp = (from p in conjuring.Przedmiot
+                    join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                    join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
+                    where w.Id_Wykladowcy == wykladowca.Id_Wykladowcy
+                    orderby p.Id_Przedmiotu
+                    select p).Distinct().ToList();
+            return qTyp;
+        }
     }
 }

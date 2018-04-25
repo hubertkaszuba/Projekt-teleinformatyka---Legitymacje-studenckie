@@ -257,14 +257,13 @@ namespace pt_legitymacjestudenckie
         /// <summary>Dodawanie nowego obiektu przedmiotu do bazy danych</summary>
         private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
         {
-
+            databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
         }
 
         /// <summary>Dodawanie nowego obiektu sali do bazy danych</summary>
         private void btn_dodaj_sale_Click(object sender, EventArgs e)
         {
-            SalaManagement sm = new SalaManagement();
-            sm.InsertSala(tb_numer_sali.Text, tb_numer_sali.Text);
+            databaseController.InsertSala(conjuring, connection, tb_numer_sali.Text, tb_budynek.Text);
         }
 
         /// <summary>Wyświetlenie wszystkich obiektów Sala w ComboBoxie cb_sala.</summary>
