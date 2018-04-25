@@ -179,6 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TheConjuringModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TheConjuringModel.edmx</DependentUpon>
