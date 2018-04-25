@@ -270,13 +270,14 @@ namespace pt_legitymacjestudenckie
         /// <summary>Dodawanie nowego obiektu przedmiotu do bazy danych</summary>
         private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
         {
+            DatabaseController databaseController = new DatabaseController();
             databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
         }
 
         /// <summary>Dodawanie nowego obiektu sali do bazy danych</summary>
         private void btn_dodaj_sale_Click(object sender, EventArgs e)
         {
-            databaseController.InsertSala(conjuring, connection, tb_numer_sali.Text, tb_budynek.Text);
+
         }
 
         /// <summary>Wyświetlenie wszystkich obiektów Sala w ComboBoxie cb_sala.</summary>
@@ -285,6 +286,15 @@ namespace pt_legitymacjestudenckie
             
         }
 
-
+        private void cb_zajecia_Click(object sender, EventArgs e)
+        {
+            cb_zajecia.Items.Clear();
+            DatabaseController databaseController = new DatabaseController();
+            List<Przedmiot> przedmioty =  databaseController.ListPrzedmiot(conjuring);
+            foreach (Przedmiot x in przedmioty)
+            {
+                cb_zajecia.Items.Add(x.Nazwa);
+            }
+        }
     }
 }
