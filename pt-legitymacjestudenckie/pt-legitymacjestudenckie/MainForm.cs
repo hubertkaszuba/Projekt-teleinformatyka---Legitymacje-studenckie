@@ -270,7 +270,7 @@ namespace pt_legitymacjestudenckie
                 studentRecorder.RemoveStudent(stud);
 
             CurrentIndex = -1;
-
+            refreshStudentList();
         }
     }
 }

@@ -99,6 +99,22 @@ namespace pt_legitymacjestudenckie
             }
         }
 
+        public Zajecia_pojedyncze GetZajecia_Pojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
+        {
+            var zajecia = conjuring.Zajecia.Where(z => z.Id_Wykladowcy == wykladowca.Id_Wykladowcy);
+            IQueryable<Zajecia_pojedyncze> zajecia_pojedyncze = null;
+            foreach (var z in zajecia)
+            {
+                zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
+            }
+            
+            var obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
+
+            return obecneZajecia;
+        }
+
+
+
         public void DeleteObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection, int indeks, int id_zajec, DateTime data)
         {
             connection.Open();
