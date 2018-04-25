@@ -12,16 +12,13 @@ namespace pt_legitymacjestudenckie
     using System;
     using System.Collections.Generic;
     
-    public partial class Obecnosc
+    public partial class database_firewall_rules
     {
-        public int Id_Obecnosci { get; set; }
-        public int Indeks { get; set; }
-        public Nullable<System.DateTime> Data { get; set; }
-        public Nullable<bool> obecny { get; set; }
-        public string notatka { get; set; }
-        public int Id_Zajec_pojedynczych { get; set; }
-    
-        public virtual Zajecia_pojedyncze Zajecia_pojedyncze { get; set; }
-        public virtual Student Student { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

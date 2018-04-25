@@ -12,16 +12,12 @@ namespace pt_legitymacjestudenckie
     using System;
     using System.Collections.Generic;
     
-    public partial class Obecnosc
+    public partial class sysdiagrams
     {
-        public int Id_Obecnosci { get; set; }
-        public int Indeks { get; set; }
-        public Nullable<System.DateTime> Data { get; set; }
-        public Nullable<bool> obecny { get; set; }
-        public string notatka { get; set; }
-        public int Id_Zajec_pojedynczych { get; set; }
-    
-        public virtual Zajecia_pojedyncze Zajecia_pojedyncze { get; set; }
-        public virtual Student Student { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
