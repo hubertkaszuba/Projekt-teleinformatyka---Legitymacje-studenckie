@@ -143,8 +143,46 @@ namespace pt_legitymacjestudenckie
             connection.Close();
         }
 
-        //Dodawanie nowej sali
-        public void InsertSala(TheConjuring_dbEntities1 conjuring, SqlConnection connection, String numer, String budynek)
+
+        //Dodawanie nowych zajęć
+        public void InsertZajecia(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca , Przedmiot przedmiot, Sala sala, DateTime data, bool tydzien)
+        {
+            connection.Open();
+            var query = conjuring.Zajecia.Where(o => (o.Id_Przedmiotu == przedmiot.Id_Przedmiotu && o.Id_Sali == sala.Id_Sali && o.Id_Wykladowcy == wykladowca.Id_Wykladowcy && o.Tydzien == tydzien && o.Czas == data)).FirstOrDefault();
+            if (query != null)
+            {
+                MessageBox.Show("Takie zajecia juz istnieja  w bazie");
+                connection.Close();
+                return;
+            }
+
+            Zajecia zajecia = new Zajecia()
+            {
+               Id_Przedmiotu=przedmiot.Id_Przedmiotu,
+               Id_Sali=sala.Id_Sali,
+               Czas=data,
+               Tydzien=tydzien,
+               Id_Wykladowcy=wykladowca.Id_Wykladowcy
+            };
+            
+            conjuring.Zajecia.Add(zajecia);
+            conjuring.SaveChanges();
+            connection.Close();
+            MessageBox.Show("Dodano poprawnie zajecia przedmiot - " + przedmiot.Nazwa + " w sali - " + sala.Numer + " w budynku " + sala.Budynek);
+
+            this.InsertZajeciaPojedyncze(conjuring, connection, zajecia);
+                       
+        }
+
+        //zwracanie listy zajec wykladowcy
+        public List<Zajecia> ListZajec(TheConjuring_dbEntities1 conjuring, Wykladowca wykladowca)
+        {
+            List<Zajecia> qTyp = new List<Zajecia>();
+            qTyp = (from z in conjuring.Zajecia where z.Id_Wykladowcy==wykladowca.Id_Wykladowcy orderby z.Id_Sali select z).ToList();
+            return qTyp;
+        }
+            //Dodawanie nowej sali
+            public void InsertSala(TheConjuring_dbEntities1 conjuring, SqlConnection connection, String numer, String budynek)
         {
             connection.Open();
             var query = conjuring.Sala.Where(o => (o.Numer == numer && o.Budynek == budynek)).FirstOrDefault();
