@@ -108,6 +108,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>TheConjuringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TextfileConstructor.cs" />
     <Compile Include="TheConjuringModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

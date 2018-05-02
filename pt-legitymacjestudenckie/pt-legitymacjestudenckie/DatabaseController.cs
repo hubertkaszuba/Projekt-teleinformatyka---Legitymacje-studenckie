@@ -30,7 +30,7 @@ namespace pt_legitymacjestudenckie
                     Indeks = Convert.ToInt32(studentInfo.index),
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
                     Data = zajecia.Data_zajec,
-                    obecny = true,
+                    obecny = studentInfo.late,
                     notatka = studentInfo.note
                 };
                 connection.Open();
@@ -46,7 +46,7 @@ namespace pt_legitymacjestudenckie
                     Indeks = Convert.ToInt32(studentInfo.index),
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
                     Data = zajecia.Data_zajec,
-                    obecny = true,
+                    obecny = studentInfo.late,
                     notatka = studentInfo.note
                 };
                 connection.Open();
@@ -122,7 +122,20 @@ namespace pt_legitymacjestudenckie
             return obecneZajecia;
         }
 
-
+        public List<Obecnosc> GetObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection)
+        {
+            try
+            {
+                connection.Open();
+                List<Obecnosc> obecnosci = conjuring.Obecnosc.ToList();
+                connection.Close();
+                return obecnosci;
+            }
+            catch (SqlException ex)
+            {
+                return null;
+            }
+        }
 
         public void DeleteObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection, int indeks, int id_zajec, DateTime data)
         {
@@ -142,7 +155,6 @@ namespace pt_legitymacjestudenckie
             conjuring.SaveChanges();
             connection.Close();
         }
-
 
         //Dodawanie nowych zajęć
         public void InsertZajecia(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca , Przedmiot przedmiot, Sala sala, DateTime data, bool tydzien)
@@ -203,6 +215,7 @@ namespace pt_legitymacjestudenckie
             connection.Close();
             MessageBox.Show("Dodano poprawnie sale numer - " + numer + " w budynku - " + budynek);
         }
+
         //zwracanie listy sal
         public List<Sala> ListSala(TheConjuring_dbEntities1 conjuring)
         {
@@ -252,6 +265,17 @@ namespace pt_legitymacjestudenckie
                     orderby p.Id_Przedmiotu
                     select p).Distinct().ToList();
             return qTyp;
+        }
+
+        // Zwraca list przedmiotów prowadzonych przez prowadzącego
+        public List<String> GetSubjects(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
+        {
+            connection.Open();
+            List<Zajecia> lessons = conjuring.Zajecia.Where(z => z.Wykladowca.Id_Wykladowcy == wykladowca.Id_Wykladowcy).ToList();
+            List<String> subjects = lessons.Select(l => l.Przedmiot.Nazwa).Distinct().ToList();
+
+            connection.Close();
+            return subjects;
         }
     }
 }
