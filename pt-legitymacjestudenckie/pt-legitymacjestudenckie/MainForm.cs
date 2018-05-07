@@ -48,6 +48,7 @@ namespace pt_legitymacjestudenckie
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
+            RefreshComboBoxes();
         }
 		
         /// <summary>Ustawienie wartości domyślnych</summary>
@@ -169,6 +170,7 @@ namespace pt_legitymacjestudenckie
                         databaseController.InsertObecnosc(conjuring, connection, stud, _zajecia);
 
                     studentRecorder.lStudInfo.Clear();
+                    CurrentIndex = -1;
                     refreshStudentList();
                 }
                 
@@ -256,13 +258,28 @@ namespace pt_legitymacjestudenckie
             dgv_zajęcia.Rows[0].Cells[0].Value = cb_zajecia.Text;
             dgv_zajęcia.Rows[0].Cells[1].Value = cb_sala.Text;
 
-            DateTime data = Convert.ToDateTime(dateTime_pierwsze_zajecia.Text);
+            DateTime data = Convert.ToDateTime(dateTime_pierwsze_zajecia.Value);
             string minuty = Convert.ToString(data.Minute);
             string godziny = Convert.ToString(data.Hour);
             if (minuty.Length < 2) minuty = "0" + minuty;
             if (godziny.Length < 2) godziny = "0" + godziny;
-            dgv_zajęcia.Rows[0].Cells[2].Value = godziny + ":" + minuty;
 
+            Przedmiot przedmiot = conjuring.Przedmiot.Where(o => (o.Nazwa == cb_zajecia.Text)).FirstOrDefault();
+
+            String sala_zczytane = cb_sala.Text;
+            Char delimiter = '-';
+            String[] substrings = sala_zczytane.Split(delimiter);
+            string pom1 = substrings[0];
+            string pom2 = substrings[1];
+            Sala sala = conjuring.Sala.Where(o => (o.Numer == pom1&& o.Budynek==pom2)).FirstOrDefault();
+            bool tydzien = false;
+            string tydzien_zczyatane = cb_czestosc.Text;
+            if (tydzien_zczyatane == "Co tydzien") tydzien = false;
+            else if (tydzien_zczyatane == "Co dwa tygodnie") tydzien = true;
+
+
+            dgv_zajęcia.Rows[0].Cells[2].Value = godziny + ":" + minuty;
+            databaseController.InsertZajecia(conjuring, connection, wykladowca, przedmiot, sala, data, tydzien);
             dgv_zajęcia.Rows[0].Cells[3].Value = data.ToString("dddd", new CultureInfo("pl-PL"));
             dgv_zajęcia.Rows[0].Cells[4].Value = cb_czestosc.Text;
         }
@@ -270,27 +287,29 @@ namespace pt_legitymacjestudenckie
         /// <summary>Dodawanie nowego obiektu przedmiotu do bazy danych</summary>
         private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
         {
-            DatabaseController databaseController = new DatabaseController();
             databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
+            RefreshComboBoxes();
         }
 
         /// <summary>Dodawanie nowego obiektu sali do bazy danych</summary>
         private void btn_dodaj_sale_Click(object sender, EventArgs e)
         {
-
+            databaseController.InsertSala(conjuring, connection,tb_numer_sali.Text, tb_budynek.Text);
+            RefreshComboBoxes();
         }
 
-        /// <summary>Wyświetlenie wszystkich obiektów Sala w ComboBoxie cb_sala.</summary>
-        private void cb_sala_Click(object sender, EventArgs e)
-        {
-            
-        }
+        private void RefreshComboBoxes() {
+            //sale
+            cb_sala.Items.Clear();
+            List<Sala> sale = databaseController.ListSala(conjuring);
+            foreach (Sala x in sale)
+            {
+                cb_sala.Items.Add(x.Numer + "-" + x.Budynek);
+            }
 
-        private void cb_zajecia_Click(object sender, EventArgs e)
-        {
+            //przedmioty
             cb_zajecia.Items.Clear();
-            DatabaseController databaseController = new DatabaseController();
-            List<Przedmiot> przedmioty =  databaseController.ListPrzedmiot(conjuring);
+            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot(conjuring);
             foreach (Przedmiot x in przedmioty)
             {
                 cb_zajecia.Items.Add(x.Nazwa);

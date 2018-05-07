@@ -14,7 +14,8 @@ namespace pt_legitymacjestudenckie
         public void InsertObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection, StudentInfo studentInfo, Zajecia_pojedyncze zajecia)
         {
             connection.Open();
-            var isThereStudent = conjuring.Student.Where(s => s.Indeks == Convert.ToInt32(studentInfo.index));
+            int studentIndex = Convert.ToInt32(studentInfo.index);
+            var isThereStudent = conjuring.Student.Where(s => s.Indeks == studentIndex).FirstOrDefault();
             connection.Close();
             if (isThereStudent == null)
             {
@@ -29,7 +30,7 @@ namespace pt_legitymacjestudenckie
                 {
                     Indeks = Convert.ToInt32(studentInfo.index),
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
-                    Data = zajecia.Data_zajec,
+                    Data = studentInfo.timestamp,
                     obecny = true,
                     notatka = studentInfo.note
                 };
@@ -45,7 +46,7 @@ namespace pt_legitymacjestudenckie
                 {
                     Indeks = Convert.ToInt32(studentInfo.index),
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
-                    Data = zajecia.Data_zajec,
+                    Data = studentInfo.timestamp,
                     obecny = true,
                     notatka = studentInfo.note
                 };
@@ -111,12 +112,13 @@ namespace pt_legitymacjestudenckie
             {
                 zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
             }
-            
+
 
             //var obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
-            
 
-            Zajecia_pojedyncze obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
+            DateTime now = DateTime.Now;
+            DateTime shifted = now.AddMinutes(-15);
+            Zajecia_pojedyncze obecneZajecia = zajecia_pojedyncze.First(oz => oz.Data_zajec >= shifted);
             connection.Close();
 
             return obecneZajecia;
