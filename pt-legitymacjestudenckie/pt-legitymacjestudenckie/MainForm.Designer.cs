@@ -120,24 +120,34 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.RaportNotesCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CourseComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.RaportDateFromPicker = new System.Windows.Forms.DateTimePicker();
+            this.RaportDateToPicker = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.RaportLateCheckBox = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.CsvRadioButton = new System.Windows.Forms.RadioButton();
+            this.PdfRadioButton = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.GenerateRaportDataGrid = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
+<<<<<<< HEAD
+=======
+            this.button2 = new System.Windows.Forms.Button();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+>>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
@@ -158,7 +168,12 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
+>>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -996,7 +1011,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.GenerateRaportDataGrid, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 6);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -1024,20 +1039,20 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel3.Controls.Add(this.checkBox3, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.checkBox2, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.RaportNotesCheckBox, 0, 5);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.CourseComboBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label7, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker2, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.RaportDateFromPicker, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.RaportDateToPicker, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.label9, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.checkBox1, 0, 4);
-            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 7);
-            this.tableLayoutPanel3.Controls.Add(this.radioButton1, 0, 8);
-            this.tableLayoutPanel3.Controls.Add(this.radioButton2, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.RaportLateCheckBox, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.CsvRadioButton, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.PdfRadioButton, 0, 8);
             this.tableLayoutPanel3.Controls.Add(this.button1, 0, 12);
+            this.tableLayoutPanel3.Controls.Add(this.button2, 1, 11);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 19);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 13;
@@ -1057,29 +1072,17 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(368, 380);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // checkBox3
+            // RaportNotesCheckBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.tableLayoutPanel3.SetColumnSpan(this.checkBox3, 2);
-            this.checkBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox3.Location = new System.Drawing.Point(3, 159);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(362, 20);
-            this.checkBox3.TabIndex = 9;
-            this.checkBox3.Text = "Dodaj informację procentową";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.tableLayoutPanel3.SetColumnSpan(this.checkBox2, 2);
-            this.checkBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox2.Location = new System.Drawing.Point(3, 133);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(362, 20);
-            this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "Uwzględnij notatki";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.RaportNotesCheckBox.AutoSize = true;
+            this.tableLayoutPanel3.SetColumnSpan(this.RaportNotesCheckBox, 2);
+            this.RaportNotesCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RaportNotesCheckBox.Location = new System.Drawing.Point(3, 133);
+            this.RaportNotesCheckBox.Name = "RaportNotesCheckBox";
+            this.RaportNotesCheckBox.Size = new System.Drawing.Size(362, 20);
+            this.RaportNotesCheckBox.TabIndex = 8;
+            this.RaportNotesCheckBox.Text = "Uwzględnij notatki";
+            this.RaportNotesCheckBox.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -1092,16 +1095,17 @@
             this.label2.Text = "Przedmiot:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox1
+            // CourseComboBox
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.CourseComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(150, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(215, 24);
-            this.comboBox1.TabIndex = 1;
+            this.CourseComboBox.FormattingEnabled = true;
+            this.CourseComboBox.Location = new System.Drawing.Point(150, 3);
+            this.CourseComboBox.Name = "CourseComboBox";
+            this.CourseComboBox.Size = new System.Drawing.Size(215, 24);
+            this.CourseComboBox.TabIndex = 1;
+            this.CourseComboBox.DropDown += new System.EventHandler(this.CourseComboBox_DropDown);
             // 
             // label5
             // 
@@ -1126,21 +1130,21 @@
             this.label7.Text = "do:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dateTimePicker1
+            // RaportDateFromPicker
             // 
-            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker1.Location = new System.Drawing.Point(150, 29);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(215, 22);
-            this.dateTimePicker1.TabIndex = 4;
+            this.RaportDateFromPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RaportDateFromPicker.Location = new System.Drawing.Point(150, 29);
+            this.RaportDateFromPicker.Name = "RaportDateFromPicker";
+            this.RaportDateFromPicker.Size = new System.Drawing.Size(215, 22);
+            this.RaportDateFromPicker.TabIndex = 4;
             // 
-            // dateTimePicker2
+            // RaportDateToPicker
             // 
-            this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker2.Location = new System.Drawing.Point(150, 55);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(215, 22);
-            this.dateTimePicker2.TabIndex = 5;
+            this.RaportDateToPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RaportDateToPicker.Location = new System.Drawing.Point(150, 55);
+            this.RaportDateToPicker.Name = "RaportDateToPicker";
+            this.RaportDateToPicker.Size = new System.Drawing.Size(215, 22);
+            this.RaportDateToPicker.TabIndex = 5;
             // 
             // label9
             // 
@@ -1155,53 +1159,53 @@
             this.label9.Text = "Opcje dodatkowe:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // checkBox1
+            // RaportLateCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.tableLayoutPanel3.SetColumnSpan(this.checkBox1, 2);
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBox1.Location = new System.Drawing.Point(3, 107);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(362, 20);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Uwzględnij spóźnienia";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.RaportLateCheckBox.AutoSize = true;
+            this.tableLayoutPanel3.SetColumnSpan(this.RaportLateCheckBox, 2);
+            this.RaportLateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RaportLateCheckBox.Location = new System.Drawing.Point(3, 107);
+            this.RaportLateCheckBox.Name = "RaportLateCheckBox";
+            this.RaportLateCheckBox.Size = new System.Drawing.Size(362, 20);
+            this.RaportLateCheckBox.TabIndex = 7;
+            this.RaportLateCheckBox.Text = "Uwzględnij spóźnienia";
+            this.RaportLateCheckBox.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 182);
+            this.label10.Location = new System.Drawing.Point(3, 156);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(141, 26);
             this.label10.TabIndex = 10;
             this.label10.Text = "Exportuj jako:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // radioButton1
+            // CsvRadioButton
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton1.Location = new System.Drawing.Point(3, 211);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(141, 20);
-            this.radioButton1.TabIndex = 11;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "*.txt";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.CsvRadioButton.AutoSize = true;
+            this.CsvRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CsvRadioButton.Location = new System.Drawing.Point(3, 185);
+            this.CsvRadioButton.Name = "CsvRadioButton";
+            this.CsvRadioButton.Size = new System.Drawing.Size(141, 20);
+            this.CsvRadioButton.TabIndex = 11;
+            this.CsvRadioButton.TabStop = true;
+            this.CsvRadioButton.Text = "*.csv";
+            this.CsvRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // PdfRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton2.Location = new System.Drawing.Point(3, 237);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(141, 20);
-            this.radioButton2.TabIndex = 12;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "*.pdf";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.PdfRadioButton.AutoSize = true;
+            this.PdfRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PdfRadioButton.Location = new System.Drawing.Point(3, 211);
+            this.PdfRadioButton.Name = "PdfRadioButton";
+            this.PdfRadioButton.Size = new System.Drawing.Size(141, 20);
+            this.PdfRadioButton.TabIndex = 12;
+            this.PdfRadioButton.TabStop = true;
+            this.PdfRadioButton.Text = "*.pdf";
+            this.PdfRadioButton.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -1213,19 +1217,20 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Wygeneruj raport";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridView1
+            // GenerateRaportDataGrid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(389, 55);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(573, 398);
-            this.dataGridView1.TabIndex = 1;
+            this.GenerateRaportDataGrid.AllowUserToAddRows = false;
+            this.GenerateRaportDataGrid.AllowUserToDeleteRows = false;
+            this.GenerateRaportDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GenerateRaportDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GenerateRaportDataGrid.Location = new System.Drawing.Point(389, 55);
+            this.GenerateRaportDataGrid.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.GenerateRaportDataGrid.Name = "GenerateRaportDataGrid";
+            this.GenerateRaportDataGrid.ReadOnly = true;
+            this.GenerateRaportDataGrid.Size = new System.Drawing.Size(573, 398);
+            this.GenerateRaportDataGrid.TabIndex = 1;
             // 
             // label8
             // 
@@ -1248,6 +1253,75 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
+<<<<<<< HEAD
+=======
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(150, 289);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(215, 24);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Podgląd";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Imię";
+            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 51;
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn.Width = 51;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nazwisko";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // indexDataGridViewTextBoxColumn
+            // 
+            this.indexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.indexDataGridViewTextBoxColumn.DataPropertyName = "index";
+            this.indexDataGridViewTextBoxColumn.HeaderText = "Index";
+            this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
+            this.indexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.indexDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "late";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Spóźniony?";
+            this.dataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "note";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Notatka";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // timestampDataGridViewTextBoxColumn
+            // 
+            this.timestampDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
+            this.timestampDataGridViewTextBoxColumn.HeaderText = "Znacznik";
+            this.timestampDataGridViewTextBoxColumn.Name = "timestampDataGridViewTextBoxColumn";
+            this.timestampDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // studentInfoBindingSource
+            // 
+            this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
+            // 
+>>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1286,7 +1360,12 @@
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
+>>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
             this.ResumeLayout(false);
 
         }
@@ -1366,21 +1445,20 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GenerateRaportDataGrid;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CourseComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker RaportDateFromPicker;
+        private System.Windows.Forms.DateTimePicker RaportDateToPicker;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox RaportNotesCheckBox;
+        private System.Windows.Forms.CheckBox RaportLateCheckBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton CsvRadioButton;
+        private System.Windows.Forms.RadioButton PdfRadioButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label11;
@@ -1392,6 +1470,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button2;
     }
 }
 

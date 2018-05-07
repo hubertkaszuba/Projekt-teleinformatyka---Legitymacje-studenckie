@@ -11,6 +11,8 @@ using pt_legitymacjestudenckie.SmartCardRelated;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Globalization;
+using System.IO;
+
 namespace pt_legitymacjestudenckie
 {
 
@@ -19,7 +21,11 @@ namespace pt_legitymacjestudenckie
         /// <summary>Informuje, czy stoper odpowiadający za liczenie pozostałego czasu do sprawdzania obecności jest aktywny.</summary>
         private bool timerIsActive = false;
 
+        // Adapter do obsługi czytnika kart
         private StudentRecorder studentRecorder;
+
+        // Kontroler zakładki generowania raportów
+        private TextfileConstructor textfileConstructor;
 
         //Inicjalizacja połączenia
         SqlConnection connection = new SqlConnection(@"Data Source=conjuringserv.database.windows.net;Initial Catalog=TheConjuring_db;Integrated Security=False;User ID=Kierownik;Password=KieraS_246;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
@@ -35,7 +41,7 @@ namespace pt_legitymacjestudenckie
         public MainForm(string login){
             InitializeComponent();
             databaseController = new DatabaseController();
-
+            textfileConstructor = new TextfileConstructor();
 
             /*Stworzenie nowego obiektu StudentRecorder*/
             studentRecorder = new StudentRecorder();
@@ -48,7 +54,13 @@ namespace pt_legitymacjestudenckie
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
+<<<<<<< HEAD
             RefreshComboBoxes();
+=======
+
+            /* Odświeżenie wartości w comboboxie */
+            CourseComboBox.DataSource = databaseController.GetSubjects(conjuring, connection, wykladowca);
+>>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
         }
 		
         /// <summary>Ustawienie wartości domyślnych</summary>
@@ -314,6 +326,38 @@ namespace pt_legitymacjestudenckie
             {
                 cb_zajecia.Items.Add(x.Nazwa);
             }
+        }
+
+        // Zakładka - Generowanie raportów
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GenerateRaportDataGrid.DataSource = databaseController.GetObecnosc(conjuring, connection).OrderBy(o => o.Data).ToList();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textfileConstructor.SetParams(GetParamsFromUI());
+            if (CsvRadioButton.Enabled)
+            {
+                List<Obecnosc> list = (List<Obecnosc>)GenerateRaportDataGrid.DataSource;
+                textfileConstructor.ObecnoscToCSV(list);
+            }
+        }
+
+        private TextfileConstructorParams GetParamsFromUI()
+        {
+            TextfileConstructorParams tfc_params = new TextfileConstructorParams();
+            tfc_params.SubjectName = CourseComboBox.Text;
+            tfc_params.DateFrom = RaportDateFromPicker.Value;
+            tfc_params.DateTo = RaportDateToPicker.Value;
+            tfc_params.Late = RaportLateCheckBox.Checked;
+            tfc_params.Notes = RaportNotesCheckBox.Checked;
+            return tfc_params;
+        }
+
+        private void CourseComboBox_DropDown(object sender, EventArgs e)
+        {
         }
     }
 }
