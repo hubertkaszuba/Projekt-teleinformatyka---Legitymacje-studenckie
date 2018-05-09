@@ -107,7 +107,6 @@ namespace pt_legitymacjestudenckie
                 }
             }
         }
-
         public Zajecia_pojedyncze GetZajecia_Pojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
         {
             connection.Open();
@@ -170,7 +169,7 @@ namespace pt_legitymacjestudenckie
             var query = conjuring.Zajecia.Where(o => (o.Id_Przedmiotu == przedmiot.Id_Przedmiotu && o.Id_Sali == sala.Id_Sali && o.Id_Wykladowcy == wykladowca.Id_Wykladowcy && o.Tydzien == tydzien && o.Czas == data)).FirstOrDefault();
             if (query != null)
             {
-                MessageBox.Show("Takie zajecia juz istnieja  w bazie");
+                MessageBox.Show("Takie zajecia juz istnieja w bazie");
                 connection.Close();
                 return;
             }
@@ -187,7 +186,7 @@ namespace pt_legitymacjestudenckie
             conjuring.Zajecia.Add(zajecia);
             conjuring.SaveChanges();
             connection.Close();
-            MessageBox.Show("Dodano poprawnie zajecia przedmiot - " + przedmiot.Nazwa + " w sali - " + sala.Numer + " w budynku " + sala.Budynek);
+            MessageBox.Show("Dodano poprawnie zajecia przedmiot - " + przedmiot.Nazwa + " w sali " + sala.Numer + " w budynku " + sala.Budynek);
 
             this.InsertZajeciaPojedyncze(conjuring, connection, zajecia);
                        
@@ -321,7 +320,7 @@ namespace pt_legitymacjestudenckie
             {
                 try
                 {
-                    dt.Columns.Add(zp.Data_zajec.ToLongDateString());
+                    dt.Columns.Add(zp.Data_zajec.ToShortDateString());
                 }
                 catch(Exception ex)
                 {
