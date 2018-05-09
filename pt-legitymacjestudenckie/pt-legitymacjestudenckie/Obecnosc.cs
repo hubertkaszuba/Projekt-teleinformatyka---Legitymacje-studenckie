@@ -17,9 +17,9 @@ namespace pt_legitymacjestudenckie
         public int Id_Obecnosci { get; set; }
         public int Indeks { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
-        public Nullable<bool> obecny { get; set; }
         public string notatka { get; set; }
         public int Id_Zajec_pojedynczych { get; set; }
+        public Nullable<bool> Spoznienie { get; set; }
     
         public virtual Zajecia_pojedyncze Zajecia_pojedyncze { get; set; }
         public virtual Student Student { get; set; }

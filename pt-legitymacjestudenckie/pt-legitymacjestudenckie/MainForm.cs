@@ -380,5 +380,12 @@ namespace pt_legitymacjestudenckie
         private void CourseComboBox_DropDown(object sender, EventArgs e)
         {
         }
+
+        private void btn_szukaj_obecnosci_Click(object sender, EventArgs e)
+        {
+            
+             
+            
+        }
     }
 }

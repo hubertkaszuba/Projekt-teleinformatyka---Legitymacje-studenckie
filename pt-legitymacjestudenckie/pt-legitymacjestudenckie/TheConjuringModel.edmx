@@ -12,7 +12,7 @@
           <Property Name="Id_Obecnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Indeks" Type="int" Nullable="false" />
           <Property Name="Data" Type="datetime" />
-          <Property Name="obecny" Type="bit" />
+          <Property Name="Spoznienie" Type="bit" />
           <Property Name="notatka" Type="varchar" MaxLength="255" />
           <Property Name="Id_Zajec_pojedynczych" Type="int" Nullable="false" />
         </EntityType>
@@ -254,11 +254,11 @@ warning 6002: The table/view 'TheConjuring_db.sys.database_firewall_rules' does 
           <Property Name="Id_Obecnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Indeks" Type="Int32" Nullable="false" />
           <Property Name="Data" Type="DateTime" Precision="3" />
-          <Property Name="obecny" Type="Boolean" />
           <Property Name="notatka" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Id_Zajec_pojedynczych" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Zajecia_pojedyncze" Relationship="Self.FK__Obecnosc__Id_Zaj__6754599E" FromRole="Obecnosc" ToRole="Zajecia_pojedyncze" />
           <NavigationProperty Name="Student" Relationship="Self.FK__Obecnosc__Indeks__5629CD9C" FromRole="Obecnosc" ToRole="Student" />
+          <Property Name="Spoznienie" Type="Boolean" />
         </EntityType>
         <EntityType Name="Przedmiot">
           <Key>
@@ -505,10 +505,10 @@ warning 6002: The table/view 'TheConjuring_db.sys.database_firewall_rules' does 
           <EntitySetMapping Name="Obecnosc">
             <EntityTypeMapping TypeName="TheConjuring_dbModel.Obecnosc">
               <MappingFragment StoreEntitySet="Obecnosc">
+                <ScalarProperty Name="Spoznienie" ColumnName="Spoznienie" />
                 <ScalarProperty Name="Id_Obecnosci" ColumnName="Id_Obecnosci" />
                 <ScalarProperty Name="Indeks" ColumnName="Indeks" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
-                <ScalarProperty Name="obecny" ColumnName="obecny" />
                 <ScalarProperty Name="notatka" ColumnName="notatka" />
                 <ScalarProperty Name="Id_Zajec_pojedynczych" ColumnName="Id_Zajec_pojedynczych" />
               </MappingFragment>

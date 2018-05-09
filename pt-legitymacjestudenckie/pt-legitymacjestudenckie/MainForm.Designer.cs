@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem31 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem32 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem33 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem34 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem35 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem36 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("<godzina od do>");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("<sala>");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("<godzina od do>");
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabObecnosc = new System.Windows.Forms.TabPage();
@@ -56,13 +56,6 @@
             this.NoteRichTextBox = new System.Windows.Forms.RichTextBox();
             this.ApplyStudentInformation_Button = new System.Windows.Forms.Button();
             this.dgv_lista_studentow = new System.Windows.Forms.DataGridView();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lv_nastepne_zajecia = new System.Windows.Forms.ListView();
             this.lv_aktualne_zajecia = new System.Windows.Forms.ListView();
             this.btn_usun_zaznaczone = new System.Windows.Forms.Button();
@@ -138,13 +131,19 @@
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_studentow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -159,6 +158,7 @@
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -359,77 +359,22 @@
             this.dgv_lista_studentow.TabIndex = 20;
             this.dgv_lista_studentow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_lista_studentow_CellClick);
             // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Imię";
-            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 51;
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.firstNameDataGridViewTextBoxColumn.Width = 51;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nazwisko";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // indexDataGridViewTextBoxColumn
-            // 
-            this.indexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.indexDataGridViewTextBoxColumn.DataPropertyName = "index";
-            this.indexDataGridViewTextBoxColumn.HeaderText = "Index";
-            this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
-            this.indexDataGridViewTextBoxColumn.ReadOnly = true;
-            this.indexDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "late";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Spóźniony?";
-            this.dataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Notatka";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // timestampDataGridViewTextBoxColumn
-            // 
-            this.timestampDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
-            this.timestampDataGridViewTextBoxColumn.HeaderText = "Znacznik";
-            this.timestampDataGridViewTextBoxColumn.Name = "timestampDataGridViewTextBoxColumn";
-            this.timestampDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // studentInfoBindingSource
-            // 
-            this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
-            // 
             // lv_nastepne_zajecia
             // 
             this.lv_nastepne_zajecia.Enabled = false;
-            listViewItem26.IndentCount = 1;
-            listViewItem27.IndentCount = 2;
-            listViewItem27.UseItemStyleForSubItems = false;
-            listViewItem29.IndentCount = 1;
-            listViewItem30.IndentCount = 2;
-            listViewItem30.UseItemStyleForSubItems = false;
+            listViewItem2.IndentCount = 1;
+            listViewItem3.IndentCount = 2;
+            listViewItem3.UseItemStyleForSubItems = false;
+            listViewItem5.IndentCount = 1;
+            listViewItem6.IndentCount = 2;
+            listViewItem6.UseItemStyleForSubItems = false;
             this.lv_nastepne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem25,
-            listViewItem26,
-            listViewItem27,
-            listViewItem28,
-            listViewItem29,
-            listViewItem30});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.lv_nastepne_zajecia.Location = new System.Drawing.Point(155, 25);
             this.lv_nastepne_zajecia.Name = "lv_nastepne_zajecia";
             this.lv_nastepne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -440,19 +385,19 @@
             // lv_aktualne_zajecia
             // 
             this.lv_aktualne_zajecia.Enabled = false;
-            listViewItem32.IndentCount = 1;
-            listViewItem33.IndentCount = 2;
-            listViewItem33.UseItemStyleForSubItems = false;
-            listViewItem35.IndentCount = 1;
-            listViewItem36.IndentCount = 2;
-            listViewItem36.UseItemStyleForSubItems = false;
+            listViewItem8.IndentCount = 1;
+            listViewItem9.IndentCount = 2;
+            listViewItem9.UseItemStyleForSubItems = false;
+            listViewItem11.IndentCount = 1;
+            listViewItem12.IndentCount = 2;
+            listViewItem12.UseItemStyleForSubItems = false;
             this.lv_aktualne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem31,
-            listViewItem32,
-            listViewItem33,
-            listViewItem34,
-            listViewItem35,
-            listViewItem36});
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
             this.lv_aktualne_zajecia.Location = new System.Drawing.Point(6, 25);
             this.lv_aktualne_zajecia.Name = "lv_aktualne_zajecia";
             this.lv_aktualne_zajecia.Size = new System.Drawing.Size(132, 70);
@@ -913,6 +858,7 @@
             this.btn_szukaj_obecnosci.TabIndex = 6;
             this.btn_szukaj_obecnosci.Text = "Szukaj";
             this.btn_szukaj_obecnosci.UseVisualStyleBackColor = true;
+            this.btn_szukaj_obecnosci.Click += new System.EventHandler(this.btn_szukaj_obecnosci_Click);
             // 
             // comboBox2
             // 
@@ -1249,6 +1195,61 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Imię";
+            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 51;
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn.Width = 51;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nazwisko";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // indexDataGridViewTextBoxColumn
+            // 
+            this.indexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.indexDataGridViewTextBoxColumn.DataPropertyName = "index";
+            this.indexDataGridViewTextBoxColumn.HeaderText = "Index";
+            this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
+            this.indexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.indexDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "late";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Spóźniony?";
+            this.dataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "note";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Notatka";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // timestampDataGridViewTextBoxColumn
+            // 
+            this.timestampDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
+            this.timestampDataGridViewTextBoxColumn.HeaderText = "Znacznik";
+            this.timestampDataGridViewTextBoxColumn.Name = "timestampDataGridViewTextBoxColumn";
+            this.timestampDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // studentInfoBindingSource
+            // 
+            this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1267,7 +1268,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_studentow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -1288,6 +1288,7 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

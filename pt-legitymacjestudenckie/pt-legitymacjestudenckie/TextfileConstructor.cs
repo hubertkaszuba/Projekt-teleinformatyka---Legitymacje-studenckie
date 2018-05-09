@@ -55,7 +55,7 @@ namespace pt_legitymacjestudenckie
             String row = "";
             row += ob.Student.Imie.ToString() + "," + ob.Student.Nazwisko.ToString() + "," + ob.Indeks.ToString() + ",";
             row += ob.Data.ToString();
-            if (tfc_params.Late) row += "," + ob.obecny.ToString();
+            if (tfc_params.Late) row += "," + ob.Spoznienie.ToString();
             if (tfc_params.Notes) row += "," + ob.notatka.ToString();
 
             return row;

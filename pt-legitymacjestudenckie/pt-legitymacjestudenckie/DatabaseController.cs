@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.Sql;
@@ -32,7 +33,7 @@ namespace pt_legitymacjestudenckie
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
 
                     Data = zajecia.Data_zajec,
-                    obecny = studentInfo.late,
+                    Spoznienie = studentInfo.late,
 
                     notatka = studentInfo.note
                 };
@@ -50,7 +51,7 @@ namespace pt_legitymacjestudenckie
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
 
                     Data = zajecia.Data_zajec,
-                    obecny = studentInfo.late,
+                    Spoznienie = studentInfo.late,
 
                     notatka = studentInfo.note
                 };
@@ -282,6 +283,60 @@ namespace pt_legitymacjestudenckie
 
             connection.Close();
             return subjects;
+        }
+
+        public DataTable Obecni_pomiedzy(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Zajecia zajecia, DateTime od_, DateTime do_)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Imie i nazwisko");
+            dt.Columns.Add("indeks");
+
+            List<Student> qTyp = new List<Student>();
+            qTyp = (from z in conjuring.Zajecia
+                    join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                    join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                    join s in conjuring.Student on o.Indeks equals s.Indeks
+                    where zp.Data_zajec >= od_ && zp.Data_zajec <= do_
+                    orderby s.Indeks
+                    select s).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Imie i nazwisko"] = s.Imie + " " + s.Nazwisko;
+                new_row["indeks"] = s.Indeks;
+                dt.Rows.Add(new_row);
+            }
+
+            List<Zajecia_pojedyncze> Zajeciapoj = new List<Zajecia_pojedyncze>();
+            Zajeciapoj = (from z in conjuring.Zajecia
+                          join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                          where zp.Data_zajec >= od_ && zp.Data_zajec <= do_
+                          orderby zp.Id_Zajec_pojedynczych
+                          select zp).Distinct().ToList();
+            int x = 1, y = 0;
+            foreach (var zp in Zajeciapoj)
+            {
+                dt.Columns.Add(zp.Data_zajec.ToLongDateString());
+                x++;
+                foreach (var s in qTyp)
+                {
+                    var query = conjuring.Obecnosc.Where(o => o.Indeks == s.Indeks && o.Id_Zajec_pojedynczych == zp.Id_Zajec_pojedynczych).FirstOrDefault();
+                    if (query != null)
+                    {
+
+                        if(query.Spoznienie==true) dt.Rows[y][x] = "spozniony";
+                        else dt.Rows[y][x] = "obecny";
+
+                    }
+                    else dt.Rows[y][x] = "nieobecny";
+                    y++;
+                }
+                y = 0;
+            }
+
+            return dt;
+
         }
     }
 }
