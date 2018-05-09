@@ -30,13 +30,10 @@ namespace pt_legitymacjestudenckie
                 {
                     Indeks = Convert.ToInt32(studentInfo.index),
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
-<<<<<<< HEAD
-                    Data = studentInfo.timestamp,
-                    obecny = true,
-=======
+
                     Data = zajecia.Data_zajec,
                     obecny = studentInfo.late,
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
                     notatka = studentInfo.note
                 };
                 connection.Open();
@@ -51,13 +48,10 @@ namespace pt_legitymacjestudenckie
                 {
                     Indeks = Convert.ToInt32(studentInfo.index),
                     Id_Zajec_pojedynczych = zajecia.Id_Zajec_pojedynczych,
-<<<<<<< HEAD
-                    Data = studentInfo.timestamp,
-                    obecny = true,
-=======
+
                     Data = zajecia.Data_zajec,
                     obecny = studentInfo.late,
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
                     notatka = studentInfo.note
                 };
                 connection.Open();

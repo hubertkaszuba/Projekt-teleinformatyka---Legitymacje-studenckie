@@ -137,8 +137,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
-<<<<<<< HEAD
-=======
+
             this.button2 = new System.Windows.Forms.Button();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -147,7 +146,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
@@ -168,12 +167,10 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-=======
+
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -1253,8 +1250,7 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
-<<<<<<< HEAD
-=======
+
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1321,7 +1317,7 @@
             // 
             this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
             // 
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1360,12 +1356,10 @@
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-=======
+
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
             this.ResumeLayout(false);
 
         }

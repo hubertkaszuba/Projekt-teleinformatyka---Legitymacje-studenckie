@@ -54,13 +54,11 @@ namespace pt_legitymacjestudenckie
 
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
-<<<<<<< HEAD
-            RefreshComboBoxes();
-=======
+
 
             /* Odświeżenie wartości w comboboxie */
             CourseComboBox.DataSource = databaseController.GetSubjects(conjuring, connection, wykladowca);
->>>>>>> 74475ee27f474d59db5574c5e3674af6414b867e
+
         }
 		
         /// <summary>Ustawienie wartości domyślnych</summary>
