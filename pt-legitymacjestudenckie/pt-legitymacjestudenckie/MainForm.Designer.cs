@@ -133,20 +133,11 @@
             this.CsvRadioButton = new System.Windows.Forms.RadioButton();
             this.PdfRadioButton = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.GenerateRaportDataGrid = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
-
-            this.button2 = new System.Windows.Forms.Button();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
@@ -167,10 +158,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
-
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -1089,7 +1077,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(141, 26);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Przedmiot:";
+            this.label2.Text = "Zajęcia:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CourseComboBox
@@ -1216,6 +1204,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Location = new System.Drawing.Point(150, 289);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(215, 24);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Podgląd";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // GenerateRaportDataGrid
             // 
             this.GenerateRaportDataGrid.AllowUserToAddRows = false;
@@ -1250,74 +1249,6 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
-
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(150, 289);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(215, 24);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Podgląd";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Imię";
-            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 51;
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.firstNameDataGridViewTextBoxColumn.Width = 51;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nazwisko";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // indexDataGridViewTextBoxColumn
-            // 
-            this.indexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.indexDataGridViewTextBoxColumn.DataPropertyName = "index";
-            this.indexDataGridViewTextBoxColumn.HeaderText = "Index";
-            this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
-            this.indexDataGridViewTextBoxColumn.ReadOnly = true;
-            this.indexDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "late";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Spóźniony?";
-            this.dataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Notatka";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // timestampDataGridViewTextBoxColumn
-            // 
-            this.timestampDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
-            this.timestampDataGridViewTextBoxColumn.HeaderText = "Znacznik";
-            this.timestampDataGridViewTextBoxColumn.Name = "timestampDataGridViewTextBoxColumn";
-            this.timestampDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // studentInfoBindingSource
-            // 
-            this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
-            // 
-
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1356,10 +1287,7 @@
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
-
             this.ResumeLayout(false);
 
         }

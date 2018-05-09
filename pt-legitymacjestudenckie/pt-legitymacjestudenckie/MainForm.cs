@@ -340,6 +340,7 @@ namespace pt_legitymacjestudenckie
             {
                 List<Obecnosc> list = (List<Obecnosc>)GenerateRaportDataGrid.DataSource;
                 textfileConstructor.ObecnoscToCSV(list);
+                
             }
         }
 
