@@ -47,6 +47,7 @@ namespace pt_legitymacjestudenckie
             studentRecorder = new StudentRecorder();
             studentRecorder.Initialize();
             CurrentIndex = -1;
+            studentRecorder.ReadedWithSuccess += RefreshStudentGridView;
 
             /*Pobranie imienia i nazwiska zalogowanego*/
             wykladowca = conjuring.Wykladowca.Where(w => w.Login_uz == login).SingleOrDefault();
@@ -55,12 +56,12 @@ namespace pt_legitymacjestudenckie
             /* Poprawienie formatu wyświetlania czasu w komórkach - wyświetlanie sekund */
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
 
-
             /* Odświeżenie wartości w comboboxie */
             CourseComboBox.DataSource = databaseController.GetSubjects(conjuring, connection, wykladowca);
 
         }
-		
+
+
         /// <summary>Ustawienie wartości domyślnych</summary>
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -147,7 +148,6 @@ namespace pt_legitymacjestudenckie
                 if (sekundy < 10) lb_sekundy.Text = "0" + sekundy.ToString();
                 else lb_sekundy.Text = sekundy.ToString();
 
-                refreshStudentList();
             }
         }
 		
@@ -181,7 +181,7 @@ namespace pt_legitymacjestudenckie
 
                     studentRecorder.lStudInfo.Clear();
                     CurrentIndex = -1;
-                    refreshStudentList();
+                    RefreshStudentGridViewOnce();
                 }
                 
             }
@@ -192,7 +192,26 @@ namespace pt_legitymacjestudenckie
         }
 
         ///<summary>Odświeżanie listy zarejestrowanych studentów.</summary>
-        private void refreshStudentList()
+        delegate void RefreshStudentInfosGridViewDelegate();
+        private void RefreshStudentGridView()
+        {
+            if (this.dgv_lista_studentow.InvokeRequired)
+            {
+                RefreshStudentInfosGridViewDelegate d = new RefreshStudentInfosGridViewDelegate(RefreshStudentGridView);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
+
+                if (CurrentIndex != -1)
+                    dgv_lista_studentow.Rows[CurrentIndex].Selected = true;
+
+                dgv_lista_studentow.Refresh();
+            }
+        }
+
+        private void RefreshStudentGridViewOnce()
         {
             dgv_lista_studentow.DataSource = studentRecorder.lStudInfo.ToList();
 
@@ -200,7 +219,6 @@ namespace pt_legitymacjestudenckie
                 dgv_lista_studentow.Rows[CurrentIndex].Selected = true;
 
             dgv_lista_studentow.Refresh();
-
         }
 
         /// <summary>W ComboBox "Wybrany student" wyświetla informacje o wybranym studencie w liście studentów.</summary>
@@ -236,7 +254,8 @@ namespace pt_legitymacjestudenckie
                 studentRecorder.UpdateStudent(stud);
             }
 
-            CurrentIndex = -1;
+            //CurrentIndex = -1;
+            RefreshStudentGridViewOnce();
         }
         private void btn_usun_zaznaczone_Click(object sender, EventArgs e)
         {
@@ -249,7 +268,7 @@ namespace pt_legitymacjestudenckie
                 studentRecorder.RemoveStudent(stud);
 
             CurrentIndex = -1;
-            refreshStudentList();
+            RefreshStudentGridViewOnce();
         }
 
         ///<summary>Zamknięcie procesu, podczas zamykania formy.</summary>
@@ -330,7 +349,10 @@ namespace pt_legitymacjestudenckie
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GenerateRaportDataGrid.DataSource = databaseController.GetObecnosc(conjuring, connection).OrderBy(o => o.Data).ToList();
+            List<Obecnosc> list = databaseController.GetObecnosc(conjuring, connection).OrderBy(o => o.Data).ToList();
+
+
+            GenerateRaportDataGrid.DataSource = list;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -338,9 +360,9 @@ namespace pt_legitymacjestudenckie
             textfileConstructor.SetParams(GetParamsFromUI());
             if (CsvRadioButton.Enabled)
             {
-                List<Obecnosc> list = (List<Obecnosc>)GenerateRaportDataGrid.DataSource;
+                List<Obecnosc> list = databaseController.GetObecnosc(conjuring, connection).OrderBy(o => o.Data).ToList();
                 textfileConstructor.ObecnoscToCSV(list);
-                
+                MessageBox.Show("Ukończono generowanie pliku.", "", MessageBoxButtons.OK);
             }
         }
 

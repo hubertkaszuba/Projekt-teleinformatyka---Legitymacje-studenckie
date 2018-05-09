@@ -12,6 +12,9 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
     {
         private CancellationTokenSource ctk;
 
+        public delegate void ReadDataEvent();
+        public event ReadDataEvent ReadedWithSuccess;
+
         public StudentRecorder() : base()
         {
             
@@ -70,20 +73,27 @@ namespace pt_legitymacjestudenckie.SmartCardRelated
                 if (Connect())
                 {
                     temp = ReadData();
-                    CheckUnique(temp);
+                    if (CheckUnique(temp))
+                        ReadedWithSuccess();
                 }
             }
             start.Stop();
             this.state = State.INITIALIZED;
         }
 
-        private void CheckUnique(StudentInfo temp)
+        private bool CheckUnique(StudentInfo temp)
         {
             string lastAddedIndex = temp.index;
             IEnumerable<StudentInfo> studentInfos = lStudInfo.Where(stud => stud.index.Contains(lastAddedIndex));
 
             if (studentInfos.Count() == 0)
+            {
                 lStudInfo.Add(temp);
+                return true;
+            }
+
+            return false;
         }
+
     }
 }
