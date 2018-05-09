@@ -35,12 +35,6 @@
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("<sala>");
             System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("<godzina od do>");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("<nazwa zajęć>");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("<sala>");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("<godzina od do>");
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabObecnosc = new System.Windows.Forms.TabPage();
@@ -83,11 +77,6 @@
             this.tb_nazwa_przedmiotu = new System.Windows.Forms.TextBox();
             this.btn_dodaj_przedmiot = new System.Windows.Forms.Button();
             this.dgv_zajęcia = new System.Windows.Forms.DataGridView();
-            this.Nazwa_zajęć = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sala = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Czas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DzienTygodnia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tydzień = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_dodawanieZajęć = new System.Windows.Forms.GroupBox();
             this.cb_sala = new System.Windows.Forms.ComboBox();
             this.cb_zajecia = new System.Windows.Forms.ComboBox();
@@ -131,6 +120,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
+            this.btn_usuń_zajęcia = new System.Windows.Forms.Button();
+            this.btn_aktualizuj_zajęcia = new System.Windows.Forms.Button();
+            this.btn_usun_przedmiot = new System.Windows.Forms.Button();
+            this.btn_aktualizuj_przedmiot = new System.Windows.Forms.Button();
+            this.btn_aktualizuj_sale = new System.Windows.Forms.Button();
+            this.btn_usun_sale = new System.Windows.Forms.Button();
+            this.Nazwa_zajęć = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Czas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DzienTygodnia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -362,22 +362,17 @@
             // lv_nastepne_zajecia
             // 
             this.lv_nastepne_zajecia.Enabled = false;
+            this.lv_nastepne_zajecia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             listViewItem2.IndentCount = 1;
             listViewItem3.IndentCount = 2;
             listViewItem3.UseItemStyleForSubItems = false;
-            listViewItem5.IndentCount = 1;
-            listViewItem6.IndentCount = 2;
-            listViewItem6.UseItemStyleForSubItems = false;
             this.lv_nastepne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
-            this.lv_nastepne_zajecia.Location = new System.Drawing.Point(155, 25);
+            listViewItem3});
+            this.lv_nastepne_zajecia.Location = new System.Drawing.Point(255, 25);
             this.lv_nastepne_zajecia.Name = "lv_nastepne_zajecia";
-            this.lv_nastepne_zajecia.Size = new System.Drawing.Size(132, 70);
+            this.lv_nastepne_zajecia.Size = new System.Drawing.Size(230, 70);
             this.lv_nastepne_zajecia.TabIndex = 19;
             this.lv_nastepne_zajecia.UseCompatibleStateImageBehavior = false;
             this.lv_nastepne_zajecia.View = System.Windows.Forms.View.List;
@@ -385,22 +380,17 @@
             // lv_aktualne_zajecia
             // 
             this.lv_aktualne_zajecia.Enabled = false;
-            listViewItem8.IndentCount = 1;
-            listViewItem9.IndentCount = 2;
-            listViewItem9.UseItemStyleForSubItems = false;
-            listViewItem11.IndentCount = 1;
-            listViewItem12.IndentCount = 2;
-            listViewItem12.UseItemStyleForSubItems = false;
+            this.lv_aktualne_zajecia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
+            listViewItem5.IndentCount = 1;
+            listViewItem6.IndentCount = 2;
+            listViewItem6.UseItemStyleForSubItems = false;
             this.lv_aktualne_zajecia.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10,
-            listViewItem11,
-            listViewItem12});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.lv_aktualne_zajecia.Location = new System.Drawing.Point(6, 25);
             this.lv_aktualne_zajecia.Name = "lv_aktualne_zajecia";
-            this.lv_aktualne_zajecia.Size = new System.Drawing.Size(132, 70);
+            this.lv_aktualne_zajecia.Size = new System.Drawing.Size(230, 70);
             this.lv_aktualne_zajecia.TabIndex = 19;
             this.lv_aktualne_zajecia.UseCompatibleStateImageBehavior = false;
             this.lv_aktualne_zajecia.View = System.Windows.Forms.View.List;
@@ -455,7 +445,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(150, 3);
+            this.label3.Location = new System.Drawing.Point(252, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 18);
             this.label3.TabIndex = 10;
@@ -565,7 +555,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn_aktualizuj_sale);
             this.groupBox2.Controls.Add(this.tb_budynek);
+            this.groupBox2.Controls.Add(this.btn_usun_sale);
             this.groupBox2.Controls.Add(this.tb_numer_sali);
             this.groupBox2.Controls.Add(this.btn_dodaj_sale);
             this.groupBox2.Controls.Add(this.label_budynek);
@@ -581,14 +573,14 @@
             // 
             this.tb_budynek.Location = new System.Drawing.Point(108, 38);
             this.tb_budynek.Name = "tb_budynek";
-            this.tb_budynek.Size = new System.Drawing.Size(133, 20);
+            this.tb_budynek.Size = new System.Drawing.Size(160, 20);
             this.tb_budynek.TabIndex = 0;
             // 
             // tb_numer_sali
             // 
             this.tb_numer_sali.Location = new System.Drawing.Point(108, 15);
             this.tb_numer_sali.Name = "tb_numer_sali";
-            this.tb_numer_sali.Size = new System.Drawing.Size(133, 20);
+            this.tb_numer_sali.Size = new System.Drawing.Size(160, 20);
             this.tb_numer_sali.TabIndex = 0;
             // 
             // btn_dodaj_sale
@@ -621,6 +613,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btn_aktualizuj_przedmiot);
+            this.groupBox1.Controls.Add(this.btn_usun_przedmiot);
             this.groupBox1.Controls.Add(this.label_nazwa_przedmiotu);
             this.groupBox1.Controls.Add(this.tb_nazwa_przedmiotu);
             this.groupBox1.Controls.Add(this.btn_dodaj_przedmiot);
@@ -644,7 +638,7 @@
             // 
             this.tb_nazwa_przedmiotu.Location = new System.Drawing.Point(108, 20);
             this.tb_nazwa_przedmiotu.Name = "tb_nazwa_przedmiotu";
-            this.tb_nazwa_przedmiotu.Size = new System.Drawing.Size(133, 20);
+            this.tb_nazwa_przedmiotu.Size = new System.Drawing.Size(160, 20);
             this.tb_nazwa_przedmiotu.TabIndex = 0;
             // 
             // btn_dodaj_przedmiot
@@ -665,7 +659,7 @@
             this.Sala,
             this.Czas,
             this.DzienTygodnia,
-            this.Tydzień});
+            this.Data});
             this.dgv_zajęcia.Location = new System.Drawing.Point(292, 24);
             this.dgv_zajęcia.Name = "dgv_zajęcia";
             this.dgv_zajęcia.ReadOnly = true;
@@ -673,40 +667,10 @@
             this.dgv_zajęcia.Size = new System.Drawing.Size(677, 380);
             this.dgv_zajęcia.TabIndex = 22;
             // 
-            // Nazwa_zajęć
-            // 
-            this.Nazwa_zajęć.HeaderText = "Nazwa zajęć";
-            this.Nazwa_zajęć.Name = "Nazwa_zajęć";
-            this.Nazwa_zajęć.ReadOnly = true;
-            // 
-            // Sala
-            // 
-            this.Sala.HeaderText = "Sala";
-            this.Sala.Name = "Sala";
-            this.Sala.ReadOnly = true;
-            this.Sala.Width = 60;
-            // 
-            // Czas
-            // 
-            this.Czas.HeaderText = "Czas";
-            this.Czas.Name = "Czas";
-            this.Czas.ReadOnly = true;
-            // 
-            // DzienTygodnia
-            // 
-            this.DzienTygodnia.HeaderText = "Dzień Tygodnia";
-            this.DzienTygodnia.Name = "DzienTygodnia";
-            this.DzienTygodnia.ReadOnly = true;
-            this.DzienTygodnia.Width = 110;
-            // 
-            // Tydzień
-            // 
-            this.Tydzień.HeaderText = "Tydzień";
-            this.Tydzień.Name = "Tydzień";
-            this.Tydzień.ReadOnly = true;
-            // 
             // gb_dodawanieZajęć
             // 
+            this.gb_dodawanieZajęć.Controls.Add(this.btn_aktualizuj_zajęcia);
+            this.gb_dodawanieZajęć.Controls.Add(this.btn_usuń_zajęcia);
             this.gb_dodawanieZajęć.Controls.Add(this.cb_sala);
             this.gb_dodawanieZajęć.Controls.Add(this.cb_zajecia);
             this.gb_dodawanieZajęć.Controls.Add(this.dateTime_pierwsze_zajecia);
@@ -728,9 +692,9 @@
             this.cb_sala.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cb_sala.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cb_sala.FormattingEnabled = true;
-            this.cb_sala.Location = new System.Drawing.Point(117, 51);
+            this.cb_sala.Location = new System.Drawing.Point(85, 51);
             this.cb_sala.Name = "cb_sala";
-            this.cb_sala.Size = new System.Drawing.Size(121, 21);
+            this.cb_sala.Size = new System.Drawing.Size(183, 21);
             this.cb_sala.TabIndex = 24;
             // 
             // cb_zajecia
@@ -738,9 +702,9 @@
             this.cb_zajecia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cb_zajecia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cb_zajecia.FormattingEnabled = true;
-            this.cb_zajecia.Location = new System.Drawing.Point(117, 25);
+            this.cb_zajecia.Location = new System.Drawing.Point(85, 25);
             this.cb_zajecia.Name = "cb_zajecia";
-            this.cb_zajecia.Size = new System.Drawing.Size(121, 21);
+            this.cb_zajecia.Size = new System.Drawing.Size(183, 21);
             this.cb_zajecia.TabIndex = 23;
             // 
             // dateTime_pierwsze_zajecia
@@ -749,7 +713,7 @@
             this.dateTime_pierwsze_zajecia.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTime_pierwsze_zajecia.Location = new System.Drawing.Point(117, 78);
             this.dateTime_pierwsze_zajecia.Name = "dateTime_pierwsze_zajecia";
-            this.dateTime_pierwsze_zajecia.Size = new System.Drawing.Size(141, 20);
+            this.dateTime_pierwsze_zajecia.Size = new System.Drawing.Size(151, 20);
             this.dateTime_pierwsze_zajecia.TabIndex = 22;
             // 
             // btn_dodaj_zajęcia
@@ -765,16 +729,16 @@
             // label_zajecia
             // 
             this.label_zajecia.AutoSize = true;
-            this.label_zajecia.Location = new System.Drawing.Point(73, 28);
+            this.label_zajecia.Location = new System.Drawing.Point(26, 28);
             this.label_zajecia.Name = "label_zajecia";
-            this.label_zajecia.Size = new System.Drawing.Size(42, 13);
+            this.label_zajecia.Size = new System.Drawing.Size(53, 13);
             this.label_zajecia.TabIndex = 19;
-            this.label_zajecia.Text = "Zajęcia";
+            this.label_zajecia.Text = "Przedmiot";
             // 
             // label_czestosc
             // 
             this.label_czestosc.AutoSize = true;
-            this.label_czestosc.Location = new System.Drawing.Point(65, 110);
+            this.label_czestosc.Location = new System.Drawing.Point(45, 110);
             this.label_czestosc.Name = "label_czestosc";
             this.label_czestosc.Size = new System.Drawing.Size(50, 13);
             this.label_czestosc.TabIndex = 19;
@@ -796,15 +760,15 @@
             this.cb_czestosc.Items.AddRange(new object[] {
             "Co tydzień",
             "Co dwa tygodnie"});
-            this.cb_czestosc.Location = new System.Drawing.Point(117, 107);
+            this.cb_czestosc.Location = new System.Drawing.Point(97, 106);
             this.cb_czestosc.Name = "cb_czestosc";
-            this.cb_czestosc.Size = new System.Drawing.Size(121, 21);
+            this.cb_czestosc.Size = new System.Drawing.Size(171, 21);
             this.cb_czestosc.TabIndex = 3;
             // 
             // label_sala
             // 
             this.label_sala.AutoSize = true;
-            this.label_sala.Location = new System.Drawing.Point(87, 54);
+            this.label_sala.Location = new System.Drawing.Point(49, 54);
             this.label_sala.Name = "label_sala";
             this.label_sala.Size = new System.Drawing.Size(28, 13);
             this.label_sala.TabIndex = 19;
@@ -1195,6 +1159,93 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
+            // btn_usuń_zajęcia
+            // 
+            this.btn_usuń_zajęcia.Location = new System.Drawing.Point(202, 144);
+            this.btn_usuń_zajęcia.Name = "btn_usuń_zajęcia";
+            this.btn_usuń_zajęcia.Size = new System.Drawing.Size(56, 23);
+            this.btn_usuń_zajęcia.TabIndex = 25;
+            this.btn_usuń_zajęcia.Text = "Usuń";
+            this.btn_usuń_zajęcia.UseVisualStyleBackColor = true;
+            // 
+            // btn_aktualizuj_zajęcia
+            // 
+            this.btn_aktualizuj_zajęcia.Location = new System.Drawing.Point(134, 144);
+            this.btn_aktualizuj_zajęcia.Name = "btn_aktualizuj_zajęcia";
+            this.btn_aktualizuj_zajęcia.Size = new System.Drawing.Size(62, 23);
+            this.btn_aktualizuj_zajęcia.TabIndex = 25;
+            this.btn_aktualizuj_zajęcia.Text = "Aktualizuj";
+            this.btn_aktualizuj_zajęcia.UseVisualStyleBackColor = true;
+            // 
+            // btn_usun_przedmiot
+            // 
+            this.btn_usun_przedmiot.Location = new System.Drawing.Point(202, 50);
+            this.btn_usun_przedmiot.Name = "btn_usun_przedmiot";
+            this.btn_usun_przedmiot.Size = new System.Drawing.Size(56, 23);
+            this.btn_usun_przedmiot.TabIndex = 25;
+            this.btn_usun_przedmiot.Text = "Usuń";
+            this.btn_usun_przedmiot.UseVisualStyleBackColor = true;
+            // 
+            // btn_aktualizuj_przedmiot
+            // 
+            this.btn_aktualizuj_przedmiot.Location = new System.Drawing.Point(134, 50);
+            this.btn_aktualizuj_przedmiot.Name = "btn_aktualizuj_przedmiot";
+            this.btn_aktualizuj_przedmiot.Size = new System.Drawing.Size(62, 23);
+            this.btn_aktualizuj_przedmiot.TabIndex = 25;
+            this.btn_aktualizuj_przedmiot.Text = "Aktualizuj";
+            this.btn_aktualizuj_przedmiot.UseVisualStyleBackColor = true;
+            // 
+            // btn_aktualizuj_sale
+            // 
+            this.btn_aktualizuj_sale.Location = new System.Drawing.Point(134, 75);
+            this.btn_aktualizuj_sale.Name = "btn_aktualizuj_sale";
+            this.btn_aktualizuj_sale.Size = new System.Drawing.Size(62, 23);
+            this.btn_aktualizuj_sale.TabIndex = 26;
+            this.btn_aktualizuj_sale.Text = "Aktualizuj";
+            this.btn_aktualizuj_sale.UseVisualStyleBackColor = true;
+            // 
+            // btn_usun_sale
+            // 
+            this.btn_usun_sale.Location = new System.Drawing.Point(202, 75);
+            this.btn_usun_sale.Name = "btn_usun_sale";
+            this.btn_usun_sale.Size = new System.Drawing.Size(56, 23);
+            this.btn_usun_sale.TabIndex = 27;
+            this.btn_usun_sale.Text = "Usuń";
+            this.btn_usun_sale.UseVisualStyleBackColor = true;
+            // 
+            // Nazwa_zajęć
+            // 
+            this.Nazwa_zajęć.HeaderText = "Nazwa zajęć";
+            this.Nazwa_zajęć.Name = "Nazwa_zajęć";
+            this.Nazwa_zajęć.ReadOnly = true;
+            this.Nazwa_zajęć.Width = 200;
+            // 
+            // Sala
+            // 
+            this.Sala.HeaderText = "Sala";
+            this.Sala.Name = "Sala";
+            this.Sala.ReadOnly = true;
+            this.Sala.Width = 60;
+            // 
+            // Czas
+            // 
+            this.Czas.HeaderText = "Czas";
+            this.Czas.Name = "Czas";
+            this.Czas.ReadOnly = true;
+            // 
+            // DzienTygodnia
+            // 
+            this.DzienTygodnia.HeaderText = "Dzień Tygodnia";
+            this.DzienTygodnia.Name = "DzienTygodnia";
+            this.DzienTygodnia.ReadOnly = true;
+            this.DzienTygodnia.Width = 110;
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            this.Data.ReadOnly = true;
+            // 
             // firstNameDataGridViewTextBoxColumn
             // 
             this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -1318,11 +1369,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgv_zajęcia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nazwa_zajęć;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sala;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Czas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DzienTygodnia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tydzień;
         private System.Windows.Forms.GroupBox gb_dodawanieZajęć;
         private System.Windows.Forms.DateTimePicker dateTime_pierwsze_zajecia;
         private System.Windows.Forms.Button btn_dodaj_zajęcia;
@@ -1394,6 +1440,17 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_aktualizuj_zajęcia;
+        private System.Windows.Forms.Button btn_usuń_zajęcia;
+        private System.Windows.Forms.Button btn_aktualizuj_przedmiot;
+        private System.Windows.Forms.Button btn_usun_przedmiot;
+        private System.Windows.Forms.Button btn_aktualizuj_sale;
+        private System.Windows.Forms.Button btn_usun_sale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nazwa_zajęć;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sala;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Czas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DzienTygodnia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
     }
 }
 

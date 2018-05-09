@@ -59,6 +59,11 @@ namespace pt_legitymacjestudenckie
             /* Odświeżenie wartości w comboboxie */
             CourseComboBox.DataSource = databaseController.GetSubjects(conjuring, connection, wykladowca);
 
+            /* Wypełnienie comboboxów w zakładce Edytor zajęć*/
+            RefreshComboBoxes();
+            /* Odświeżenie listy zajęć w zakładce Edytor zajęć */
+            Refresh_dvg_zajecia();
+            UstawZajecia();
         }
 
 
@@ -102,6 +107,16 @@ namespace pt_legitymacjestudenckie
         private void timer1_Tick(object sender, EventArgs e)
         {
             setCurrentTime();
+        }
+
+        /// <summary>Ustawia wartości aktualnych i następnych zajęć w zakładce Sprawdzanie obecności</summary>
+        private void UstawZajecia()
+        {
+            lv_aktualne_zajecia.Clear();
+            Zajecia_pojedyncze zajecia = databaseController.GetZajecia_Pojedyncze(conjuring, connection, wykladowca);
+            lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
+            lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
+            lv_aktualne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
         }
 
         /// <summary>Pobranie aktualnego czasu systemowego, przeparsowanie 
@@ -284,9 +299,6 @@ namespace pt_legitymacjestudenckie
         /// <summary>Dodawanie nowego obiektu zajęć do bazy danych</summary>
         private void btn_dodaj_zajęcia_Click(object sender, EventArgs e)
         {
-            dgv_zajęcia.Rows[0].Cells[0].Value = cb_zajecia.Text;
-            dgv_zajęcia.Rows[0].Cells[1].Value = cb_sala.Text;
-
             DateTime data = Convert.ToDateTime(dateTime_pierwsze_zajecia.Value);
             string minuty = Convert.ToString(data.Minute);
             string godziny = Convert.ToString(data.Hour);
@@ -306,25 +318,50 @@ namespace pt_legitymacjestudenckie
             if (tydzien_zczyatane == "Co tydzien") tydzien = false;
             else if (tydzien_zczyatane == "Co dwa tygodnie") tydzien = true;
 
-
-            dgv_zajęcia.Rows[0].Cells[2].Value = godziny + ":" + minuty;
             databaseController.InsertZajecia(conjuring, connection, wykladowca, przedmiot, sala, data, tydzien);
-            dgv_zajęcia.Rows[0].Cells[3].Value = data.ToString("dddd", new CultureInfo("pl-PL"));
-            dgv_zajęcia.Rows[0].Cells[4].Value = cb_czestosc.Text;
+            Refresh_dvg_zajecia();
         }
 
+        /// <summary> Odświeżanie listy zajęć w edytorze zajęć </summary>
+        private void Refresh_dvg_zajecia()
+        {
+            DateTime data = new DateTime();
+            List<Zajecia> zajecia = databaseController.ListZajec(conjuring, wykladowca);
+ 
+            dgv_zajęcia.Rows.Clear();
+            foreach (var x in zajecia)
+            {
+                data = Convert.ToDateTime(x.Czas);
+                dgv_zajęcia.Rows.Add(x.Przedmiot.Nazwa, x.Sala.Numer, data.ToShortTimeString(), data.ToString("dddd", new CultureInfo("pl-PL")), data.ToShortDateString());
+            }
+        }
+ 
         /// <summary>Dodawanie nowego obiektu przedmiotu do bazy danych</summary>
         private void btn_dodaj_przedmiot_Click(object sender, EventArgs e)
         {
-            databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
-            RefreshComboBoxes();
+            try
+            {
+                databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
+                RefreshComboBoxes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>Dodawanie nowego obiektu sali do bazy danych</summary>
         private void btn_dodaj_sale_Click(object sender, EventArgs e)
         {
-            databaseController.InsertSala(conjuring, connection,tb_numer_sali.Text, tb_budynek.Text);
-            RefreshComboBoxes();
+            try
+            {
+                databaseController.InsertSala(conjuring, connection, tb_numer_sali.Text, tb_budynek.Text);
+                RefreshComboBoxes();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void RefreshComboBoxes() {
