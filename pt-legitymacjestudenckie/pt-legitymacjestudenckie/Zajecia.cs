@@ -32,5 +32,16 @@ namespace pt_legitymacjestudenckie
         public virtual Wykladowca Wykladowca { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zajecia_pojedyncze> Zajecia_pojedyncze { get; set; }
+
+        public string DisplayName {
+            get
+            {
+                return Przedmiot.Nazwa
+                + '-' + Czas.Value.DayOfWeek
+                + '-' + Czas.Value.Hour.ToString()
+                + ":" + Czas.Value.Minute.ToString()
+                + "-" + Sala.Numer;
+            }
+        }
     }
 }

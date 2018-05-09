@@ -57,7 +57,7 @@ namespace pt_legitymacjestudenckie
             dgv_lista_studentow.DefaultCellStyle.Format = "dd /MM/yyyy hh:mm:ss";
 
             /* Odświeżenie wartości w comboboxie */
-            CourseComboBox.DataSource = databaseController.GetSubjects(conjuring, connection, wykladowca);
+            RefreshComboBoxes();
 
         }
 
@@ -327,7 +327,14 @@ namespace pt_legitymacjestudenckie
             RefreshComboBoxes();
         }
 
-        private void RefreshComboBoxes() {
+        private void RefreshComboBoxes()
+        {
+            // Pobranie zajęć do comboboxa w zakładce generowanie raportów
+            CourseComboBox.Items.Clear();
+            List<Zajecia> zajecia = databaseController.ListZajec(conjuring, connection, wykladowca);
+            CourseComboBox.DataSource = zajecia;
+            CourseComboBox.DisplayMember = "DisplayName";
+
             //sale
             cb_sala.Items.Clear();
             List<Sala> sale = databaseController.ListSala(conjuring);
@@ -338,7 +345,7 @@ namespace pt_legitymacjestudenckie
 
             //przedmioty
             cb_zajecia.Items.Clear();
-            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot(conjuring);
+            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot_Zalogowanego(conjuring, wykladowca);
             foreach (Przedmiot x in przedmioty)
             {
                 cb_zajecia.Items.Add(x.Nazwa);
@@ -346,36 +353,82 @@ namespace pt_legitymacjestudenckie
         }
 
         // Zakładka - Generowanie raportów
-
+        // Przycisk podglądu tabeli przed zapisaniem
         private void button2_Click(object sender, EventArgs e)
         {
-            List<Obecnosc> list = databaseController.GetObecnosc(conjuring, connection).OrderBy(o => o.Data).ToList();
-
-
-            GenerateRaportDataGrid.DataSource = list;
+            GenerateRaportDataGrid.DataSource = GetDataForFile();
+            if (GenerateRaportDataGrid.DataSource == null)
+                MessageBox.Show("Nie wybrano trybu wyświetlania, lub nie zarejestrowano żadnych obecności.", "Wiadomość", MessageBoxButtons.OK);
         }
 
+        // Przycisk inicjujący zapisanie danych do pliku
         private void button1_Click(object sender, EventArgs e)
         {
             textfileConstructor.SetParams(GetParamsFromUI());
-            if (CsvRadioButton.Enabled)
+            if (CsvRadioButton.Checked)
             {
-                List<Obecnosc> list = databaseController.GetObecnosc(conjuring, connection).OrderBy(o => o.Data).ToList();
+                var list = GetDataForFile();
                 textfileConstructor.ObecnoscToCSV(list);
-                MessageBox.Show("Ukończono generowanie pliku.", "", MessageBoxButtons.OK);
+
+                MessageBox.Show("Ukończono zapisywanie pliku.", "Wiadomość", MessageBoxButtons.OK);
             }
         }
 
+        // Zebranie danych z wejść do obiektu z parametrami klasy TextfileConstructor
         private TextfileConstructorParams GetParamsFromUI()
         {
-            TextfileConstructorParams tfc_params = new TextfileConstructorParams();
-            tfc_params.SubjectName = CourseComboBox.Text;
-            tfc_params.DateFrom = RaportDateFromPicker.Value;
-            tfc_params.DateTo = RaportDateToPicker.Value;
-            tfc_params.Late = RaportLateCheckBox.Checked;
-            tfc_params.Notes = RaportNotesCheckBox.Checked;
+            TextfileConstructorParams tfc_params = new TextfileConstructorParams
+            {
+                SubjectName = CourseComboBox.Text,
+                DateFrom = RaportDateFromPicker.Value,
+                DateTo = RaportDateToPicker.Value,
+                Late = RaportLateCheckBox.Checked,
+                Notes = RaportNotesCheckBox.Checked
+            };
             return tfc_params;
         }
+
+        // Pobranie danych do zapisu z bazy danych
+        private DataTable GetDataForFile()
+        {
+            TextfileConstructorParams tfc_params = GetParamsFromUI();
+            textfileConstructor.SetParams(tfc_params);
+
+            Zajecia zajecia = (Zajecia)CourseComboBox.SelectedItem;
+            if (zajecia == null)
+            {
+                MessageBox.Show("Prosze wybrać zajęcia.");
+                return null;
+            }
+            else
+            {
+                switch (CheckExportType())
+                {
+                    case ExportType.GRID:
+                        return databaseController.Obecni_pomiedzy(conjuring, connection, zajecia, tfc_params.DateFrom, tfc_params.DateTo);
+                    case ExportType.TABLE:
+                        var list = databaseController.GetObecnosc(conjuring, connection)
+                            .Where(o => o.Data >= tfc_params.DateFrom && o.Data <= tfc_params.DateTo)
+                            .OrderBy(o => o.Data).ToList();
+                        return textfileConstructor.ConstructObecnoscList(list);
+                    default:
+                        return null;
+                }
+               
+            }
+        }
+
+        // Zebranie z wejść RadioButton informacji o wybranym trybie zapisu
+        private ExportType CheckExportType()
+        {
+            if (RadioTabel.Checked)
+                return ExportType.TABLE;
+            else if (RadioGrid.Checked)
+                return ExportType.GRID;
+            else
+                return ExportType.UNKNOWN;
+        }
+
 
         private void CourseComboBox_DropDown(object sender, EventArgs e)
         {

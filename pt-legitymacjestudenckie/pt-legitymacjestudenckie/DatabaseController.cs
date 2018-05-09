@@ -194,10 +194,12 @@ namespace pt_legitymacjestudenckie
         }
 
         //zwracanie listy zajec wykladowcy
-        public List<Zajecia> ListZajec(TheConjuring_dbEntities1 conjuring, Wykladowca wykladowca)
+        public List<Zajecia> ListZajec(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
         {
+            connection.Open();
             List<Zajecia> qTyp = new List<Zajecia>();
             qTyp = (from z in conjuring.Zajecia where z.Id_Wykladowcy==wykladowca.Id_Wykladowcy orderby z.Id_Sali select z).ToList();
+            connection.Close();
             return qTyp;
         }
             //Dodawanie nowej sali
@@ -313,11 +315,19 @@ namespace pt_legitymacjestudenckie
                           join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
                           where zp.Data_zajec >= od_ && zp.Data_zajec <= do_
                           orderby zp.Id_Zajec_pojedynczych
-                          select zp).Distinct().ToList();
+                          select zp).Distinct().OrderBy(z => z.Data_zajec).ToList();
             int x = 1, y = 0;
             foreach (var zp in Zajeciapoj)
             {
-                dt.Columns.Add(zp.Data_zajec.ToLongDateString());
+                try
+                {
+                    dt.Columns.Add(zp.Data_zajec.ToLongDateString());
+                }
+                catch(Exception ex)
+                {
+                    continue;
+                }
+
                 x++;
                 foreach (var s in qTyp)
                 {
@@ -325,11 +335,11 @@ namespace pt_legitymacjestudenckie
                     if (query != null)
                     {
 
-                        if(query.Spoznienie==true) dt.Rows[y][x] = "spozniony";
-                        else dt.Rows[y][x] = "obecny";
+                        if(query.Spoznienie==true) dt.Rows[y][x] = "O";
+                        else dt.Rows[y][x] = "X";
 
                     }
-                    else dt.Rows[y][x] = "nieobecny";
+                    else dt.Rows[y][x] = "";
                     y++;
                 }
                 y = 0;

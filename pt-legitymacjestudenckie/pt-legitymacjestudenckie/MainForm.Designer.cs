@@ -131,6 +131,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.RadioTabel = new System.Windows.Forms.RadioButton();
+            this.RadioGrid = new System.Windows.Forms.RadioButton();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -158,6 +161,7 @@
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -944,13 +948,14 @@
             this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.GenerateRaportDataGrid, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 6);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(965, 456);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(971, 462);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // groupBox4
@@ -958,9 +963,9 @@
             this.groupBox4.Controls.Add(this.tableLayoutPanel3);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(3, 48);
+            this.groupBox4.Location = new System.Drawing.Point(3, 49);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(380, 405);
+            this.groupBox4.Size = new System.Drawing.Size(382, 410);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Opcje raportów";
@@ -968,22 +973,23 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel3.Controls.Add(this.RaportNotesCheckBox, 0, 5);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel3.Controls.Add(this.RaportNotesCheckBox, 0, 7);
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.CourseComboBox, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.CourseComboBox, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label7, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.RaportDateFromPicker, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.RaportDateToPicker, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.label9, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.RaportLateCheckBox, 0, 4);
-            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.CsvRadioButton, 0, 7);
-            this.tableLayoutPanel3.Controls.Add(this.PdfRadioButton, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.label9, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.RaportLateCheckBox, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.CsvRadioButton, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.PdfRadioButton, 0, 10);
             this.tableLayoutPanel3.Controls.Add(this.button1, 0, 12);
             this.tableLayoutPanel3.Controls.Add(this.button2, 1, 11);
+            this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 3);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 19);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 13;
@@ -1008,7 +1014,7 @@
             this.RaportNotesCheckBox.AutoSize = true;
             this.tableLayoutPanel3.SetColumnSpan(this.RaportNotesCheckBox, 2);
             this.RaportNotesCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RaportNotesCheckBox.Location = new System.Drawing.Point(3, 133);
+            this.RaportNotesCheckBox.Location = new System.Drawing.Point(3, 185);
             this.RaportNotesCheckBox.Name = "RaportNotesCheckBox";
             this.RaportNotesCheckBox.Size = new System.Drawing.Size(362, 20);
             this.RaportNotesCheckBox.TabIndex = 8;
@@ -1021,20 +1027,19 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 26);
+            this.label2.Size = new System.Drawing.Size(122, 26);
             this.label2.TabIndex = 0;
             this.label2.Text = "Zajęcia:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CourseComboBox
             // 
-            this.CourseComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CourseComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CourseComboBox.DropDownWidth = 350;
             this.CourseComboBox.FormattingEnabled = true;
-            this.CourseComboBox.Location = new System.Drawing.Point(150, 3);
+            this.CourseComboBox.Location = new System.Drawing.Point(131, 3);
             this.CourseComboBox.Name = "CourseComboBox";
-            this.CourseComboBox.Size = new System.Drawing.Size(215, 24);
+            this.CourseComboBox.Size = new System.Drawing.Size(234, 24);
             this.CourseComboBox.TabIndex = 1;
             this.CourseComboBox.DropDown += new System.EventHandler(this.CourseComboBox_DropDown);
             // 
@@ -1045,9 +1050,9 @@
             this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label5.Location = new System.Drawing.Point(3, 26);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 26);
+            this.label5.Size = new System.Drawing.Size(122, 26);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Przedział czasowy    od:";
+            this.label5.Text = "Przedział            od:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
@@ -1056,7 +1061,7 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Location = new System.Drawing.Point(3, 52);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 26);
+            this.label7.Size = new System.Drawing.Size(122, 26);
             this.label7.TabIndex = 3;
             this.label7.Text = "do:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1064,17 +1069,17 @@
             // RaportDateFromPicker
             // 
             this.RaportDateFromPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RaportDateFromPicker.Location = new System.Drawing.Point(150, 29);
+            this.RaportDateFromPicker.Location = new System.Drawing.Point(131, 29);
             this.RaportDateFromPicker.Name = "RaportDateFromPicker";
-            this.RaportDateFromPicker.Size = new System.Drawing.Size(215, 22);
+            this.RaportDateFromPicker.Size = new System.Drawing.Size(234, 22);
             this.RaportDateFromPicker.TabIndex = 4;
             // 
             // RaportDateToPicker
             // 
             this.RaportDateToPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RaportDateToPicker.Location = new System.Drawing.Point(150, 55);
+            this.RaportDateToPicker.Location = new System.Drawing.Point(131, 55);
             this.RaportDateToPicker.Name = "RaportDateToPicker";
-            this.RaportDateToPicker.Size = new System.Drawing.Size(215, 22);
+            this.RaportDateToPicker.Size = new System.Drawing.Size(234, 22);
             this.RaportDateToPicker.TabIndex = 5;
             // 
             // label9
@@ -1083,11 +1088,11 @@
             this.tableLayoutPanel3.SetColumnSpan(this.label9, 2);
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(3, 78);
+            this.label9.Location = new System.Drawing.Point(3, 130);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(362, 26);
             this.label9.TabIndex = 6;
-            this.label9.Text = "Opcje dodatkowe:";
+            this.label9.Text = "Opcje dodatkowe (tryb tabeli):";
             this.label9.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // RaportLateCheckBox
@@ -1095,7 +1100,7 @@
             this.RaportLateCheckBox.AutoSize = true;
             this.tableLayoutPanel3.SetColumnSpan(this.RaportLateCheckBox, 2);
             this.RaportLateCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RaportLateCheckBox.Location = new System.Drawing.Point(3, 107);
+            this.RaportLateCheckBox.Location = new System.Drawing.Point(3, 159);
             this.RaportLateCheckBox.Name = "RaportLateCheckBox";
             this.RaportLateCheckBox.Size = new System.Drawing.Size(362, 20);
             this.RaportLateCheckBox.TabIndex = 7;
@@ -1107,9 +1112,9 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 156);
+            this.label10.Location = new System.Drawing.Point(3, 208);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(141, 26);
+            this.label10.Size = new System.Drawing.Size(122, 26);
             this.label10.TabIndex = 10;
             this.label10.Text = "Exportuj jako:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -1118,9 +1123,9 @@
             // 
             this.CsvRadioButton.AutoSize = true;
             this.CsvRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CsvRadioButton.Location = new System.Drawing.Point(3, 185);
+            this.CsvRadioButton.Location = new System.Drawing.Point(3, 237);
             this.CsvRadioButton.Name = "CsvRadioButton";
-            this.CsvRadioButton.Size = new System.Drawing.Size(141, 20);
+            this.CsvRadioButton.Size = new System.Drawing.Size(122, 20);
             this.CsvRadioButton.TabIndex = 11;
             this.CsvRadioButton.TabStop = true;
             this.CsvRadioButton.Text = "*.csv";
@@ -1130,9 +1135,9 @@
             // 
             this.PdfRadioButton.AutoSize = true;
             this.PdfRadioButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PdfRadioButton.Location = new System.Drawing.Point(3, 211);
+            this.PdfRadioButton.Location = new System.Drawing.Point(3, 263);
             this.PdfRadioButton.Name = "PdfRadioButton";
-            this.PdfRadioButton.Size = new System.Drawing.Size(141, 20);
+            this.PdfRadioButton.Size = new System.Drawing.Size(122, 20);
             this.PdfRadioButton.TabIndex = 12;
             this.PdfRadioButton.TabStop = true;
             this.PdfRadioButton.Text = "*.pdf";
@@ -1153,9 +1158,9 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(150, 289);
+            this.button2.Location = new System.Drawing.Point(131, 289);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(215, 24);
+            this.button2.Size = new System.Drawing.Size(234, 24);
             this.button2.TabIndex = 14;
             this.button2.Text = "Podgląd";
             this.button2.UseVisualStyleBackColor = true;
@@ -1167,11 +1172,11 @@
             this.GenerateRaportDataGrid.AllowUserToDeleteRows = false;
             this.GenerateRaportDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GenerateRaportDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GenerateRaportDataGrid.Location = new System.Drawing.Point(389, 55);
+            this.GenerateRaportDataGrid.Location = new System.Drawing.Point(391, 56);
             this.GenerateRaportDataGrid.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.GenerateRaportDataGrid.Name = "GenerateRaportDataGrid";
             this.GenerateRaportDataGrid.ReadOnly = true;
-            this.GenerateRaportDataGrid.Size = new System.Drawing.Size(573, 398);
+            this.GenerateRaportDataGrid.Size = new System.Drawing.Size(577, 403);
             this.GenerateRaportDataGrid.TabIndex = 1;
             // 
             // label8
@@ -1182,7 +1187,7 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(959, 45);
+            this.label8.Size = new System.Drawing.Size(965, 46);
             this.label8.TabIndex = 2;
             // 
             // timer1
@@ -1194,6 +1199,42 @@
             // 
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
+            // 
+            // panel1
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.RadioGrid);
+            this.panel1.Controls.Add(this.RadioTabel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 81);
+            this.panel1.Name = "panel1";
+            this.tableLayoutPanel3.SetRowSpan(this.panel1, 2);
+            this.panel1.Size = new System.Drawing.Size(362, 46);
+            this.panel1.TabIndex = 15;
+            // 
+            // RadioTabel
+            // 
+            this.RadioTabel.AutoSize = true;
+            this.RadioTabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RadioTabel.Location = new System.Drawing.Point(0, 0);
+            this.RadioTabel.Name = "RadioTabel";
+            this.RadioTabel.Size = new System.Drawing.Size(362, 20);
+            this.RadioTabel.TabIndex = 0;
+            this.RadioTabel.TabStop = true;
+            this.RadioTabel.Text = "Tryb tabeli obecności";
+            this.RadioTabel.UseVisualStyleBackColor = true;
+            // 
+            // RadioGrid
+            // 
+            this.RadioGrid.AutoSize = true;
+            this.RadioGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.RadioGrid.Location = new System.Drawing.Point(0, 26);
+            this.RadioGrid.Name = "RadioGrid";
+            this.RadioGrid.Size = new System.Drawing.Size(362, 20);
+            this.RadioGrid.TabIndex = 1;
+            this.RadioGrid.TabStop = true;
+            this.RadioGrid.Text = "Tryb siatki obecności";
+            this.RadioGrid.UseVisualStyleBackColor = true;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -1288,6 +1329,8 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -1394,6 +1437,9 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton RadioGrid;
+        private System.Windows.Forms.RadioButton RadioTabel;
     }
 }
 
