@@ -50,6 +50,13 @@
             this.NoteRichTextBox = new System.Windows.Forms.RichTextBox();
             this.ApplyStudentInformation_Button = new System.Windows.Forms.Button();
             this.dgv_lista_studentow = new System.Windows.Forms.DataGridView();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lv_nastepne_zajecia = new System.Windows.Forms.ListView();
             this.lv_aktualne_zajecia = new System.Windows.Forms.ListView();
             this.btn_usun_zaznaczone = new System.Windows.Forms.Button();
@@ -67,17 +74,28 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_aktualizuj_sale = new System.Windows.Forms.Button();
             this.tb_budynek = new System.Windows.Forms.TextBox();
+            this.btn_usun_sale = new System.Windows.Forms.Button();
             this.tb_numer_sali = new System.Windows.Forms.TextBox();
             this.btn_dodaj_sale = new System.Windows.Forms.Button();
             this.label_budynek = new System.Windows.Forms.Label();
             this.label_numer_sali = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_aktualizuj_przedmiot = new System.Windows.Forms.Button();
+            this.btn_usun_przedmiot = new System.Windows.Forms.Button();
             this.label_nazwa_przedmiotu = new System.Windows.Forms.Label();
             this.tb_nazwa_przedmiotu = new System.Windows.Forms.TextBox();
             this.btn_dodaj_przedmiot = new System.Windows.Forms.Button();
             this.dgv_zajęcia = new System.Windows.Forms.DataGridView();
+            this.Nazwa_zajęć = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sala = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Czas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DzienTygodnia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_dodawanieZajęć = new System.Windows.Forms.GroupBox();
+            this.btn_aktualizuj_zajęcia = new System.Windows.Forms.Button();
+            this.btn_usuń_zajęcia = new System.Windows.Forms.Button();
             this.cb_sala = new System.Windows.Forms.ComboBox();
             this.cb_zajecia = new System.Windows.Forms.ComboBox();
             this.dateTime_pierwsze_zajecia = new System.Windows.Forms.DateTimePicker();
@@ -116,37 +134,20 @@
             this.PdfRadioButton = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.RadioGrid = new System.Windows.Forms.RadioButton();
+            this.RadioTabel = new System.Windows.Forms.RadioButton();
             this.GenerateRaportDataGrid = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.stoper = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.RadioTabel = new System.Windows.Forms.RadioButton();
-            this.RadioGrid = new System.Windows.Forms.RadioButton();
-            this.btn_usuń_zajęcia = new System.Windows.Forms.Button();
-            this.btn_aktualizuj_zajęcia = new System.Windows.Forms.Button();
-            this.btn_usun_przedmiot = new System.Windows.Forms.Button();
-            this.btn_aktualizuj_przedmiot = new System.Windows.Forms.Button();
-            this.btn_aktualizuj_sale = new System.Windows.Forms.Button();
-            this.btn_usun_sale = new System.Windows.Forms.Button();
-            this.Nazwa_zajęć = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sala = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Czas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DzienTygodnia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timestampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabObecnosc.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_studentow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -160,9 +161,8 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -362,6 +362,61 @@
             this.dgv_lista_studentow.Size = new System.Drawing.Size(551, 300);
             this.dgv_lista_studentow.TabIndex = 20;
             this.dgv_lista_studentow.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_lista_studentow_CellClick);
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Imię";
+            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 51;
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.firstNameDataGridViewTextBoxColumn.Width = 51;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nazwisko";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // indexDataGridViewTextBoxColumn
+            // 
+            this.indexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.indexDataGridViewTextBoxColumn.DataPropertyName = "index";
+            this.indexDataGridViewTextBoxColumn.HeaderText = "Index";
+            this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
+            this.indexDataGridViewTextBoxColumn.ReadOnly = true;
+            this.indexDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "late";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Spóźniony?";
+            this.dataGridViewCheckBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "note";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Notatka";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // timestampDataGridViewTextBoxColumn
+            // 
+            this.timestampDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
+            this.timestampDataGridViewTextBoxColumn.HeaderText = "Znacznik";
+            this.timestampDataGridViewTextBoxColumn.Name = "timestampDataGridViewTextBoxColumn";
+            this.timestampDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // studentInfoBindingSource
+            // 
+            this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
             // 
             // lv_nastepne_zajecia
             // 
@@ -573,12 +628,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dodawanie Sali";
             // 
+            // btn_aktualizuj_sale
+            // 
+            this.btn_aktualizuj_sale.Location = new System.Drawing.Point(134, 75);
+            this.btn_aktualizuj_sale.Name = "btn_aktualizuj_sale";
+            this.btn_aktualizuj_sale.Size = new System.Drawing.Size(62, 23);
+            this.btn_aktualizuj_sale.TabIndex = 26;
+            this.btn_aktualizuj_sale.Text = "Aktualizuj";
+            this.btn_aktualizuj_sale.UseVisualStyleBackColor = true;
+            // 
             // tb_budynek
             // 
             this.tb_budynek.Location = new System.Drawing.Point(108, 38);
             this.tb_budynek.Name = "tb_budynek";
             this.tb_budynek.Size = new System.Drawing.Size(160, 20);
             this.tb_budynek.TabIndex = 0;
+            // 
+            // btn_usun_sale
+            // 
+            this.btn_usun_sale.Location = new System.Drawing.Point(202, 75);
+            this.btn_usun_sale.Name = "btn_usun_sale";
+            this.btn_usun_sale.Size = new System.Drawing.Size(56, 23);
+            this.btn_usun_sale.TabIndex = 27;
+            this.btn_usun_sale.Text = "Usuń";
+            this.btn_usun_sale.UseVisualStyleBackColor = true;
             // 
             // tb_numer_sali
             // 
@@ -629,6 +702,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dodawanie przedmiotu";
             // 
+            // btn_aktualizuj_przedmiot
+            // 
+            this.btn_aktualizuj_przedmiot.Location = new System.Drawing.Point(134, 50);
+            this.btn_aktualizuj_przedmiot.Name = "btn_aktualizuj_przedmiot";
+            this.btn_aktualizuj_przedmiot.Size = new System.Drawing.Size(62, 23);
+            this.btn_aktualizuj_przedmiot.TabIndex = 25;
+            this.btn_aktualizuj_przedmiot.Text = "Aktualizuj";
+            this.btn_aktualizuj_przedmiot.UseVisualStyleBackColor = true;
+            // 
+            // btn_usun_przedmiot
+            // 
+            this.btn_usun_przedmiot.Location = new System.Drawing.Point(202, 50);
+            this.btn_usun_przedmiot.Name = "btn_usun_przedmiot";
+            this.btn_usun_przedmiot.Size = new System.Drawing.Size(56, 23);
+            this.btn_usun_przedmiot.TabIndex = 25;
+            this.btn_usun_przedmiot.Text = "Usuń";
+            this.btn_usun_przedmiot.UseVisualStyleBackColor = true;
+            // 
             // label_nazwa_przedmiotu
             // 
             this.label_nazwa_przedmiotu.AutoSize = true;
@@ -671,6 +762,39 @@
             this.dgv_zajęcia.Size = new System.Drawing.Size(677, 380);
             this.dgv_zajęcia.TabIndex = 22;
             // 
+            // Nazwa_zajęć
+            // 
+            this.Nazwa_zajęć.HeaderText = "Nazwa zajęć";
+            this.Nazwa_zajęć.Name = "Nazwa_zajęć";
+            this.Nazwa_zajęć.ReadOnly = true;
+            this.Nazwa_zajęć.Width = 200;
+            // 
+            // Sala
+            // 
+            this.Sala.HeaderText = "Sala";
+            this.Sala.Name = "Sala";
+            this.Sala.ReadOnly = true;
+            this.Sala.Width = 60;
+            // 
+            // Czas
+            // 
+            this.Czas.HeaderText = "Czas";
+            this.Czas.Name = "Czas";
+            this.Czas.ReadOnly = true;
+            // 
+            // DzienTygodnia
+            // 
+            this.DzienTygodnia.HeaderText = "Dzień Tygodnia";
+            this.DzienTygodnia.Name = "DzienTygodnia";
+            this.DzienTygodnia.ReadOnly = true;
+            this.DzienTygodnia.Width = 110;
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            this.Data.ReadOnly = true;
+            // 
             // gb_dodawanieZajęć
             // 
             this.gb_dodawanieZajęć.Controls.Add(this.btn_aktualizuj_zajęcia);
@@ -690,6 +814,24 @@
             this.gb_dodawanieZajęć.TabIndex = 21;
             this.gb_dodawanieZajęć.TabStop = false;
             this.gb_dodawanieZajęć.Text = "Dodawanie zajęć";
+            // 
+            // btn_aktualizuj_zajęcia
+            // 
+            this.btn_aktualizuj_zajęcia.Location = new System.Drawing.Point(134, 144);
+            this.btn_aktualizuj_zajęcia.Name = "btn_aktualizuj_zajęcia";
+            this.btn_aktualizuj_zajęcia.Size = new System.Drawing.Size(62, 23);
+            this.btn_aktualizuj_zajęcia.TabIndex = 25;
+            this.btn_aktualizuj_zajęcia.Text = "Aktualizuj";
+            this.btn_aktualizuj_zajęcia.UseVisualStyleBackColor = true;
+            // 
+            // btn_usuń_zajęcia
+            // 
+            this.btn_usuń_zajęcia.Location = new System.Drawing.Point(202, 144);
+            this.btn_usuń_zajęcia.Name = "btn_usuń_zajęcia";
+            this.btn_usuń_zajęcia.Size = new System.Drawing.Size(56, 23);
+            this.btn_usuń_zajęcia.TabIndex = 25;
+            this.btn_usuń_zajęcia.Text = "Usuń";
+            this.btn_usuń_zajęcia.UseVisualStyleBackColor = true;
             // 
             // cb_sala
             // 
@@ -1130,6 +1272,42 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // panel1
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.RadioGrid);
+            this.panel1.Controls.Add(this.RadioTabel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 81);
+            this.panel1.Name = "panel1";
+            this.tableLayoutPanel3.SetRowSpan(this.panel1, 2);
+            this.panel1.Size = new System.Drawing.Size(362, 46);
+            this.panel1.TabIndex = 15;
+            // 
+            // RadioGrid
+            // 
+            this.RadioGrid.AutoSize = true;
+            this.RadioGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.RadioGrid.Location = new System.Drawing.Point(0, 26);
+            this.RadioGrid.Name = "RadioGrid";
+            this.RadioGrid.Size = new System.Drawing.Size(362, 20);
+            this.RadioGrid.TabIndex = 1;
+            this.RadioGrid.TabStop = true;
+            this.RadioGrid.Text = "Tryb siatki obecności";
+            this.RadioGrid.UseVisualStyleBackColor = true;
+            // 
+            // RadioTabel
+            // 
+            this.RadioTabel.AutoSize = true;
+            this.RadioTabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RadioTabel.Location = new System.Drawing.Point(0, 0);
+            this.RadioTabel.Name = "RadioTabel";
+            this.RadioTabel.Size = new System.Drawing.Size(362, 20);
+            this.RadioTabel.TabIndex = 0;
+            this.RadioTabel.TabStop = true;
+            this.RadioTabel.Text = "Tryb tabeli obecności";
+            this.RadioTabel.UseVisualStyleBackColor = true;
+            // 
             // GenerateRaportDataGrid
             // 
             this.GenerateRaportDataGrid.AllowUserToAddRows = false;
@@ -1164,183 +1342,6 @@
             this.stoper.Interval = 1000;
             this.stoper.Tick += new System.EventHandler(this.stoper_Tick);
             // 
-            // panel1
-            // 
-            this.tableLayoutPanel3.SetColumnSpan(this.panel1, 2);
-            this.panel1.Controls.Add(this.RadioGrid);
-            this.panel1.Controls.Add(this.RadioTabel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 81);
-            this.panel1.Name = "panel1";
-            this.tableLayoutPanel3.SetRowSpan(this.panel1, 2);
-            this.panel1.Size = new System.Drawing.Size(362, 46);
-            this.panel1.TabIndex = 15;
-            // 
-            // RadioTabel
-            // 
-            this.RadioTabel.AutoSize = true;
-            this.RadioTabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RadioTabel.Location = new System.Drawing.Point(0, 0);
-            this.RadioTabel.Name = "RadioTabel";
-            this.RadioTabel.Size = new System.Drawing.Size(362, 20);
-            this.RadioTabel.TabIndex = 0;
-            this.RadioTabel.TabStop = true;
-            this.RadioTabel.Text = "Tryb tabeli obecności";
-            this.RadioTabel.UseVisualStyleBackColor = true;
-            // 
-            // RadioGrid
-            // 
-            this.RadioGrid.AutoSize = true;
-            this.RadioGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.RadioGrid.Location = new System.Drawing.Point(0, 26);
-            this.RadioGrid.Name = "RadioGrid";
-            this.RadioGrid.Size = new System.Drawing.Size(362, 20);
-            this.RadioGrid.TabIndex = 1;
-            this.RadioGrid.TabStop = true;
-            this.RadioGrid.Text = "Tryb siatki obecności";
-            this.RadioGrid.UseVisualStyleBackColor = true;
-            // btn_usuń_zajęcia
-            // 
-            this.btn_usuń_zajęcia.Location = new System.Drawing.Point(202, 144);
-            this.btn_usuń_zajęcia.Name = "btn_usuń_zajęcia";
-            this.btn_usuń_zajęcia.Size = new System.Drawing.Size(56, 23);
-            this.btn_usuń_zajęcia.TabIndex = 25;
-            this.btn_usuń_zajęcia.Text = "Usuń";
-            this.btn_usuń_zajęcia.UseVisualStyleBackColor = true;
-            // 
-            // btn_aktualizuj_zajęcia
-            // 
-            this.btn_aktualizuj_zajęcia.Location = new System.Drawing.Point(134, 144);
-            this.btn_aktualizuj_zajęcia.Name = "btn_aktualizuj_zajęcia";
-            this.btn_aktualizuj_zajęcia.Size = new System.Drawing.Size(62, 23);
-            this.btn_aktualizuj_zajęcia.TabIndex = 25;
-            this.btn_aktualizuj_zajęcia.Text = "Aktualizuj";
-            this.btn_aktualizuj_zajęcia.UseVisualStyleBackColor = true;
-            // 
-            // btn_usun_przedmiot
-            // 
-            this.btn_usun_przedmiot.Location = new System.Drawing.Point(202, 50);
-            this.btn_usun_przedmiot.Name = "btn_usun_przedmiot";
-            this.btn_usun_przedmiot.Size = new System.Drawing.Size(56, 23);
-            this.btn_usun_przedmiot.TabIndex = 25;
-            this.btn_usun_przedmiot.Text = "Usuń";
-            this.btn_usun_przedmiot.UseVisualStyleBackColor = true;
-            // 
-            // btn_aktualizuj_przedmiot
-            // 
-            this.btn_aktualizuj_przedmiot.Location = new System.Drawing.Point(134, 50);
-            this.btn_aktualizuj_przedmiot.Name = "btn_aktualizuj_przedmiot";
-            this.btn_aktualizuj_przedmiot.Size = new System.Drawing.Size(62, 23);
-            this.btn_aktualizuj_przedmiot.TabIndex = 25;
-            this.btn_aktualizuj_przedmiot.Text = "Aktualizuj";
-            this.btn_aktualizuj_przedmiot.UseVisualStyleBackColor = true;
-            // 
-            // btn_aktualizuj_sale
-            // 
-            this.btn_aktualizuj_sale.Location = new System.Drawing.Point(134, 75);
-            this.btn_aktualizuj_sale.Name = "btn_aktualizuj_sale";
-            this.btn_aktualizuj_sale.Size = new System.Drawing.Size(62, 23);
-            this.btn_aktualizuj_sale.TabIndex = 26;
-            this.btn_aktualizuj_sale.Text = "Aktualizuj";
-            this.btn_aktualizuj_sale.UseVisualStyleBackColor = true;
-            // 
-            // btn_usun_sale
-            // 
-            this.btn_usun_sale.Location = new System.Drawing.Point(202, 75);
-            this.btn_usun_sale.Name = "btn_usun_sale";
-            this.btn_usun_sale.Size = new System.Drawing.Size(56, 23);
-            this.btn_usun_sale.TabIndex = 27;
-            this.btn_usun_sale.Text = "Usuń";
-            this.btn_usun_sale.UseVisualStyleBackColor = true;
-            // 
-            // Nazwa_zajęć
-            // 
-            this.Nazwa_zajęć.HeaderText = "Nazwa zajęć";
-            this.Nazwa_zajęć.Name = "Nazwa_zajęć";
-            this.Nazwa_zajęć.ReadOnly = true;
-            this.Nazwa_zajęć.Width = 200;
-            // 
-            // Sala
-            // 
-            this.Sala.HeaderText = "Sala";
-            this.Sala.Name = "Sala";
-            this.Sala.ReadOnly = true;
-            this.Sala.Width = 60;
-            // 
-            // Czas
-            // 
-            this.Czas.HeaderText = "Czas";
-            this.Czas.Name = "Czas";
-            this.Czas.ReadOnly = true;
-            // 
-            // DzienTygodnia
-            // 
-            this.DzienTygodnia.HeaderText = "Dzień Tygodnia";
-            this.DzienTygodnia.Name = "DzienTygodnia";
-            this.DzienTygodnia.ReadOnly = true;
-            this.DzienTygodnia.Width = 110;
-            // 
-            // Data
-            // 
-            this.Data.HeaderText = "Data";
-            this.Data.Name = "Data";
-            this.Data.ReadOnly = true;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Imię";
-            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 51;
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.firstNameDataGridViewTextBoxColumn.Width = 51;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Nazwisko";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // indexDataGridViewTextBoxColumn
-            // 
-            this.indexDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.indexDataGridViewTextBoxColumn.DataPropertyName = "index";
-            this.indexDataGridViewTextBoxColumn.HeaderText = "Index";
-            this.indexDataGridViewTextBoxColumn.Name = "indexDataGridViewTextBoxColumn";
-            this.indexDataGridViewTextBoxColumn.ReadOnly = true;
-            this.indexDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "late";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Spóźniony?";
-            this.dataGridViewCheckBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "note";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Notatka";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // timestampDataGridViewTextBoxColumn
-            // 
-            this.timestampDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.timestampDataGridViewTextBoxColumn.DataPropertyName = "timestamp";
-            this.timestampDataGridViewTextBoxColumn.HeaderText = "Znacznik";
-            this.timestampDataGridViewTextBoxColumn.Name = "timestampDataGridViewTextBoxColumn";
-            this.timestampDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // studentInfoBindingSource
-            // 
-            this.studentInfoBindingSource.DataSource = typeof(pt_legitymacjestudenckie.SmartCardRelated.StudentInfo);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1359,6 +1360,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_studentow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -1378,10 +1380,9 @@
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInfoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GenerateRaportDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

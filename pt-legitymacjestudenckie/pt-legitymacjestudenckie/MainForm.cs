@@ -388,6 +388,7 @@ namespace pt_legitymacjestudenckie
         }
 
         // Zakładka - Generowanie raportów
+
         // Przycisk podglądu tabeli przed zapisaniem
         private void button2_Click(object sender, EventArgs e)
         {
@@ -407,6 +408,15 @@ namespace pt_legitymacjestudenckie
 
                 MessageBox.Show("Ukończono zapisywanie pliku.", "Wiadomość", MessageBoxButtons.OK);
             }
+            else if (PdfRadioButton.Checked)
+            {
+                var list = GetDataForFile();
+                textfileConstructor.ObecnoscToPDF(list);
+
+                MessageBox.Show("Ukończono zapisywanie pliku.", "Wiadomość", MessageBoxButtons.OK);
+            }
+            else
+                MessageBox.Show("Nie wybrano formatu zapisu.", "Wiadomość", MessageBoxButtons.OK);
         }
 
         // Zebranie danych z wejść do obiektu z parametrami klasy TextfileConstructor

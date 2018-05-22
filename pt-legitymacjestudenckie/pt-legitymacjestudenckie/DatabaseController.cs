@@ -8,6 +8,8 @@ using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Windows.Forms;
 using pt_legitymacjestudenckie.SmartCardRelated;
+using System.Globalization;
+
 namespace pt_legitymacjestudenckie
 {
     class DatabaseController
@@ -320,7 +322,7 @@ namespace pt_legitymacjestudenckie
             {
                 try
                 {
-                    dt.Columns.Add(zp.Data_zajec.ToShortDateString());
+                    dt.Columns.Add(zp.Data_zajec.ToString("MM/d"));
                 }
                 catch(Exception ex)
                 {
