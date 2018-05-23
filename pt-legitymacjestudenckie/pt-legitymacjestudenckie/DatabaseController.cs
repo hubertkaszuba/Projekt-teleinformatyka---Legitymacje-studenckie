@@ -109,23 +109,28 @@ namespace pt_legitymacjestudenckie
         }
         public Zajecia_pojedyncze GetZajecia_Pojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
         {
-            connection.Open();
-            var zajecia = conjuring.Zajecia.Where(z => z.Id_Wykladowcy == wykladowca.Id_Wykladowcy);
-            IQueryable<Zajecia_pojedyncze> zajecia_pojedyncze = null;
-            foreach (var z in zajecia)
+            try
             {
-                zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
+                connection.Open();
+                var zajecia = conjuring.Zajecia.Where(z => z.Id_Wykladowcy == wykladowca.Id_Wykladowcy);
+                IQueryable<Zajecia_pojedyncze> zajecia_pojedyncze = null;
+                foreach (var z in zajecia)
+                {
+                    zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
+                }
+
+
+                //var obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
+
+                DateTime now = DateTime.Now;
+                DateTime shifted = now.AddMinutes(-89);
+                DateTime shifted2 = now.AddMinutes(15);
+                Zajecia_pojedyncze obecneZajecia = zajecia_pojedyncze.First(oz => oz.Data_zajec >= shifted && oz.Data_zajec <= shifted2);
+                connection.Close();
+
+                return obecneZajecia;
             }
-
-
-            //var obecneZajecia = zajecia_pojedyncze.Single(oz => oz.Data_zajec >= DateTime.Now.AddMinutes(-5) && oz.Data_zajec <= DateTime.Now.AddMinutes(90));
-
-            DateTime now = DateTime.Now;
-            DateTime shifted = now.AddMinutes(-15);
-            Zajecia_pojedyncze obecneZajecia = zajecia_pojedyncze.First(oz => oz.Data_zajec >= shifted);
-            connection.Close();
-
-            return obecneZajecia;
+            catch(Exception ex) { connection.Close(); return null; }
         }
 
         public List<Obecnosc> GetObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection)
@@ -201,7 +206,8 @@ namespace pt_legitymacjestudenckie
             connection.Close();
             return qTyp;
         }
-            //Dodawanie nowej sali
+            
+        //Dodawanie nowej sali
             public void InsertSala(TheConjuring_dbEntities1 conjuring, SqlConnection connection, String numer, String budynek)
         {
             connection.Open();
@@ -254,6 +260,11 @@ namespace pt_legitymacjestudenckie
             MessageBox.Show("Dodano poprawnie przedmiot - " + nazwa);
         }
 
+        public void DeletePrzedmiot(TheConjuring_dbEntities1 conjuring, SqlConnection connection, String nazwa)
+        {
+
+        }
+
         //zwracanie listy wszystkich przedmiotów
         public List<Przedmiot> ListPrzedmiot(TheConjuring_dbEntities1 conjuring)
         {
@@ -286,6 +297,7 @@ namespace pt_legitymacjestudenckie
             return subjects;
         }
 
+        //Zwraca Table obecnych uczniów pomiędz podanymi datami na danych zajeciach
         public DataTable Obecni_pomiedzy(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Zajecia zajecia, DateTime od_, DateTime do_)
         {
             DataTable dt = new DataTable();
@@ -294,7 +306,7 @@ namespace pt_legitymacjestudenckie
 
             List<Student> qTyp = new List<Student>();
             qTyp = (from z in conjuring.Zajecia
-                    join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                    join zp in conjuring.Zajecia_pojedyncze on zajecia.Id_Zajec equals zp.Id_Zajec
                     join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
                     join s in conjuring.Student on o.Indeks equals s.Indeks
                     where zp.Data_zajec >= od_ && zp.Data_zajec <= do_
@@ -311,7 +323,7 @@ namespace pt_legitymacjestudenckie
 
             List<Zajecia_pojedyncze> Zajeciapoj = new List<Zajecia_pojedyncze>();
             Zajeciapoj = (from z in conjuring.Zajecia
-                          join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                          join zp in conjuring.Zajecia_pojedyncze on zajecia.Id_Zajec equals zp.Id_Zajec
                           where zp.Data_zajec >= od_ && zp.Data_zajec <= do_
                           orderby zp.Id_Zajec_pojedynczych
                           select zp).Distinct().OrderBy(z => z.Data_zajec).ToList();
@@ -334,11 +346,11 @@ namespace pt_legitymacjestudenckie
                     if (query != null)
                     {
 
-                        if(query.Spoznienie==true) dt.Rows[y][x] = "O";
-                        else dt.Rows[y][x] = "X";
+                        if(query.Spoznienie==true) dt.Rows[y][x] = "S";
+                        else dt.Rows[y][x] = "O";
 
                     }
-                    else dt.Rows[y][x] = "";
+                    else dt.Rows[y][x] = "N";
                     y++;
                 }
                 y = 0;

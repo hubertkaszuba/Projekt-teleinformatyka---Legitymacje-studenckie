@@ -110,11 +110,18 @@ namespace pt_legitymacjestudenckie
         /// <summary>Ustawia wartości aktualnych i następnych zajęć w zakładce Sprawdzanie obecności</summary>
         private void UstawZajecia()
         {
-            lv_aktualne_zajecia.Clear();
-            Zajecia_pojedyncze zajecia = databaseController.GetZajecia_Pojedyncze(conjuring, connection, wykladowca);
-            lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
-            lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
-            lv_aktualne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+            try
+            {
+                lv_aktualne_zajecia.Clear();
+                Zajecia_pojedyncze zajecia = databaseController.GetZajecia_Pojedyncze(conjuring, connection, wykladowca);
+                lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
+                lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
+                lv_aktualne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
         }
 
         /// <summary>Pobranie aktualnego czasu systemowego, przeparsowanie 
@@ -348,6 +355,9 @@ namespace pt_legitymacjestudenckie
             }
         }
 
+     
+       
+        
         /// <summary>Dodawanie nowego obiektu sali do bazy danych</summary>
         private void btn_dodaj_sale_Click(object sender, EventArgs e)
         {
@@ -360,6 +370,12 @@ namespace pt_legitymacjestudenckie
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        /// <summary>Aktualizacja obiektu sali w bazie danych</summary>
+        private void btn_aktualizuj_sale_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void RefreshComboBoxes()
@@ -437,6 +453,8 @@ namespace pt_legitymacjestudenckie
             }
             else
             {
+                Zajecia z = (Zajecia) CourseComboBox.SelectedItem;
+
                 switch (CheckExportType())
                 {
                     case ExportType.GRID:
@@ -444,6 +462,7 @@ namespace pt_legitymacjestudenckie
                     case ExportType.TABLE:
                         var list = databaseController.GetObecnosc(conjuring, connection)
                             .Where(o => o.Data >= tfc_params.DateFrom && o.Data <= tfc_params.DateTo)
+                            .Where(o => o.Zajecia_pojedyncze.Id_Zajec == z.Id_Zajec)
                             .OrderBy(o => o.Data).ToList();
                         return textfileConstructor.ConstructObecnoscList(list);
                     default:
@@ -475,5 +494,7 @@ namespace pt_legitymacjestudenckie
              
             
         }
+
+        
     }
 }
