@@ -131,24 +131,7 @@ namespace pt_legitymacjestudenckie
         }
         public List<Zajecia_pojedyncze> GetListZajeciaPojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
         {
-            try
-            {
-                connection.Open();
-                List<Zajecia_pojedyncze> zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.ToList().Where(z => z. == wykladowca.Id_Wykladowcy);
-     
-                var zajecia = conjuring.Zajecia.Where(z => z.Id_Wykladowcy == wykladowca.Id_Wykladowcy);
 
-                foreach (var z in zajecia)
-                {
-                    zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
-                }
-                connection.Close();
-                return zajecia_Pojedyncze;
-            }
-            catch (SqlException ex)
-            {
-                return null;
-            }
         }
 
         public List<Obecnosc> GetObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection)
