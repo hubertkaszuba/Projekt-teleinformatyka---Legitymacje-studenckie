@@ -59,6 +59,9 @@ namespace pt_legitymacjestudenckie
             /* Wypełnienie comboboxów w zakładce Edytor zajęć*/
             RefreshComboBoxes();
 
+            /* Wypełnienie comboboxów w zakładce Przeglądanie obecności*/
+            RefreshComboboxes_PrzegladanieObecnosci();
+
             /* Odświeżenie listy zajęć w zakładce Edytor zajęć */
             Refresh_dvg_zajecia();
             UstawZajecia();
@@ -325,6 +328,7 @@ namespace pt_legitymacjestudenckie
 
             databaseController.InsertZajecia(conjuring, connection, wykladowca, przedmiot, sala, data, tydzien);
             Refresh_dvg_zajecia();
+            RefreshComboboxes_PrzegladanieObecnosci();
         }
 
         /// <summary> Odświeżanie listy zajęć w edytorze zajęć </summary>
@@ -404,6 +408,7 @@ namespace pt_legitymacjestudenckie
         }
 
         // Zakładka - Generowanie raportów
+
         // Przycisk podglądu tabeli przed zapisaniem
         private void button2_Click(object sender, EventArgs e)
         {
@@ -423,6 +428,15 @@ namespace pt_legitymacjestudenckie
 
                 MessageBox.Show("Ukończono zapisywanie pliku.", "Wiadomość", MessageBoxButtons.OK);
             }
+            else if (PdfRadioButton.Checked)
+            {
+                var list = GetDataForFile();
+                textfileConstructor.ObecnoscToPDF(list);
+
+                MessageBox.Show("Ukończono zapisywanie pliku.", "Wiadomość", MessageBoxButtons.OK);
+            }
+            else
+                MessageBox.Show("Nie wybrano formatu zapisu.", "Wiadomość", MessageBoxButtons.OK);
         }
 
         // Zebranie danych z wejść do obiektu z parametrami klasy TextfileConstructor
@@ -488,11 +502,43 @@ namespace pt_legitymacjestudenckie
         {
         }
 
+
+    //<ZAKŁADKA: Przeglądanie obecności>
+
+        /// <summary> Wyszukuje obecności na podstawie ustawionych parametrów w zakładce Przeglądanie obecności </summary>
         private void btn_szukaj_obecnosci_Click(object sender, EventArgs e)
         {
-            
-             
-            
+
+        }
+
+        /// <summary> Odświeża zawartość comboboxów w zakładce Przeglądanie obecności </summary>
+        private void RefreshComboboxes_PrzegladanieObecnosci()
+        {
+            cb_zajecia_przegladanie.Items.Clear();
+            cb_student_przegladanie.Items.Clear();
+            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot_Zalogowanego(conjuring, wykladowca);
+            foreach (Przedmiot x in przedmioty)
+            {
+                cb_zajecia_przegladanie.Items.Add(x.Nazwa);
+            }
+            List<Obecnosc> studenci = databaseController.GetObecnosc(conjuring, connection);
+        
+            foreach (Obecnosc x in studenci)
+            {
+
+                if (!cb_student_przegladanie.Items.Contains(x.Student.Imie + " " + x.Student.Nazwisko + " (" + x.Student.Indeks + ")"))
+                {
+                    cb_student_przegladanie.Items.Add(x.Student.Imie + " " + x.Student.Nazwisko + " (" + x.Student.Indeks + ")");
+                }
+            }
+
+        }
+
+        /// <summary>Sprawdzenie czy użytkownik chce uwzględnić datę podczas przeglądania obecności </summary>
+        private void cb_uwzglednij_date_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_uwzglednij_date.Checked) cb_data_przegladanie.Enabled = true;
+            else cb_data_przegladanie.Enabled = false;
         }
 
         

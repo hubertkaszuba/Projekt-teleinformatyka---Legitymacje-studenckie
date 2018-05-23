@@ -8,6 +8,8 @@ using System.Data.SqlClient;
 using System.Data.Sql;
 using System.Windows.Forms;
 using pt_legitymacjestudenckie.SmartCardRelated;
+using System.Globalization;
+
 namespace pt_legitymacjestudenckie
 {
     class DatabaseController
@@ -132,6 +134,10 @@ namespace pt_legitymacjestudenckie
             }
             catch(Exception ex) { connection.Close(); return null; }
         }
+        /*public List<Zajecia_pojedyncze> GetListZajeciaPojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
+        {
+
+        }*/
 
         public List<Obecnosc> GetObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection)
         {
@@ -147,6 +153,7 @@ namespace pt_legitymacjestudenckie
                 return null;
             }
         }
+
 
         public void DeleteObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection, int indeks, int id_zajec, DateTime data)
         {
@@ -332,7 +339,7 @@ namespace pt_legitymacjestudenckie
             {
                 try
                 {
-                    dt.Columns.Add(zp.Data_zajec.ToShortDateString());
+                    dt.Columns.Add(zp.Data_zajec.ToString("MM/d"));
                 }
                 catch(Exception ex)
                 {

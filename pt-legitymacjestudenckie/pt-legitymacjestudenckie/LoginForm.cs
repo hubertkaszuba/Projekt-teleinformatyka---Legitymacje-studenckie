@@ -45,7 +45,6 @@ namespace pt_legitymacjestudenckie
             else
             {
                 MessageBox.Show("Błędna nazwa użytkownika lub hasło");
-                
             }
         }
 
