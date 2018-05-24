@@ -134,10 +134,7 @@ namespace pt_legitymacjestudenckie
             }
             catch(Exception ex) { connection.Close(); return null; }
         }
-        /*public List<Zajecia_pojedyncze> GetListZajeciaPojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
-        {
 
-        }*/
 
         public List<Obecnosc> GetObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection)
         {
@@ -365,6 +362,59 @@ namespace pt_legitymacjestudenckie
 
             return dt;
 
+        }
+
+        /// <summary>
+        /// Wszystkie przeciążenia metody wyświetlającej liste obecności:
+        /// </summary>
+
+        public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, Wykladowca wyk)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Przedmiot");
+            dt.Columns.Add("Student");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Spóźniony?");
+            dt.Columns.Add("Notatka");
+
+            var qTyp = (from p in conjuring.Przedmiot
+                        join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                        join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                        join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                        join s in conjuring.Student on o.Indeks equals s.Indeks
+                        where z.Id_Wykladowcy == wyk.Id_Wykladowcy && p.Id_Przedmiotu == przed.Id_Przedmiotu
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec }).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Przedmiot"] = s.Przedmiot_;
+                new_row["Student"] = s.Student_;
+                new_row["Data"] = s.Data_;
+                //Tutaj jeszcze trzeba pozostałe dwie kolumny uzupełnić
+                dt.Rows.Add(new_row);
+            }
+            return dt;
+        }
+        public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, DateTime data_od, DateTime data_do , Wykladowca wyk)
+        {
+            return null;
+        }
+        public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, Student student, Wykladowca wyk)
+        {
+            return null;
+        }
+        public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, DateTime data_od, DateTime data_do,  Student student, Wykladowca wyk)
+        {
+            return null;
+        }
+        public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Student student, Wykladowca wyk)
+        {
+            return null;
+        }
+        public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, DateTime data_od, DateTime data_do, Student student, Wykladowca wyk)
+        {
+            return null;
         }
     }
 }

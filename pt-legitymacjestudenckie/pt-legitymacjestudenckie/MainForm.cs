@@ -503,23 +503,79 @@ namespace pt_legitymacjestudenckie
         }
 
 
-    //<ZAKŁADKA: Przeglądanie obecności>
+        //<ZAKŁADKA: Przeglądanie obecności>
 
         /// <summary> Wyszukuje obecności na podstawie ustawionych parametrów w zakładce Przeglądanie obecności </summary>
         private void btn_szukaj_obecnosci_Click(object sender, EventArgs e)
         {
+            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot_Zalogowanego(conjuring, wykladowca);
+            List<Obecnosc> studenci = databaseController.GetObecnosc(conjuring, connection);
+            Przedmiot przedmiot = null;
+            Student student = null;
+            DateTime data, data_od, data_do;
+            //Przygotowanie daty w zakresie której będzie sprawdzana obecność
+            data = cb_data_przegladanie.Value;
+            data_od = new DateTime(data.Year, data.Month, data.Day, 0, 0, 0, 0);
+            data_do = new DateTime(data.Year, data.Month, data.Day, 23, 59, 59, 0);
 
+            //Przygotowanie obiektu studenta do sprawdzenia
+            if (cb_student_przegladanie.Text != "")
+            {
+                string index_str = cb_student_przegladanie.Text;
+                index_str = index_str.Split('(', ')')[1];
+                int Index = Convert.ToInt32(index_str);
+                student = conjuring.Student.Where(o => (o.Indeks == Index)).FirstOrDefault();
+            }
+            //Przygotowanie obiektu przedmiotu do sprawdzenia
+            if (cb_przedmiot_przegladanie.Text != "")
+            {
+                przedmiot = conjuring.Przedmiot.Where(o => (o.Nazwa == cb_przedmiot_przegladanie.Text)).FirstOrDefault();
+            }
+
+            //Rozpatrzenie wszystkich przypadków podania parametrów:
+            if (cb_przedmiot_przegladanie.Text == "" && cb_student_przegladanie.Text == "")
+            {
+                MessageBox.Show("Wprowadź wartość do co najmniej jednego pola!", "Uwaga!");
+            }
+
+            else if (cb_przedmiot_przegladanie.Text != "" && cb_uwzglednij_date.Checked == false && cb_student_przegladanie.Text == "")
+            {
+                dgv_lista_obecnosci.DataSource = databaseController.Lista_Obecnosci(conjuring, connection, przedmiot, wykladowca);
+            }
+            else if (cb_przedmiot_przegladanie.Text != "" && cb_uwzglednij_date.Checked == true && cb_student_przegladanie.Text == "")
+            {
+                dgv_lista_obecnosci.DataSource = databaseController.Lista_Obecnosci(conjuring, connection, przedmiot, data_od, data_do, wykladowca);
+            }
+            else if (cb_przedmiot_przegladanie.Text != "" && cb_uwzglednij_date.Checked == false && cb_student_przegladanie.Text != "")
+            {
+                dgv_lista_obecnosci.DataSource = databaseController.Lista_Obecnosci(conjuring, connection, przedmiot, student, wykladowca);
+            }
+            else if (cb_przedmiot_przegladanie.Text != "" && cb_uwzglednij_date.Checked == true && cb_student_przegladanie.Text != "")
+            {
+                dgv_lista_obecnosci.DataSource = databaseController.Lista_Obecnosci(conjuring, connection, przedmiot, data_od, data_do, student, wykladowca);
+            }
+            else if (cb_przedmiot_przegladanie.Text == "" && cb_uwzglednij_date.Checked == false && cb_student_przegladanie.Text != "")
+            {
+                dgv_lista_obecnosci.DataSource = databaseController.Lista_Obecnosci(conjuring, connection, student, wykladowca);
+            }
+            else if (cb_przedmiot_przegladanie.Text == "" && cb_uwzglednij_date.Checked == true && cb_student_przegladanie.Text != "")
+            {
+                dgv_lista_obecnosci.DataSource = databaseController.Lista_Obecnosci(conjuring, connection, data_od, data_do, student, wykladowca);
+            }
         }
+
+
+
 
         /// <summary> Odświeża zawartość comboboxów w zakładce Przeglądanie obecności </summary>
         private void RefreshComboboxes_PrzegladanieObecnosci()
         {
-            cb_zajecia_przegladanie.Items.Clear();
+            cb_przedmiot_przegladanie.Items.Clear();
             cb_student_przegladanie.Items.Clear();
             List<Przedmiot> przedmioty = databaseController.ListPrzedmiot_Zalogowanego(conjuring, wykladowca);
             foreach (Przedmiot x in przedmioty)
             {
-                cb_zajecia_przegladanie.Items.Add(x.Nazwa);
+                cb_przedmiot_przegladanie.Items.Add(x.Nazwa);
             }
             List<Obecnosc> studenci = databaseController.GetObecnosc(conjuring, connection);
         
