@@ -570,15 +570,46 @@ namespace pt_legitymacjestudenckie
             List<Zajecia_pojedyncze> lista = (from z in conjuring.Zajecia
                                               join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
                                               join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
-
-                                              where zp.Data_zajec > data_od && zp.Data_zajec < data_do
-                                              where zp.Data_zajec>data_od && zp.Data_zajec<data_do
-                                              where zp.Data_zajec>data_od && zp.Data_zajec<data_do
-
+                                              
                                               where zp.Data_zajec > data_od && zp.Data_zajec < data_do && z.Id_Zajec == zaj.Id_Zajec
 
                                               select zp).Distinct().ToList();
             return lista;
+        }
+
+        public void Usun_Zaj_poj(TheConjuring_dbEntities1 conjuring, Zajecia_pojedyncze zajecia_Pojedyncze)
+        {
+            try
+            {
+                var x = (from zp in conjuring.Zajecia_pojedyncze
+                         where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych
+                         select zp).FirstOrDefault();
+                String rec = x.Data_zajec.ToString();
+
+                DialogResult dr = MessageBox.Show("Czy napewno chcesz usunąć zajecia pojedyncze odbywajace się w podanej dacie ?\n" + rec, "Potwierdzenie", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    
+                   
+                    int c = (from zp in conjuring.Zajecia_pojedyncze
+                         join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                         where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych
+                         select o).Distinct().Count();
+                   
+                    if (c == 0) {
+                        conjuring.Zajecia_pojedyncze.Remove(x);
+                        conjuring.SaveChanges();
+                        MessageBox.Show("Usunieto rekord");
+                    }
+
+                    else { MessageBox.Show("Nie można usunąć danych zajęć pojedyńczych, ze względu na to że studenci mają na nich obecność"); return; }
+                }
+
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show ( "Wyjątek: Rekord nie istnieje w bazie danych.");
+            }
         }
     }
 }

@@ -139,17 +139,12 @@ namespace pt_legitymacjestudenckie
 
         private void btn_usun_Click(object sender, EventArgs e)
         {
-            Zajecia_pojedyncze zajecia_Pojedyncze = lista_zajec_pojedynczych[CurrentIndex];
-            try
-            {
+            Zajecia_pojedyncze zajecia_Pojedyncz = lista_zajec_pojedynczych[CurrentIndex];
+            databaseController.Usun_Zaj_poj(conjuring, zajecia_Pojedyncz);
                 //Tutaj wywołanie metody:
                 //      NazwaUsuwającejMetody(Zajecia_pojedyncze zajecia_Pojedyncze);
-                //Jedynym argumentem przekazywanym ode mnie są zajęcia_Pojedyncze, które są zajęciami zaznaczonymi przez użytkownika w tabeli.
-            }
-            catch(Exception ex)
-            {
-
-            }
+                //Jedynym argumentem przekazywanym ode mnie są zajęcia_Pojedyncze, które są zajęciami zaznaczonymi przez użytkownika w tabeli
+                
         }
 
         private void btn_aktualizuj_Click(object sender, EventArgs e)
