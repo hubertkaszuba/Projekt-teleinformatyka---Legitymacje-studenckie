@@ -128,13 +128,31 @@ namespace pt_legitymacjestudenckie
                 DateTime shifted = now.AddMinutes(-89);
                 DateTime shifted2 = now.AddMinutes(15);
                 Zajecia_pojedyncze obecneZajecia = zajecia_pojedyncze.First(oz => oz.Data_zajec >= shifted && oz.Data_zajec <= shifted2);
-                connection.Close();
-
+                connection.Close();             
                 return obecneZajecia;
             }
             catch(Exception ex) { connection.Close(); return null; }
         }
 
+        public Zajecia_pojedyncze GetNextZajecia_Pojedyncze(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
+        {
+            try
+            {
+                connection.Open();
+                var zajecia = conjuring.Zajecia.Where(z => z.Id_Wykladowcy == wykladowca.Id_Wykladowcy);
+                IQueryable<Zajecia_pojedyncze> zajecia_pojedyncze = null;
+                foreach (var z in zajecia)
+                {
+                    zajecia_pojedyncze = conjuring.Zajecia_pojedyncze.Where(zp => zp.Id_Zajec == z.Id_Zajec);
+                }
+                DateTime now = DateTime.Now;
+                DateTime shifted = now.AddMinutes(15);
+                Zajecia_pojedyncze nastepneZajecia = zajecia_pojedyncze.First(nz => nz.Data_zajec.Day == now.Day && nz.Data_zajec > shifted);
+                connection.Close();
+                return nastepneZajecia;
+            }
+            catch (Exception ex) { connection.Close(); return null; }
+        }
 
         public List<Obecnosc> GetObecnosc(TheConjuring_dbEntities1 conjuring, SqlConnection connection)
         {
@@ -545,30 +563,16 @@ namespace pt_legitymacjestudenckie
             }
             return dt;
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
-=======
 
->>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
-=======
-
->>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
         //zwraca listę zajec pojedynczych od do. Wykorzystywane do edycji zajec pojedynczych
         public List<Zajecia_pojedyncze> Pojedyncz_od_do(TheConjuring_dbEntities1 conjuring, DateTime data_od, DateTime data_do, Zajecia zaj, Wykladowca wyk)
         {
             List<Zajecia_pojedyncze> lista = (from z in conjuring.Zajecia
                                               join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
                                               join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
-<<<<<<< HEAD
-<<<<<<< HEAD
                                               where zp.Data_zajec > data_od && zp.Data_zajec < data_do
-=======
                                               where zp.Data_zajec>data_od && zp.Data_zajec<data_do
->>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
-=======
                                               where zp.Data_zajec>data_od && zp.Data_zajec<data_do
->>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
                                               select zp).Distinct().ToList();
             return lista;
         }
