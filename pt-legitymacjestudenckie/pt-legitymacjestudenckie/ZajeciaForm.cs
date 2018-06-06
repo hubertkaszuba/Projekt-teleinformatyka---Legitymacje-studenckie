@@ -79,7 +79,7 @@ namespace pt_legitymacjestudenckie
                 new_row["Przedmiot"] = s.Zajecia.Przedmiot.Nazwa;
                 new_row["Data"] = s.Data_zajec.ToLongDateString();
 
-                DateTime pom = (DateTime)s.Zajecia.Czas;
+                DateTime pom = (DateTime)s.Data_zajec;
                 new_row["Godzina"] = pom.ToShortTimeString();
                 new_row["Sala"] = s.Zajecia.Sala.Numer + " " + s.Zajecia.Sala.Budynek;
                 dt.Rows.Add(new_row);
@@ -121,11 +121,7 @@ namespace pt_legitymacjestudenckie
         private void btn_usun_Click(object sender, EventArgs e)
         {
             Zajecia_pojedyncze zajecia_Pojedyncz = lista_zajec_pojedynczych[CurrentIndex];
-            databaseController.Usun_Zaj_poj(conjuring, zajecia_Pojedyncz);
-                //Tutaj wywołanie metody:
-                //      NazwaUsuwającejMetody(Zajecia_pojedyncze zajecia_Pojedyncze);
-                //Jedynym argumentem przekazywanym ode mnie są zajęcia_Pojedyncze, które są zajęciami zaznaczonymi przez użytkownika w tabeli
-                
+            databaseController.Usun_Zaj_poj(conjuring, zajecia_Pojedyncz, wykladowca);
         }
 
         private void btn_aktualizuj_Click(object sender, EventArgs e)
@@ -137,7 +133,7 @@ namespace pt_legitymacjestudenckie
             
             List<Sala> sale = databaseController.ListSala(conjuring);
             Sala NowaSala = sale[cb_sala.SelectedIndex];
-
+            databaseController.Edytuj_Zaj_poj(conjuring, zajecia_Pojedyncze, NowaDataZajec, NowaGodzinaZajec, wykladowca);
             try
             {
                 //Tutaj wywołanie metody:

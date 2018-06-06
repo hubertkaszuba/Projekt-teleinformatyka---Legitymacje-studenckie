@@ -568,7 +568,7 @@ namespace pt_legitymacjestudenckie
         public List<Zajecia_pojedyncze> Pojedyncz_od_do(TheConjuring_dbEntities1 conjuring, DateTime data_od, DateTime data_do, Zajecia zaj, Wykladowca wyk)
         {
             List<Zajecia_pojedyncze> lista = (from z in conjuring.Zajecia
-                                              join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                                              join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec 
                                               join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
                                               
                                               where zp.Data_zajec > data_od && zp.Data_zajec < data_do && z.Id_Zajec == zaj.Id_Zajec
@@ -577,12 +577,15 @@ namespace pt_legitymacjestudenckie
             return lista;
         }
 
-        public void Usun_Zaj_poj(TheConjuring_dbEntities1 conjuring, Zajecia_pojedyncze zajecia_Pojedyncze)
+        public void Usun_Zaj_poj(TheConjuring_dbEntities1 conjuring, Zajecia_pojedyncze zajecia_Pojedyncze, Wykladowca wyk)
         {
             try
             {
                 var x = (from zp in conjuring.Zajecia_pojedyncze
                          where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych
+                         join z in conjuring.Zajecia on zp.Id_Zajec equals z.Id_Zajec
+                         join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
+                         where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych && w.Id_Wykladowcy == wyk.Id_Wykladowcy
                          select zp).FirstOrDefault();
                 String rec = x.Data_zajec.ToString();
 
@@ -593,7 +596,9 @@ namespace pt_legitymacjestudenckie
                    
                     int c = (from zp in conjuring.Zajecia_pojedyncze
                          join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
-                         where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych
+                         join z in conjuring.Zajecia on zp.Id_Zajec equals z.Id_Zajec
+                         join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
+                         where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych && w.Id_Wykladowcy==wyk.Id_Wykladowcy
                          select o).Distinct().Count();
                    
                     if (c == 0) {
@@ -610,6 +615,44 @@ namespace pt_legitymacjestudenckie
             {
                 MessageBox.Show ( "Wyjątek: Rekord nie istnieje w bazie danych.");
             }
+        }
+
+        public void Edytuj_Zaj_poj(TheConjuring_dbEntities1 conjuring , Zajecia_pojedyncze zajecia_Pojedyncze, DateTime NowaDataZajec, DateTime NowaGodzinaZajec, Wykladowca wyk)
+        {
+            try
+            {
+                var x = (from zp in conjuring.Zajecia_pojedyncze
+                         join z in conjuring.Zajecia on zp.Id_Zajec equals z.Id_Zajec
+                         join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
+                         where zp.Id_Zajec_pojedynczych == zajecia_Pojedyncze.Id_Zajec_pojedynczych && w.Id_Wykladowcy == wyk.Id_Wykladowcy
+                         select zp).FirstOrDefault();
+                String rec = x.Id_Zajec_pojedynczych + " | " + x.Data_zajec;
+
+
+                DateTime pom = new DateTime(NowaDataZajec.Year, NowaDataZajec.Month, NowaDataZajec.Day, NowaGodzinaZajec.Hour, NowaGodzinaZajec.Minute, 0, 0);
+
+                x.Data_zajec = pom;
+               
+                String recafter = x.Id_Zajec_pojedynczych + " | " + x.Data_zajec;
+
+                DialogResult dr = MessageBox.Show("Czy napewno chcesz zmienić rekord z\n" + rec + "\nna\n" + recafter + " ?", "Potwierdzenie", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    conjuring.SaveChanges();
+                    MessageBox.Show("Wiadomość: Zmieniono rekordu.");
+                }
+                else
+                {
+                    MessageBox.Show ("Wiadomość: Nie zmieniono rekordu.");
+                }
+
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Wyjątek: Rekord nie istnieje w bazie danych.");
+            }
+
+
         }
     }
 }
