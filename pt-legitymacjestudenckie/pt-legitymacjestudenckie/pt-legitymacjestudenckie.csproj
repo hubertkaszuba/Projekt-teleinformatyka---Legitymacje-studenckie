@@ -133,6 +133,12 @@
     <Compile Include="Zajecia.cs">
       <DependentUpon>TheConjuringModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ZajeciaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZajeciaForm.Designer.cs">
+      <DependentUpon>ZajeciaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Zajecia_pojedyncze.cs">
       <DependentUpon>TheConjuringModel.tt</DependentUpon>
     </Compile>

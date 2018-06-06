@@ -597,6 +597,10 @@ namespace pt_legitymacjestudenckie
             else cb_data_przegladanie.Enabled = false;
         }
 
-        
+        private void btn_edytuj_zajęcia_Click(object sender, EventArgs e)
+        {
+            ZajeciaForm zajeciaForm = new ZajeciaForm();
+            zajeciaForm.Show();
+        }
     }
 }

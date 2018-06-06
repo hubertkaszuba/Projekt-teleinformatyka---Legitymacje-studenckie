@@ -67,16 +67,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_aktualizuj_sale = new System.Windows.Forms.Button();
             this.tb_budynek = new System.Windows.Forms.TextBox();
-            this.btn_usun_sale = new System.Windows.Forms.Button();
             this.tb_numer_sali = new System.Windows.Forms.TextBox();
             this.btn_dodaj_sale = new System.Windows.Forms.Button();
             this.label_budynek = new System.Windows.Forms.Label();
             this.label_numer_sali = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_aktualizuj_przedmiot = new System.Windows.Forms.Button();
-            this.btn_usun_przedmiot = new System.Windows.Forms.Button();
             this.label_nazwa_przedmiotu = new System.Windows.Forms.Label();
             this.tb_nazwa_przedmiotu = new System.Windows.Forms.TextBox();
             this.btn_dodaj_przedmiot = new System.Windows.Forms.Button();
@@ -87,8 +83,7 @@
             this.DzienTygodnia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_dodawanieZajęć = new System.Windows.Forms.GroupBox();
-            this.btn_aktualizuj_zajęcia = new System.Windows.Forms.Button();
-            this.btn_usuń_zajęcia = new System.Windows.Forms.Button();
+            this.btn_edytuj_zajęcia = new System.Windows.Forms.Button();
             this.cb_sala = new System.Windows.Forms.ComboBox();
             this.cb_zajecia = new System.Windows.Forms.ComboBox();
             this.dateTime_pierwsze_zajecia = new System.Windows.Forms.DateTimePicker();
@@ -560,9 +555,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btn_aktualizuj_sale);
             this.groupBox2.Controls.Add(this.tb_budynek);
-            this.groupBox2.Controls.Add(this.btn_usun_sale);
             this.groupBox2.Controls.Add(this.tb_numer_sali);
             this.groupBox2.Controls.Add(this.btn_dodaj_sale);
             this.groupBox2.Controls.Add(this.label_budynek);
@@ -574,31 +567,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dodawanie Sali";
             // 
-            // btn_aktualizuj_sale
-            // 
-            this.btn_aktualizuj_sale.Location = new System.Drawing.Point(134, 75);
-            this.btn_aktualizuj_sale.Name = "btn_aktualizuj_sale";
-            this.btn_aktualizuj_sale.Size = new System.Drawing.Size(62, 23);
-            this.btn_aktualizuj_sale.TabIndex = 26;
-            this.btn_aktualizuj_sale.Text = "Aktualizuj";
-            this.btn_aktualizuj_sale.UseVisualStyleBackColor = true;
-            this.btn_aktualizuj_sale.Click += new System.EventHandler(this.btn_aktualizuj_sale_Click);
-            // 
             // tb_budynek
             // 
             this.tb_budynek.Location = new System.Drawing.Point(108, 38);
             this.tb_budynek.Name = "tb_budynek";
             this.tb_budynek.Size = new System.Drawing.Size(160, 20);
             this.tb_budynek.TabIndex = 0;
-            // 
-            // btn_usun_sale
-            // 
-            this.btn_usun_sale.Location = new System.Drawing.Point(202, 75);
-            this.btn_usun_sale.Name = "btn_usun_sale";
-            this.btn_usun_sale.Size = new System.Drawing.Size(56, 23);
-            this.btn_usun_sale.TabIndex = 27;
-            this.btn_usun_sale.Text = "Usuń";
-            this.btn_usun_sale.UseVisualStyleBackColor = true;
             // 
             // tb_numer_sali
             // 
@@ -637,8 +611,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_aktualizuj_przedmiot);
-            this.groupBox1.Controls.Add(this.btn_usun_przedmiot);
             this.groupBox1.Controls.Add(this.label_nazwa_przedmiotu);
             this.groupBox1.Controls.Add(this.tb_nazwa_przedmiotu);
             this.groupBox1.Controls.Add(this.btn_dodaj_przedmiot);
@@ -648,24 +620,6 @@
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dodawanie przedmiotu";
-            // 
-            // btn_aktualizuj_przedmiot
-            // 
-            this.btn_aktualizuj_przedmiot.Location = new System.Drawing.Point(134, 50);
-            this.btn_aktualizuj_przedmiot.Name = "btn_aktualizuj_przedmiot";
-            this.btn_aktualizuj_przedmiot.Size = new System.Drawing.Size(62, 23);
-            this.btn_aktualizuj_przedmiot.TabIndex = 25;
-            this.btn_aktualizuj_przedmiot.Text = "Aktualizuj";
-            this.btn_aktualizuj_przedmiot.UseVisualStyleBackColor = true;
-            // 
-            // btn_usun_przedmiot
-            // 
-            this.btn_usun_przedmiot.Location = new System.Drawing.Point(202, 50);
-            this.btn_usun_przedmiot.Name = "btn_usun_przedmiot";
-            this.btn_usun_przedmiot.Size = new System.Drawing.Size(56, 23);
-            this.btn_usun_przedmiot.TabIndex = 25;
-            this.btn_usun_przedmiot.Text = "Usuń";
-            this.btn_usun_przedmiot.UseVisualStyleBackColor = true;
             // 
             // label_nazwa_przedmiotu
             // 
@@ -744,8 +698,7 @@
             // 
             // gb_dodawanieZajęć
             // 
-            this.gb_dodawanieZajęć.Controls.Add(this.btn_aktualizuj_zajęcia);
-            this.gb_dodawanieZajęć.Controls.Add(this.btn_usuń_zajęcia);
+            this.gb_dodawanieZajęć.Controls.Add(this.btn_edytuj_zajęcia);
             this.gb_dodawanieZajęć.Controls.Add(this.cb_sala);
             this.gb_dodawanieZajęć.Controls.Add(this.cb_zajecia);
             this.gb_dodawanieZajęć.Controls.Add(this.dateTime_pierwsze_zajecia);
@@ -762,23 +715,15 @@
             this.gb_dodawanieZajęć.TabStop = false;
             this.gb_dodawanieZajęć.Text = "Dodawanie zajęć";
             // 
-            // btn_aktualizuj_zajęcia
+            // btn_edytuj_zajęcia
             // 
-            this.btn_aktualizuj_zajęcia.Location = new System.Drawing.Point(134, 144);
-            this.btn_aktualizuj_zajęcia.Name = "btn_aktualizuj_zajęcia";
-            this.btn_aktualizuj_zajęcia.Size = new System.Drawing.Size(62, 23);
-            this.btn_aktualizuj_zajęcia.TabIndex = 25;
-            this.btn_aktualizuj_zajęcia.Text = "Aktualizuj";
-            this.btn_aktualizuj_zajęcia.UseVisualStyleBackColor = true;
-            // 
-            // btn_usuń_zajęcia
-            // 
-            this.btn_usuń_zajęcia.Location = new System.Drawing.Point(202, 144);
-            this.btn_usuń_zajęcia.Name = "btn_usuń_zajęcia";
-            this.btn_usuń_zajęcia.Size = new System.Drawing.Size(56, 23);
-            this.btn_usuń_zajęcia.TabIndex = 25;
-            this.btn_usuń_zajęcia.Text = "Usuń";
-            this.btn_usuń_zajęcia.UseVisualStyleBackColor = true;
+            this.btn_edytuj_zajęcia.Location = new System.Drawing.Point(206, 144);
+            this.btn_edytuj_zajęcia.Name = "btn_edytuj_zajęcia";
+            this.btn_edytuj_zajęcia.Size = new System.Drawing.Size(62, 23);
+            this.btn_edytuj_zajęcia.TabIndex = 25;
+            this.btn_edytuj_zajęcia.Text = "Edytuj";
+            this.btn_edytuj_zajęcia.UseVisualStyleBackColor = true;
+            this.btn_edytuj_zajęcia.Click += new System.EventHandler(this.btn_edytuj_zajęcia_Click);
             // 
             // cb_sala
             // 
@@ -1506,12 +1451,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton RadioGrid;
         private System.Windows.Forms.RadioButton RadioTabel;
-        private System.Windows.Forms.Button btn_aktualizuj_zajęcia;
-        private System.Windows.Forms.Button btn_usuń_zajęcia;
-        private System.Windows.Forms.Button btn_aktualizuj_przedmiot;
-        private System.Windows.Forms.Button btn_usun_przedmiot;
-        private System.Windows.Forms.Button btn_aktualizuj_sale;
-        private System.Windows.Forms.Button btn_usun_sale;
+        private System.Windows.Forms.Button btn_edytuj_zajęcia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nazwa_zajęć;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sala;
         private System.Windows.Forms.DataGridViewTextBoxColumn Czas;

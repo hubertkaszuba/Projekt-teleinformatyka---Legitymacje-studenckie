@@ -545,5 +545,24 @@ namespace pt_legitymacjestudenckie
             }
             return dt;
         }
+<<<<<<< HEAD
+      
+=======
+
+>>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
+        //zwraca listę zajec pojedynczych od do. Wykorzystywane do edycji zajec pojedynczych
+        public List<Zajecia_pojedyncze> Pojedyncz_od_do(TheConjuring_dbEntities1 conjuring, DateTime data_od, DateTime data_do, Zajecia zaj, Wykladowca wyk)
+        {
+            List<Zajecia_pojedyncze> lista = (from z in conjuring.Zajecia
+                                              join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                                              join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
+<<<<<<< HEAD
+                                              where zp.Data_zajec > data_od && zp.Data_zajec < data_do
+=======
+                                              where zp.Data_zajec>data_od && zp.Data_zajec<data_do
+>>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
+                                              select zp).Distinct().ToList();
+            return lista;
+        }
     }
 }
