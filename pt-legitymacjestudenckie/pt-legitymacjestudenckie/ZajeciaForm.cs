@@ -19,7 +19,7 @@ namespace pt_legitymacjestudenckie
         Wykladowca wykladowca;
         DatabaseController databaseController;
         List<Zajecia_pojedyncze> lista_zajec_pojedynczych = new List<Zajecia_pojedyncze>();
-        Przedmiot przedmiotSzukany;
+
         public ZajeciaForm(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca)
         {
             InitializeComponent();
@@ -36,27 +36,21 @@ namespace pt_legitymacjestudenckie
         {
             Zajecia_pojedyncze zajecia_Pojedyncze = new Zajecia_pojedyncze();
             Zajecia_pojedyncze zajecia_Zedytowane = new Zajecia_pojedyncze();
-            Przedmiot przedmiot = null;
             Zajecia zajecia = new Zajecia();
             DateTime data_od, data_do;
         
-            
             //Przygotowanie daty w zakresie której będzie sprawdzana obecność
             data_od = cb_data_od.Value;
             data_do = cb_data_do.Value;
-            //Przygotowanie obiektu przedmiotu do sprawdzenia
-            if (cb_przedmiot_przegladanie.Text != "")
-            {
-                przedmiot = conjuring.Przedmiot.Where(o => (o.Nazwa == cb_przedmiot_przegladanie.Text)).FirstOrDefault();
-            }
+
             if (cb_przedmiot_przegladanie.Text == "")
             {
                 MessageBox.Show("Wypełnij pola!");
             }
             else
             {
-                Znajdz_przedmiot_szukany();
-                zajecia = przedmiotSzukany.Zajecia.FirstOrDefault();
+                zajecia = (Zajecia)cb_przedmiot_przegladanie.SelectedItem;
+
                 lista_zajec_pojedynczych = databaseController.Pojedyncz_od_do(conjuring, cb_data_od.Value, cb_data_do.Value, zajecia, wykladowca);
                 dgv_lista_obecnosci.DataSource = FillDataTable(lista_zajec_pojedynczych);
             }
@@ -97,11 +91,11 @@ namespace pt_legitymacjestudenckie
         {
             cb_data_od.Value = DateTime.Now.AddMonths(-1);
             cb_przedmiot_przegladanie.Items.Clear();
-            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot_Zalogowanego(conjuring, wykladowca);
-            foreach (Przedmiot x in przedmioty)
-            {
-                cb_przedmiot_przegladanie.Items.Add(x.Nazwa);
-            }
+
+            List<Zajecia> zajecia = databaseController.ListZajec(conjuring, connection, wykladowca);
+            cb_przedmiot_przegladanie.DataSource = zajecia;
+            cb_przedmiot_przegladanie.DisplayMember = "DisplayName";
+
             //sale
             cb_sala.Items.Clear();
             List<Sala> sale = databaseController.ListSala(conjuring);
@@ -111,19 +105,6 @@ namespace pt_legitymacjestudenckie
             }
         }
 
-        private void Znajdz_przedmiot_szukany()
-        {
-            List<Przedmiot> przedmioty = databaseController.ListPrzedmiot_Zalogowanego(conjuring, wykladowca);
-            Zajecia pom;
-            foreach (Przedmiot x in przedmioty)
-            {
-                pom = x.Zajecia.FirstOrDefault();   
-                if(pom.Przedmiot.Nazwa == cb_przedmiot_przegladanie.Text)
-                {
-                    przedmiotSzukany = x;
-                }
-            }
-        }
 
         /* Aby zaznaczać cały wiersz w tabeli */
         private int CurrentIndex=0;
