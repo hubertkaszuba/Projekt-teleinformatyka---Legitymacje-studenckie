@@ -113,6 +113,7 @@ namespace pt_legitymacjestudenckie
         /// <summary>Ustawia wartości aktualnych i następnych zajęć w zakładce Sprawdzanie obecności</summary>
         private void UstawZajecia()
         {
+
             try
             {
                 lv_aktualne_zajecia.Clear();
@@ -120,6 +121,13 @@ namespace pt_legitymacjestudenckie
                 lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
                 lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
                 lv_aktualne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+
+                lv_nastepne_zajecia.Clear();
+                zajecia = databaseController.GetNextZajecia_Pojedyncze(conjuring, connection, wykladowca);
+                lv_nastepne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
+                lv_nastepne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
+                lv_nastepne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+
             }
             catch(Exception ex)
             {
