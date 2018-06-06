@@ -161,6 +161,9 @@
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ZajeciaForm.resx">
+      <DependentUpon>ZajeciaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\pt_legitymacjestudenckie.SmartCardRelated.StudentInfo.datasource" />
     <None Include="Properties\Settings.settings">

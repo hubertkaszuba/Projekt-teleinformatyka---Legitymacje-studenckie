@@ -570,9 +570,13 @@ namespace pt_legitymacjestudenckie
             List<Zajecia_pojedyncze> lista = (from z in conjuring.Zajecia
                                               join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
                                               join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
+<<<<<<< HEAD
                                               where zp.Data_zajec > data_od && zp.Data_zajec < data_do
                                               where zp.Data_zajec>data_od && zp.Data_zajec<data_do
                                               where zp.Data_zajec>data_od && zp.Data_zajec<data_do
+=======
+                                              where zp.Data_zajec > data_od && zp.Data_zajec < data_do && z.Id_Zajec == zaj.Id_Zajec
+>>>>>>> abe04144ae4c9c05f60a9a1b90cd5819e3ddc867
                                               select zp).Distinct().ToList();
             return lista;
         }

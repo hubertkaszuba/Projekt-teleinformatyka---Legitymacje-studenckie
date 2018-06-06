@@ -599,7 +599,7 @@ namespace pt_legitymacjestudenckie
 
         private void btn_edytuj_zajęcia_Click(object sender, EventArgs e)
         {
-            ZajeciaForm zajeciaForm = new ZajeciaForm();
+            ZajeciaForm zajeciaForm = new ZajeciaForm(conjuring, connection, wykladowca);
             zajeciaForm.Show();
         }
     }
