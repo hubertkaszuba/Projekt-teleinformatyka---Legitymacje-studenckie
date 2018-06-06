@@ -118,15 +118,29 @@ namespace pt_legitymacjestudenckie
             {
                 lv_aktualne_zajecia.Clear();
                 Zajecia_pojedyncze zajecia = databaseController.GetZajecia_Pojedyncze(conjuring, connection, wykladowca);
-                lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
-                lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
-                lv_aktualne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+                if (zajecia != null)
+                {
+                    lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
+                    lv_aktualne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
+                    lv_aktualne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+                }
+                else
+                {
+                    lv_aktualne_zajecia.Items.Add("Aktualnie nie ma żadnych zajęć");
+                }
 
                 lv_nastepne_zajecia.Clear();
                 zajecia = databaseController.GetNextZajecia_Pojedyncze(conjuring, connection, wykladowca);
-                lv_nastepne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
-                lv_nastepne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
-                lv_nastepne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+                if (zajecia != null)
+                {
+                    lv_nastepne_zajecia.Items.Add(zajecia.Zajecia.Przedmiot.Nazwa);
+                    lv_nastepne_zajecia.Items.Add(zajecia.Zajecia.Sala.Numer + " " + zajecia.Zajecia.Sala.Budynek);
+                    lv_nastepne_zajecia.Items.Add(zajecia.Data_zajec.ToShortTimeString());
+                }
+                else
+                {
+                    lv_nastepne_zajecia.Items.Add("Koniec zajęć na dzisiaj!");
+                }
 
             }
             catch(Exception ex)
