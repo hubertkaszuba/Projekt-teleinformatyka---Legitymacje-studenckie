@@ -546,7 +546,11 @@ namespace pt_legitymacjestudenckie
             return dt;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
 =======
 
 >>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
@@ -557,7 +561,11 @@ namespace pt_legitymacjestudenckie
                                               join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
                                               join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
 <<<<<<< HEAD
+<<<<<<< HEAD
                                               where zp.Data_zajec > data_od && zp.Data_zajec < data_do
+=======
+                                              where zp.Data_zajec>data_od && zp.Data_zajec<data_do
+>>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
 =======
                                               where zp.Data_zajec>data_od && zp.Data_zajec<data_do
 >>>>>>> c0f6ae7950473f5ad5a67c95cd4d83d60fa07099
