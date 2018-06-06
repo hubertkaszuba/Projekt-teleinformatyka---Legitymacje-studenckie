@@ -374,7 +374,7 @@ namespace pt_legitymacjestudenckie
             dt.Columns.Add("Przedmiot");
             dt.Columns.Add("Student");
             dt.Columns.Add("Data");
-            dt.Columns.Add("Spóźniony?");
+            dt.Columns.Add("Spóźniony");
             dt.Columns.Add("Notatka");
 
             var qTyp = (from p in conjuring.Przedmiot
@@ -383,7 +383,7 @@ namespace pt_legitymacjestudenckie
                         join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
                         join s in conjuring.Student on o.Indeks equals s.Indeks
                         where z.Id_Wykladowcy == wyk.Id_Wykladowcy && p.Id_Przedmiotu == przed.Id_Przedmiotu
-                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec }).Distinct().ToList();
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec, Spoznienie_ = o.Spoznienie, Notatka_ =o.notatka}).Distinct().ToList();
 
             foreach (var s in qTyp)
             {
@@ -391,30 +391,159 @@ namespace pt_legitymacjestudenckie
                 new_row["Przedmiot"] = s.Przedmiot_;
                 new_row["Student"] = s.Student_;
                 new_row["Data"] = s.Data_;
-                //Tutaj jeszcze trzeba pozostałe dwie kolumny uzupełnić
+                new_row["Spóźniony"] = s.Spoznienie_;
+                new_row["Notatka"] = s.Notatka_;
                 dt.Rows.Add(new_row);
             }
             return dt;
         }
         public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, DateTime data_od, DateTime data_do , Wykladowca wyk)
         {
-            return null;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Przedmiot");
+            dt.Columns.Add("Student");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Spóźniony");
+            dt.Columns.Add("Notatka");
+
+            var qTyp = (from p in conjuring.Przedmiot
+                        join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                        join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                        join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                        join s in conjuring.Student on o.Indeks equals s.Indeks
+                        where z.Id_Wykladowcy == wyk.Id_Wykladowcy && p.Id_Przedmiotu == przed.Id_Przedmiotu && zp.Data_zajec>data_od && zp.Data_zajec<data_do
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec, Spoznienie_ = o.Spoznienie, Notatka_ = o.notatka }).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Przedmiot"] = s.Przedmiot_;
+                new_row["Student"] = s.Student_;
+                new_row["Data"] = s.Data_;
+                new_row["Spóźniony"] = s.Spoznienie_;
+                new_row["Notatka"] = s.Notatka_;
+                dt.Rows.Add(new_row);
+            }
+            return dt;
         }
+
         public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, Student student, Wykladowca wyk)
         {
-            return null;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Przedmiot");
+            dt.Columns.Add("Student");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Spóźniony");
+            dt.Columns.Add("Notatka");
+
+            var qTyp = (from p in conjuring.Przedmiot
+                        join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                        join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                        join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                        join s in conjuring.Student on o.Indeks equals s.Indeks
+                        where z.Id_Wykladowcy == wyk.Id_Wykladowcy && p.Id_Przedmiotu == przed.Id_Przedmiotu && s.Indeks==student.Indeks
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec, Spoznienie_ = o.Spoznienie, Notatka_ = o.notatka }).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Przedmiot"] = s.Przedmiot_;
+                new_row["Student"] = s.Student_;
+                new_row["Data"] = s.Data_;
+                new_row["Spóźniony"] = s.Spoznienie_;
+                new_row["Notatka"] = s.Notatka_;
+                dt.Rows.Add(new_row);
+            }
+            return dt;
         }
+
         public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Przedmiot przed, DateTime data_od, DateTime data_do,  Student student, Wykladowca wyk)
         {
-            return null;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Przedmiot");
+            dt.Columns.Add("Student");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Spóźniony");
+            dt.Columns.Add("Notatka");
+
+            var qTyp = (from p in conjuring.Przedmiot
+                        join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                        join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                        join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                        join s in conjuring.Student on o.Indeks equals s.Indeks
+                        where z.Id_Wykladowcy == wyk.Id_Wykladowcy && p.Id_Przedmiotu == przed.Id_Przedmiotu && zp.Data_zajec > data_od && zp.Data_zajec < data_do && s.Indeks==student.Indeks
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec, Spoznienie_ = o.Spoznienie, Notatka_ = o.notatka }).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Przedmiot"] = s.Przedmiot_;
+                new_row["Student"] = s.Student_;
+                new_row["Data"] = s.Data_;
+                new_row["Spóźniony"] = s.Spoznienie_;
+                new_row["Notatka"] = s.Notatka_;
+                dt.Rows.Add(new_row);
+            }
+            return dt;
         }
         public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Student student, Wykladowca wyk)
         {
-            return null;
-        }
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Przedmiot");
+            dt.Columns.Add("Student");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Spóźniony");
+            dt.Columns.Add("Notatka");
+
+            var qTyp = (from p in conjuring.Przedmiot
+                        join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                        join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                        join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                        join s in conjuring.Student on o.Indeks equals s.Indeks
+                        where z.Id_Wykladowcy == wyk.Id_Wykladowcy && s.Indeks == student.Indeks
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec, Spoznienie_ = o.Spoznienie, Notatka_ = o.notatka }).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Przedmiot"] = s.Przedmiot_;
+                new_row["Student"] = s.Student_;
+                new_row["Data"] = s.Data_;
+                new_row["Spóźniony"] = s.Spoznienie_;
+                new_row["Notatka"] = s.Notatka_;
+                dt.Rows.Add(new_row);
+            }
+            return dt;
+        
+    }
         public DataTable Lista_Obecnosci(TheConjuring_dbEntities1 conjuring, SqlConnection connection, DateTime data_od, DateTime data_do, Student student, Wykladowca wyk)
         {
-            return null;
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Przedmiot");
+            dt.Columns.Add("Student");
+            dt.Columns.Add("Data");
+            dt.Columns.Add("Spóźniony");
+            dt.Columns.Add("Notatka");
+
+            var qTyp = (from p in conjuring.Przedmiot
+                        join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                        join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec
+                        join o in conjuring.Obecnosc on zp.Id_Zajec_pojedynczych equals o.Id_Zajec_pojedynczych
+                        join s in conjuring.Student on o.Indeks equals s.Indeks
+                        where z.Id_Wykladowcy == wyk.Id_Wykladowcy && zp.Data_zajec > data_od && zp.Data_zajec < data_do && s.Indeks == student.Indeks
+                        select new { Przedmiot_ = p.Nazwa, Student_ = s.Imie + " " + s.Nazwisko, Data_ = zp.Data_zajec, Spoznienie_ = o.Spoznienie, Notatka_ = o.notatka }).Distinct().ToList();
+
+            foreach (var s in qTyp)
+            {
+                DataRow new_row = dt.NewRow();
+                new_row["Przedmiot"] = s.Przedmiot_;
+                new_row["Student"] = s.Student_;
+                new_row["Data"] = s.Data_;
+                new_row["Spóźniony"] = s.Spoznienie_;
+                new_row["Notatka"] = s.Notatka_;
+                dt.Rows.Add(new_row);
+            }
+            return dt;
         }
     }
 }
