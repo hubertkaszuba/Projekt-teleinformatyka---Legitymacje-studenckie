@@ -90,19 +90,13 @@ namespace pt_legitymacjestudenckie
         private void RefreshComboboxes_PrzegladanieObecnosci()
         {
             cb_data_od.Value = DateTime.Now.AddMonths(-1);
+            cb_przedmiot_przegladanie.DataSource = null;
             cb_przedmiot_przegladanie.Items.Clear();
 
             List<Zajecia> zajecia = databaseController.ListZajec(conjuring, connection, wykladowca);
             cb_przedmiot_przegladanie.DataSource = zajecia;
             cb_przedmiot_przegladanie.DisplayMember = "DisplayName";
-
-            //sale
-            cb_sala.Items.Clear();
-            List<Sala> sale = databaseController.ListSala(conjuring);
-            foreach (Sala x in sale)
-            {
-                cb_sala.Items.Add(x.Numer + " " + x.Budynek);
-            }
+           
         }
 
 
@@ -110,42 +104,54 @@ namespace pt_legitymacjestudenckie
         private int CurrentIndex=0;
         private void dgv_lista_obecnosci_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btn_usun.Enabled = true;
-            btn_aktualizuj.Enabled = true;
-            CurrentIndex = dgv_lista_obecnosci.CurrentRow.Index;
-            data_zajec.Text = dgv_lista_obecnosci.CurrentRow.Cells[1].Value.ToString();
-            godzina_zajec.Text = dgv_lista_obecnosci.CurrentRow.Cells[2].Value.ToString();
-            cb_sala.SelectedIndex = cb_sala.FindStringExact(dgv_lista_obecnosci.CurrentRow.Cells[3].Value.ToString());
+            try
+            {
+                btn_usun.Enabled = true;
+                btn_aktualizuj.Enabled = true;
+                CurrentIndex = dgv_lista_obecnosci.CurrentRow.Index;
+                data_zajec.Text = dgv_lista_obecnosci.CurrentRow.Cells[1].Value.ToString();
+                godzina_zajec.Text = dgv_lista_obecnosci.CurrentRow.Cells[2].Value.ToString();
+               
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void btn_usun_Click(object sender, EventArgs e)
         {
-            Zajecia_pojedyncze zajecia_Pojedyncz = lista_zajec_pojedynczych[CurrentIndex];
-            databaseController.Usun_Zaj_poj(conjuring, zajecia_Pojedyncz, wykladowca);
-        }
-
-        private void btn_aktualizuj_Click(object sender, EventArgs e)
-        {
-            Zajecia_pojedyncze zajecia_Pojedyncze = lista_zajec_pojedynczych[CurrentIndex];
-
-            DateTime NowaDataZajec = Convert.ToDateTime(data_zajec.Text);
-            DateTime NowaGodzinaZajec = Convert.ToDateTime(godzina_zajec.Text);
-            
-            List<Sala> sale = databaseController.ListSala(conjuring);
-            Sala NowaSala = sale[cb_sala.SelectedIndex];
-            databaseController.Edytuj_Zaj_poj(conjuring, zajecia_Pojedyncze, NowaDataZajec, NowaGodzinaZajec, wykladowca);
             try
             {
-                //Tutaj wywołanie metody:
-                //     NazwaMetody(Zajecia_pojedyncze zajecia_Pojedyncze, DateTime NowaDataZajec, DateTime NowaGodzinaZajec, Sala NowaSala);
-                // NowaDataZajec to jest to co jest pod: obiektZajęćPojedyńczych.Data_zajec
-                // NowaGodzinaZajec to jest to co jest pod: obiektZajęćPojedyńczych.Zajecia.Czas
-                // NowaSala to jest to co jest pod: obiektZajęćPojedyńczych.Zajecia.Sala
+                Zajecia_pojedyncze zajecia_Pojedyncz = lista_zajec_pojedynczych[CurrentIndex];
+                databaseController.Usun_Zaj_poj(conjuring, zajecia_Pojedyncz, wykladowca);
+                btn_szukaj_obecnosci_Click(sender, e);
             }
             catch (Exception ex)
             {
 
             }
-        }
+           
+            }
+
+
+        private void btn_aktualizuj_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Zajecia_pojedyncze zajecia_Pojedyncze = lista_zajec_pojedynczych[CurrentIndex];
+
+                DateTime NowaDataZajec = Convert.ToDateTime(data_zajec.Text);
+                DateTime NowaGodzinaZajec = Convert.ToDateTime(godzina_zajec.Text);
+
+                List<Sala> sale = databaseController.ListSala(conjuring);
+                databaseController.Edytuj_Zaj_poj(conjuring, zajecia_Pojedyncze, NowaDataZajec, NowaGodzinaZajec, wykladowca);
+                btn_szukaj_obecnosci_Click(sender, e);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            }
     }
 }

@@ -30,23 +30,21 @@
         {
             this.dgv_lista_obecnosci = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btn_szukaj_obecnosci = new System.Windows.Forms.Button();
             this.cb_przedmiot_przegladanie = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.cb_data_do = new System.Windows.Forms.DateTimePicker();
             this.cb_data_od = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
-            this.cb_data_do = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.data_zajec = new System.Windows.Forms.DateTimePicker();
             this.godzina_zajec = new System.Windows.Forms.DateTimePicker();
             this.btn_usun = new System.Windows.Forms.Button();
             this.btn_aktualizuj = new System.Windows.Forms.Button();
             this.Edytuj = new System.Windows.Forms.GroupBox();
-            this.cb_sala = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_lista_obecnosci)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.Edytuj.SuspendLayout();
@@ -83,6 +81,24 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Zajęcia do edycji";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(51, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "do";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(51, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "od";
+            // 
             // btn_szukaj_obecnosci
             // 
             this.btn_szukaj_obecnosci.Location = new System.Drawing.Point(26, 143);
@@ -98,6 +114,7 @@
             this.cb_przedmiot_przegladanie.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cb_przedmiot_przegladanie.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cb_przedmiot_przegladanie.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cb_przedmiot_przegladanie.DropDownWidth = 350;
             this.cb_przedmiot_przegladanie.FormattingEnabled = true;
             this.cb_przedmiot_przegladanie.Location = new System.Drawing.Point(79, 24);
             this.cb_przedmiot_przegladanie.Name = "cb_przedmiot_przegladanie";
@@ -114,6 +131,16 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Przedmiot";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cb_data_do
+            // 
+            this.cb_data_do.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cb_data_do.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.cb_data_do.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.cb_data_do.Location = new System.Drawing.Point(77, 102);
+            this.cb_data_do.Name = "cb_data_do";
+            this.cb_data_do.Size = new System.Drawing.Size(202, 20);
+            this.cb_data_do.TabIndex = 3;
             // 
             // cb_data_od
             // 
@@ -136,34 +163,6 @@
             this.label12.Text = "Data:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cb_data_do
-            // 
-            this.cb_data_do.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cb_data_do.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cb_data_do.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cb_data_do.Location = new System.Drawing.Point(77, 102);
-            this.cb_data_do.Name = "cb_data_do";
-            this.cb_data_do.Size = new System.Drawing.Size(202, 20);
-            this.cb_data_do.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 16);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "od";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 16);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "do";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -181,15 +180,6 @@
             this.label4.Size = new System.Drawing.Size(58, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "Godzina";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 91);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 16);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Sala";
             // 
             // data_zajec
             // 
@@ -215,7 +205,7 @@
             // btn_usun
             // 
             this.btn_usun.Enabled = false;
-            this.btn_usun.Location = new System.Drawing.Point(66, 129);
+            this.btn_usun.Location = new System.Drawing.Point(77, 106);
             this.btn_usun.Name = "btn_usun";
             this.btn_usun.Size = new System.Drawing.Size(75, 23);
             this.btn_usun.TabIndex = 14;
@@ -226,7 +216,7 @@
             // btn_aktualizuj
             // 
             this.btn_aktualizuj.Enabled = false;
-            this.btn_aktualizuj.Location = new System.Drawing.Point(147, 129);
+            this.btn_aktualizuj.Location = new System.Drawing.Point(158, 106);
             this.btn_aktualizuj.Name = "btn_aktualizuj";
             this.btn_aktualizuj.Size = new System.Drawing.Size(75, 23);
             this.btn_aktualizuj.TabIndex = 14;
@@ -236,13 +226,11 @@
             // 
             // Edytuj
             // 
-            this.Edytuj.Controls.Add(this.cb_sala);
             this.Edytuj.Controls.Add(this.label3);
             this.Edytuj.Controls.Add(this.btn_aktualizuj);
             this.Edytuj.Controls.Add(this.data_zajec);
             this.Edytuj.Controls.Add(this.btn_usun);
             this.Edytuj.Controls.Add(this.godzina_zajec);
-            this.Edytuj.Controls.Add(this.label5);
             this.Edytuj.Controls.Add(this.label4);
             this.Edytuj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
             this.Edytuj.Location = new System.Drawing.Point(23, 274);
@@ -251,16 +239,6 @@
             this.Edytuj.TabIndex = 15;
             this.Edytuj.TabStop = false;
             this.Edytuj.Text = "Edytuj";
-            // 
-            // cb_sala
-            // 
-            this.cb_sala.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cb_sala.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cb_sala.FormattingEnabled = true;
-            this.cb_sala.Location = new System.Drawing.Point(62, 88);
-            this.cb_sala.Name = "cb_sala";
-            this.cb_sala.Size = new System.Drawing.Size(183, 23);
-            this.cb_sala.TabIndex = 25;
             // 
             // ZajeciaForm
             // 
@@ -295,12 +273,10 @@
         private System.Windows.Forms.DateTimePicker cb_data_do;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker data_zajec;
         private System.Windows.Forms.DateTimePicker godzina_zajec;
         private System.Windows.Forms.Button btn_usun;
         private System.Windows.Forms.Button btn_aktualizuj;
         private System.Windows.Forms.GroupBox Edytuj;
-        private System.Windows.Forms.ComboBox cb_sala;
     }
 }
