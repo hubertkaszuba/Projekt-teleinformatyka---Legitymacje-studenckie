@@ -193,8 +193,8 @@ namespace pt_legitymacjestudenckie
         public void InsertZajecia(TheConjuring_dbEntities1 conjuring, SqlConnection connection, Wykladowca wykladowca , Przedmiot przedmiot, Sala sala, DateTime data, bool tydzien)
         {
             connection.Open();
-            var query = conjuring.Zajecia.Where(o => (o.Id_Przedmiotu == przedmiot.Id_Przedmiotu && o.Id_Sali == sala.Id_Sali && o.Id_Wykladowcy == wykladowca.Id_Wykladowcy && o.Tydzien == tydzien && o.Czas == data)).Distinct().Count();
-            if (query != 0)
+            var query = conjuring.Zajecia.Where(o => (o.Id_Przedmiotu == przedmiot.Id_Przedmiotu && o.Id_Sali == sala.Id_Sali && o.Id_Wykladowcy == wykladowca.Id_Wykladowcy && o.Tydzien == tydzien && o.Czas == data)).FirstOrDefault();
+            if (query != null)
             {
                 MessageBox.Show("Takie zajecia juz istnieja w bazie");
                 connection.Close();
@@ -300,10 +300,10 @@ namespace pt_legitymacjestudenckie
         {
             List<Przedmiot> qTyp = new List<Przedmiot>();
             qTyp = (from p in conjuring.Przedmiot
-                    /*join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
+                    join z in conjuring.Zajecia on p.Id_Przedmiotu equals z.Id_Przedmiotu
                     join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
                     where w.Id_Wykladowcy == wykladowca.Id_Wykladowcy
-                    orderby p.Id_Przedmiotu*/
+                    orderby p.Id_Przedmiotu
                     select p).Distinct().ToList();
             return qTyp;
         }
@@ -571,7 +571,7 @@ namespace pt_legitymacjestudenckie
                                               join zp in conjuring.Zajecia_pojedyncze on z.Id_Zajec equals zp.Id_Zajec 
                                               join w in conjuring.Wykladowca on z.Id_Wykladowcy equals w.Id_Wykladowcy
                                               
-                                              where zp.Data_zajec >= data_od && zp.Data_zajec <= data_do && z.Id_Zajec == zaj.Id_Zajec
+                                              where zp.Data_zajec > data_od && zp.Data_zajec < data_do && z.Id_Zajec == zaj.Id_Zajec
 
                                               select zp).Distinct().ToList();
             return lista;
