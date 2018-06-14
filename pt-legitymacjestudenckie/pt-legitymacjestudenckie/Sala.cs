@@ -23,15 +23,7 @@ namespace pt_legitymacjestudenckie
         public int Id_Sali { get; set; }
         public string Budynek { get; set; }
         public string Numer { get; set; }
-        public virtual Sala sala { get; set; }
-        public string DisplayName
-        {
-            get
-            {
-                return sala.Numer + "-" + sala.Budynek;
-            }
-        }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zajecia> Zajecia { get; set; }
     }

@@ -342,7 +342,7 @@ namespace pt_legitymacjestudenckie
             String[] substrings = sala_zczytane.Split(delimiter);
             string pom1 = substrings[0];
             string pom2 = substrings[1];
-            Sala sala = conjuring.Sala.Where(o => (o.Numer == pom1 && o.Budynek==pom2)).FirstOrDefault();
+            Sala sala = conjuring.Sala.Where(o => (o.Numer == pom1&& o.Budynek==pom2)).FirstOrDefault();
             bool tydzien = false;
             string tydzien_zczyatane = cb_czestosc.Text;
             if (tydzien_zczyatane == "Co tydzien") tydzien = false;
@@ -372,8 +372,8 @@ namespace pt_legitymacjestudenckie
         {
             try
             {
-               databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
-               RefreshComboBoxes();
+                databaseController.InsertPrzedmiot(conjuring, connection, tb_nazwa_przedmiotu.Text);
+                RefreshComboBoxes();
             }
             catch (Exception ex)
             {
@@ -407,18 +407,14 @@ namespace pt_legitymacjestudenckie
         private void RefreshComboBoxes()
         {
             // Pobranie zajęć do comboboxa w zakładce generowanie raportów
-            CourseComboBox.DataSource = null;
             CourseComboBox.Items.Clear();
             List<Zajecia> zajecia = databaseController.ListZajec(conjuring, connection, wykladowca);
             CourseComboBox.DataSource = zajecia;
             CourseComboBox.DisplayMember = "DisplayName";
 
             //sale
-            
             cb_sala.Items.Clear();
             List<Sala> sale = databaseController.ListSala(conjuring);
-            //cb_sala.DataSource = sale;
-            //cb_sala.DisplayMember = "DisplayName";
             foreach (Sala x in sale)
             {
                 cb_sala.Items.Add(x.Numer + "-" + x.Budynek);
